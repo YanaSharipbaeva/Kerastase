@@ -1,0 +1,64 @@
+.buttonStyles {
+    font-family: 'InterstateLight';
+    font-size: 35px;
+    color: #080808;
+    border-radius:0px;
+    transition: all 1s ease;
+    background: #ccc; /* for non-css3 browsers */ 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dbdbdb', endColorstr='#dcdcdc'); /* для IE6-9 */
+    background: -webkit-linear-gradient(top, #dbdbdb, #dcdcdc); /* для webkit-браузеров */
+    background: -moz-linear-gradient(top,  #dbdbdb,  #dcdcdc); /* для firefox 3.6+ */ 
+    background: -o-linear-gradient(top,  #dbdbdb,  #dcdcdc); /* для Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #dbdbdb,  #dcdcdc); /* для IE10+, т.к. лично я пока не проверял нужен ли префикс */
+    background: linear-gradient(to bottom,  #dbdbdb,  #dcdcdc); /* W3C */
+    text-transform: uppercase;
+    height: 90px;
+    width:585px;
+    display: block;
+    line-height: 90px;
+    text-align: center;
+    transition: .5s all ease-in-out;
+    margin: 0 auto;
+}
+
+.buttonStyles:hover {
+    color: #fff;
+    background: #282828;
+    text-decoration:none;
+}
+
+.start-wrapper {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+.start-title {
+    font-size: 60px;
+    color: #fff;
+    font-family: 'TradeGothicLTLight';
+    text-transform: uppercase;
+    margin-bottom: 70px;
+}
+
+.wrapper {
+    height: 100%;
+    height: -webkit-calc(100% - 75px);
+    height: -moz-calc(100% - 75px);
+    height: calc(100% - 75px);
+}
+
+.main-container {
+    height: 100%;
+}
+
+.question-text .form-group {
+    width: auto;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 0px;
+}

@@ -1,0 +1,31 @@
+.round {
+    width: 7px;
+    height: 7px;
+    border-radius:50%;
+    background-color: #fff;
+    margin:5px auto;
+}
+
+.activeRound {
+    width: 15px;
+    height: 15px;
+    box-sizing: border-box;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: transparent;
+    margin:2px 0px;
+}
+
+.horizontalLine {
+    height: 14px;
+    width: 1px;
+    background: #fff;
+    margin: 0 auto;
+}
+
+.wrapper-counter {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -149px;
+}

@@ -1,0 +1,186 @@
+.questionTitle {
+    font-family: 'TradeGothicLTLight';
+    font-size: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    width: 780px;
+    margin: 0 auto;
+}
+
+.questionNumber {
+    font-family: 'RalewayThin';
+    font-size: 34px;
+    color: #fff;
+    float: right;
+    margin-right: 50px;
+    margin-top: 40px;
+    width: 100%;
+    text-align: right;
+}
+
+.question-text {
+    font-size: 35px;
+    color:#fff;
+    font-family: 'InterstateLight';
+}
+
+.selectpickerOption {
+    font-size: 34px;
+    color:#666666!important;
+    text-transform:lowercase;
+    cursor: pointer;
+}
+
+.selectpickerOption:hover {
+    background: #666!important;
+    color:#fff;
+}
+
+.selectpicker {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #fff;
+
+}
+
+.question-text_wrapper {
+    text-align: center;
+}
+
+.selectpicker {
+    outline:none;
+    cursor:pointer;
+}
+
+.question-text .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: auto;
+}
+
+.question-text .dropdown-toggle, .question-text .open .dropdown-toggle {
+    background: transparent;
+    border: 0px;
+    border-radius: 0px;
+
+    font-family: 'TradeGothicLTLight';
+    font-size: 35px;
+    color: #fff;
+}
+
+.question-text .dropdown-toggle, .question-text .open .dropdown-toggle:hover,
+.question-text .dropdown-toggle, .question-text .open .dropdown-toggle:focus {
+    outline: none;
+    color: #fff;
+    background: transparent;
+}
+
+.question-text .bootstrap-select .dropdown-toggle:focus {
+    outline: none!important;
+    outline: none!important;
+}
+
+.question-text .bootstrap-select .open .text {
+    font-family: 'TradeGothicLTLight';
+    font-size: 34px;
+    color: #666;
+}
+
+.question-text .btn-default.active.focus, 
+.question-text .btn-default.active:focus, 
+.question-text .btn-default.active:hover, 
+.question-text .btn-default:active.focus, 
+.question-text .btn-default:active:focus, 
+.question-text .btn-default:active:hover, 
+.question-text .open>.dropdown-toggle.btn-default.focus, 
+.question-text .open>.dropdown-toggle.btn-default:focus, 
+.question-text .open>.dropdown-toggle.btn-default:hover {
+    outline: none;
+    outline-offset:none;
+    color: #fff;
+    background: transparent;
+    box-shadow: none;
+    border-color:#fff;
+}
+
+.question-text .bootstrap-select.btn-group .dropdown-menu li,
+.question-text .bootstrap-select.btn-group .dropdown-menu li:hover {
+    position: relative;
+    height: 45px;
+}
+
+.question-text .select.btn-group .dropdown-menu {
+    margin: 0px;
+    padding: 0px;
+}
+
+.question-text .filter-option  {
+    border-bottom: 1px solid #fff;
+}
+
+.question-text .caret {
+    width: 14px;
+    height:9px;
+    background: url(../images/caret.png) no-repeat center;
+    border:0px;
+}
+
+.question-text .bootstrap-select.btn-group .dropdown-menu li a {
+    outline: none;
+    border-bottom: 1px solid #e3e3e3;
+    height: 100%;
+    padding-left: 18px;
+    padding-top: 0px; 
+}
+
+.question-text  .bootstrap-select.btn-group .dropdown-menu {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    border-radius: 0px;
+}
+/*?*/
+
+.question-text .form-control {
+    width: auto;
+}
+
+.question-text .bootstrap-select.btn-group .dropdown-menu {
+    min-width: auto;
+    min-height: auto;
+}
+
+.question-text .form-group .bootstrap-select.btn-group, 
+.question-text .form-horizontal .bootstrap-select.btn-group, 
+.question-text .form-inline .bootstrap-select.btn-group {
+    width: auto;
+    background: transparent;
+}
+
+
+.question-text .form-control{
+    vertical-align: top;
+    margin-top: -6px;
+}
+
+.question-text .form-control:focus {
+    box-shadow: none;
+}
+
+.question-text  .bootstrap-select.btn-group .dropdown-toggle .caret {
+    position: absolute;
+    top: 86%;
+}
+
+.question-text .dropdown-menu {
+    position: absolute;
+    top: 25%;
+}
+
+.question-text .bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    height: 45px;
+}
+
+.question-text {
+    margin-bottom: 30px;
+}
+
