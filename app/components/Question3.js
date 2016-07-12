@@ -76,7 +76,6 @@ var Question3 = React.createClass({
         }
 
         for (  var j = Math.ceil(firstSelectOptions.length / 2); j < firstSelectOptions.length; j++) {
-            console.log(Math.ceil(firstSelectOptions.length / 2));
             el = <div className="checkOption">
                     <input type="checkbox" className="checkbox" id={firstSelectOptions[j]}/>
                     <label className="checkboxLabel" htmlFor={firstSelectOptions[j]}>{firstSelectOptions[j]}</label>
@@ -119,7 +118,11 @@ var Question3 = React.createClass({
                     <HorizontalLine />
                     <CounterRound />
                 </div>
-                <NextLink link="/question/4"/>
+                <div className="wrapperNext">
+                    <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
+                    <Link className="linkArrow" to="/question/4">
+                    </Link>
+                </div>
             </div>
         );
     }

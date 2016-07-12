@@ -7,7 +7,6 @@ require('../styles/Main.css');
 var TitleComponent = React.createClass({
 
     render: function() {
-        console.log(this.props.pageNumber);
         return (
             <div className="wrapperTitle">
                 {this.props.pageNumber?

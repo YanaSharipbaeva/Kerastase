@@ -82,5 +82,24 @@
     border-radius: 3px;
 }
 
+.checkbox-wrapper {
+    position: relative;   
+}
+
+#userNewsletter{
+    bottom: 0px;
+    position: absolute;
+}
+
+.signUp-wrapper .checkbox:checked + label:before {
+    background: url(../images/check.png)no-repeat center #fff;
+    border: 3px solid #fff;
+    border-radius:3px; 
+    width: 21px;
+    height: 21px;
+    display: block;
+}
+
+
 
 

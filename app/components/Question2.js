@@ -156,7 +156,11 @@ var Question1 = React.createClass({
                             <CounterRound />
                         </div>
                     {this.state.firstSelectOptions.length !== 0 ?
-                        <NextLink link="/question/3"/>
+                        <div className="wrapperNext">
+                            <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
+                            <Link className="linkArrow" to="/question/3">
+                            </Link>
+                    </div>
                     : null }
                 </div>
         );

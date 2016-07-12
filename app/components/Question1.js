@@ -3,10 +3,6 @@ import Parse from 'parse';
 import React from 'react';
 import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-    
-
-var ReactDom = require('react-dom');
-
 
 import Header from './Header';
 import TitleComponent from './TitleComponent';
@@ -55,13 +51,16 @@ var Question1 = React.createClass({
 
     },
 
+    componentDidMount() {
+           console.dir(this.refs.select);
+
+    },
+
     onAnswerSelected (event) {
-        alert('ff')
+        console.log(event);
         var selectedAnswers = this.state.selectedAnswers;
         selectedAnswers.push(event.target.value);
         console.log(event.target.value);
-        //console.log(this.getProductByName(event.target.value));
-        //console.log(selectedProducts);
         this.setState({
             selectedAnswers: selectedAnswers
         });
@@ -107,26 +106,33 @@ var Question1 = React.createClass({
             ) 
     },
 
+    onAnswerSelected(){
+        var answers = [];
+        $('.selectpicker li.selected').each(function () {
+            answers.push($(this).text())
+        });
+    },
+
      
     render: function() {
+        
+    
         var text = 'tell us about yourself';
         return (
             <div className="wrapperPhrase1">
                 <Header />
                 <TitleComponent pageNumber={this.state.pageNumber} text={text}/>
                     <div  className="question-wrapper">
-                        <form className="question-text_wrapper">
-                            <fieldset>
+                        <div className="question-text_wrapper" ref="select">
                                 { this.state.firstSelectOptions.length !== 0 ?
-                                    <div className="question-text">I am a   
-                                        <select className="selectAnswer" ref="select" onChange={this.onAnswerSelected}>
+                                    <div className="question-text">I am a                                       
+                                        <ReactSelect className="selectAnswer">
                                             {this.state.firstSelectOptions.map(function(option, index) {
                                                 return <option key={index}   value={option} >{option}</option>        
-                                            })}
-                                        </select >
-                                        
+                                            })}                                         
+                                        </ReactSelect > 
                                         between
-                                        <ReactSelect onChange={this.onAnswerSelected}>
+                                        <ReactSelect onChange={this.onAnswerSelected} ref="Select2">
                                             {this.state.secondSelectOptions.map(function(option, index) {
                                                 return <option key={index}  value={option} >{option} years old</option>        
                                             })}
@@ -149,13 +155,8 @@ var Question1 = React.createClass({
                                         </ReactSelect>
 
                                     </div>
-
-
-                                : null }
-                                <input type="submit" value="send" />
-                            </fieldset>
-                             
-                        </form>
+                                : null }                         
+                        </div>
                         <div className="wrapper-counter">
                             <ActiveCounterRound />
                             <HorizontalLine />
@@ -178,8 +179,13 @@ var Question1 = React.createClass({
                             <CounterRound />
                         </div>
                     </div>
-                {this.state.firstSelectOptions.length !== 0 ?
-                    <NextLink link="/question/2"/>
+                        {this.state.firstSelectOptions.length !== 0 ?
+                    <div className="wrapperNext">
+                        <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
+                        <Link className="linkArrow" to="/question/2">
+                        </Link>
+                    </div>
+                    
                 : null }
             </div>
         );
