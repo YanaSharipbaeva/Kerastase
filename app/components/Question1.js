@@ -13,6 +13,7 @@ import HorizontalLine from './HorizontalLine';
 
 import '../styles/Question.css';
 import '../styles/Main.css';
+import '../styles/Media.css';
 
 var ParseQuestions = Parse.Object.extend('Questions');
 import ReactSelect from 'react-bootstrap-select';
@@ -121,74 +122,73 @@ var Question1 = React.createClass({
             <div className="wrapperPhrase">
                 <Header />
                 <TitleComponent pageNumber={this.state.pageNumber} text={text}/>
-                    <div  className="question-wrapper">
-                        <div className="question-text_wrapper" ref="select">
-                                { this.state.firstSelectOptions.length !== 0 ?
-                                    <div className="question-text">I am a                                       
-                                        <ReactSelect className="selectAnswer">
-                                            {this.state.firstSelectOptions.map(function(option, index) {
-                                                return <option key={index}   value={option} >{option}</option>        
-                                            })}                                         
-                                        </ReactSelect > 
-                                        between
-                                        <ReactSelect onChange={this.onAnswerSelected} >
-                                            {this.state.secondSelectOptions.map(function(option, index) {
-                                                return <option key={index}  value={option} >{option} years old</option>        
-                                            })}
-                                        </ReactSelect>
-                                    </div>
-                                : null }
-
-                                {this.state.firstSelectOptions.length !== 0 ?
-                                    <div className="question-text">I live in 
-                                        <ReactSelect onChange={this.onAnswerSelected}>
-                                            {this.state.thirdSelectOptions.map(function(option, index) {
-                                                return <option key={index} value={option} >{option}</option>        
-                                            })}
-                                        </ReactSelect>
-                                        and I visit a salon every
-                                        <ReactSelect onChange={this.onAnswerSelected}>
-                                            {this.state.fourthSelectOptions.map(function(option, index) {
-                                                return <option key={index}  value={option} >{option}</option>        
-                                        })},
-                                        </ReactSelect>
-                                        the world, your hair lives in
-                                        <ReactSelect onChange={this.onAnswerSelected}>
-                                            {this.state.fifthSelectOptions.map(function(option, index) {
-                                                return <option key={index}  value={option}>{option}</option>        
+                <div  className="question-wrapper">
+                    <div className="question-text_wrapper" ref="select">
+                            { this.state.firstSelectOptions.length !== 0 ?
+                                <div className="question-text">I am a                                       
+                                    <ReactSelect className="selectAnswer">
+                                        {this.state.firstSelectOptions.map(function(option, index) {
+                                            return <option key={index}   value={option} >{option}</option>        
+                                        })}                                         
+                                    </ReactSelect > 
+                                    between
+                                    <ReactSelect onChange={this.onAnswerSelected} >
+                                        {this.state.secondSelectOptions.map(function(option, index) {
+                                            return <option key={index}  value={option} >{option} years old</option>        
                                         })}
-                                        </ReactSelect>
-                                    </div>
-                                : null }                         
-                        </div>
-                        <div className="wrapper-counter">
+                                    </ReactSelect>
+                                </div>
+                            : null }
 
-                            <Link to="/question/1" className="activeRound"></Link> 
-                            <HorizontalLine />
-                            <Link to="/question/2" className="round"></Link> 
-                            <HorizontalLine />
-                            <Link to="/question/3" className="round"></Link> 
-                            <HorizontalLine />
-                            <Link to="/question/4" className="round"></Link>
-                            <HorizontalLine />
-                            <Link to="/question/5" className="round"></Link>
-                            <HorizontalLine />
-                            <Link to="/question/6" className="round"></Link>
-                            <HorizontalLine />
-                            <Link to="/question/7" className="round"></Link>
-                            <HorizontalLine />
-                            <Link to="/question/8" className="round"></Link>
-                            <HorizontalLine />
-                            <Link to="/question/9" className="round"></Link>
-                            <HorizontalLine />
-                            <Link to="/question/10" className="round"></Link>
-                        </div>
+                            {this.state.firstSelectOptions.length !== 0 ?
+                                <div className="question-text">I live in 
+                                    <ReactSelect onChange={this.onAnswerSelected}>
+                                        {this.state.thirdSelectOptions.map(function(option, index) {
+                                            return <option key={index} value={option} >{option}</option>        
+                                        })}
+                                    </ReactSelect>
+                                    and I visit a salon every
+                                    <ReactSelect onChange={this.onAnswerSelected}>
+                                        {this.state.fourthSelectOptions.map(function(option, index) {
+                                            return <option key={index}  value={option} >{option}</option>        
+                                    })},
+                                    </ReactSelect>
+                                    the world, your hair lives in
+                                    <ReactSelect onChange={this.onAnswerSelected}>
+                                        {this.state.fifthSelectOptions.map(function(option, index) {
+                                            return <option key={index}  value={option}>{option}</option>        
+                                    })}
+                                    </ReactSelect>
+                                </div>
+                            : null }                         
                     </div>
-                    <div className="wrapperNext">
-                        <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                        <Link className="linkArrow" to="/question/2">
-                        </Link>
-                    </div>
+                </div>
+                <div className="wrapperNext">
+                    <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
+                    <Link className="linkArrow" to="/question/2">
+                    </Link>
+                </div>
+                <div className="wrapper-counter">
+                    <Link to="/question/1" className="activeRound"></Link> 
+                    <HorizontalLine />
+                    <Link to="/question/2" className="round"></Link> 
+                    <HorizontalLine />
+                    <Link to="/question/3" className="round"></Link> 
+                    <HorizontalLine />
+                    <Link to="/question/4" className="round"></Link>
+                    <HorizontalLine />
+                    <Link to="/question/5" className="round"></Link>
+                    <HorizontalLine />
+                    <Link to="/question/6" className="round"></Link>
+                    <HorizontalLine />
+                    <Link to="/question/7" className="round"></Link>
+                    <HorizontalLine />
+                    <Link to="/question/8" className="round"></Link>
+                    <HorizontalLine />
+                    <Link to="/question/9" className="round"></Link>
+                    <HorizontalLine />
+                    <Link to="/question/10" className="round"></Link>
+                </div>
             </div>
         );
     }

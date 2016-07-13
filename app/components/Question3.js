@@ -6,7 +6,6 @@ import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
 import Header from './Header';
 import TitleComponent from './TitleComponent';
-import NextLink from './NextLink';
 import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
@@ -14,6 +13,7 @@ import ReactSelect from 'react-bootstrap-select';
 
 import '../styles/Question.css';
 import '../styles/Main.css';
+import '../styles/Media.css';
 
 var ParseQuestions = Parse.Object.extend('Questions');
 
@@ -114,6 +114,13 @@ var Question3 = React.createClass({
                             </div>
                         : null }
                     </div>
+                    
+                    </div>
+                    <div className="wrapperNext">
+                        <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
+                        <Link className="linkArrow" to="/question/4">
+                        </Link>
+                    </div>
                     <div className="wrapper-counter">
                         <Link to="/question/1" className="round"></Link> 
                         <HorizontalLine />
@@ -134,12 +141,6 @@ var Question3 = React.createClass({
                         <Link to="/question/9" className="round"></Link>
                         <HorizontalLine />
                         <Link to="/question/10" className="round"></Link>
-                    </div>
-                    </div>
-                    <div className="wrapperNext">
-                        <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                        <Link className="linkArrow" to="/question/4">
-                        </Link>
                     </div>
                 </div>
         );

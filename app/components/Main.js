@@ -51,6 +51,7 @@ render((
         <Route path="/question/8" component={Question8}></Route>
         <Route path="/question/9" component={Question9}></Route>
         <Route path="/question/10" component={Question10}></Route>
+        <Route path="/signUp" component={SignUp}></Route>
     </Router>
 ), document.getElementById("app"));
 

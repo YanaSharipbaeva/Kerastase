@@ -13,6 +13,7 @@ import TitleComponent from './TitleComponent';
 var ParseUsers = Parse.Object.extend('User');
 import  '../styles/Main.css';
 import  '../styles/SignUp.css';
+import '../styles/Media.css';
 
 var SignUp = React.createClass({
     mixins: [
@@ -31,6 +32,10 @@ var SignUp = React.createClass({
             newsletter: true,
             password: '<8mB3c,%^cu~72&3'
         }
+    },
+
+    componentWillMount(){
+        $('#app').height('auto');
     },
 
     handleChange: function(){
@@ -93,48 +98,52 @@ var SignUp = React.createClass({
         });
     },
 
+    changeHeight(){
+        $('#app').height('100%');
+    },
+
     render: function() {
         var text = 'Sign up';
         return (
-            <div className="wrapperPhrase1">
+            <div className="wrapperPhrase signUp-main-wrapper">
                 <Header />
                 <div className="wrapperTitle signUp">
                     <p className="questionTitle">k-profile</p>
                     <p className="questionTitle">SIGN UP</p>
                 </div>
-                    <div className="question-text_wrapper question-wrapper signUp-wrapper">
-                        <div className="signUp-input_wrapper">
-                            <div className="signUp-input_text">My name is</div>
-                            <input  valueLink={this.linkState("name")} className="signUp-input" id="userName" type="text"></input>
-                        </div>
-                        <div className="signUp-input_wrapper">
-                            <div className="signUp-input_text">I live in</div>
-                            <ReactSelect className="signUp-input" ref="select" onChange={this.handleSelect}>
-                                <option>UK</option>
-                                <option>Germany</option>
-                                <option>France</option>
-                            </ReactSelect>
-                        </div>
-                        <div className="signUp-input_wrapper last">
-                            <div className="signUp-input_text">My email is</div>
-                            <input  valueLink={this.linkState("email")} className="signUp-input email" id="userEmail" type="text" ></input>
-                        </div>
-                        <div className="checkbox-wrapper">
-                            <input  type="checkbox" 
-                                    className="checkbox" 
-                                    id="userNewsletter"
-                                    ref="complete"
-                                    />
-                            <label  className="checkboxSignUp" 
-                                    onClick={this.handleChange}
-                                    htmlFor="userNewsletter">I would like to receive my hair diagnosis and the latest Kérastase news by email</label>
-                        </div>
+                <div className="question-text_wrapper question-wrapper signUp-wrapper">
+                    <div className="signUp-input_wrapper">
+                        <div className="signUp-input_text">My name is</div>
+                        <input  valueLink={this.linkState("name")} className="signUp-input" id="userName" type="text"></input>
                     </div>
-                    <div className="wrapperNext">
-                        <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                        <Link className="linkArrow" to="/question/4">
-                        </Link>
+                    <div className="signUp-input_wrapper">
+                        <div className="signUp-input_text">I live in</div>
+                        <ReactSelect className="signUp-input" ref="select" onChange={this.handleSelect}>
+                            <option>UK</option>
+                            <option>Germany</option>
+                            <option>France</option>
+                        </ReactSelect>
+                    </div>
+                    <div className="signUp-input_wrapper last">
+                        <div className="signUp-input_text">My email is</div>
+                        <input  valueLink={this.linkState("email")} className="signUp-input email" id="userEmail" type="text" ></input>
+                    </div>
+                    <div className="checkbox-wrapper">
+                        <input  type="checkbox" 
+                                className="checkbox" 
+                                id="userNewsletter"
+                                ref="complete"
+                                />
+                        <label  className="checkboxSignUp" 
+                                onClick={this.handleChange}
+                                htmlFor="userNewsletter">I would like to receive my hair diagnosis and the latest Kérastase news by email</label>
+                    </div>
                 </div>
+                <div className="wrapperNext">
+                    <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
+                    <Link className="linkArrow" to="result"></Link>
+                </div>
+                <Link to="/" className="skipButton" onClick={this.changeHeight}>skip</Link>
             </div>
         );
     }

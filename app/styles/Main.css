@@ -134,7 +134,7 @@ body {
     background: url(../images/background_image-min.jpg) no-repeat center;
     background-size: cover;
     width: 100%;
-    min-height:100%;
+    height:100%;
 }
 
 .header-logo {
@@ -202,8 +202,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
-
 }
 
 .wrapperPhrase {
@@ -217,3 +215,6 @@ body {
     left: 20px;
 }
 
+.question10_wrapper .question-text_wrapper {
+  margin:0px;
+}

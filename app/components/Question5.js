@@ -3,6 +3,8 @@ import Parse from 'parse';
 import React from 'react';
 import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import { Modal } from 'react-bootstrap';
+import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
 
 import Header from './Header';
 import TitleComponent from './TitleComponent';
@@ -14,6 +16,7 @@ import ReactSelect from 'react-bootstrap-select';
 
 import '../styles/Question.css';
 import '../styles/Main.css';
+import '../styles/Media.css';
 
 var ParseQuestions = Parse.Object.extend('Questions');
 
@@ -38,6 +41,7 @@ var Question5 = React.createClass({
 
     componentWillMount() {
         this.getAnswers('ug20vwGRe4', 'first');
+        $('#app').height('100%');
 
     },
 
@@ -73,6 +77,32 @@ var Question5 = React.createClass({
         });
 
         console.log(this.state.answers);
+    },
+
+    changeHeight(){
+        var answersLength = this.state.answers.length;
+        if (answersLength === 0) {
+            this.openModal();
+        } else {
+            this.setState({
+                checkedAnswer:true
+            });
+            replace(null, '/questions/6');
+
+        }
+        
+    },
+
+    openModal () {
+        this.setState({
+            showModal: true
+        });
+    },
+
+    closeModal () {
+        this.setState({
+            showModal: false
+        });
     },
 
     render: function() {
@@ -138,9 +168,19 @@ var Question5 = React.createClass({
                 </div>
                 <div className="wrapperNext">
                     <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                    <Link className="linkArrow" to="/question/6">
+                    <Link className="linkArrow" onClick={this.changeHeight} to={this.state.checkedAnswer ? "/question/6" : "/question/5"}>
                     </Link>
                 </div>
+                <Modal show={this.state.showModal} onHide={this.closeModal}>
+
+                <Modal.Body>
+                    <p className="customersText">Please, choose one answer</p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <button className="btn customersText" onClick={this.closeModal}>Close</button>
+                </Modal.Footer>
+                </Modal>
             </div>
         );
     }

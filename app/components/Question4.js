@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
-
+import { Modal } from 'react-bootstrap';
 import Header from './Header';
 import TitleComponent from './TitleComponent';
 import NextLink from './NextLink';
@@ -16,6 +16,7 @@ import '../styles/Question.css';
 require('../styles/Counter.css');
 import '../styles/Main.css';
 import '../styles/CheckBox.css';
+import '../styles/Media.css';
 
 var ParseQuestions = Parse.Object.extend('Questions');
 
@@ -34,13 +35,16 @@ var Question4 = React.createClass({
             pageNumber:'4',
             selectOptions: [],
             firstSelectOptions: [],
-            answers:[]
-        };
+            answers:[],
+            showModal:false,
+            checkedAnswer:false
+
+        }
     },
 
     componentWillMount() {
         this.getAnswers('JGBcf9yXN7', 'first');
-        $("#app").height('auto');
+        $('#app').height('auto');
     },
 
     onAnswerSelected(event, currentAnswer) {
@@ -48,6 +52,7 @@ var Question4 = React.createClass({
         if (this.state.answers.length > 0) {
             this.state.answers.splice(0, 1);
         }
+
         this.state.answers.push(currentAnswer);
         this.setState({
             answers:this.state.answers
@@ -75,14 +80,42 @@ var Question4 = React.createClass({
                 }
             ) 
     },
+
+    changeHeight(){
+        var answersLength = this.state.answers.length;
+        if (answersLength === 0) {
+            this.openModal();
+        } else {
+            this.setState({
+                checkedAnswer:true
+            });
+
+            replace(null, '/questions/5');
+
+        }
+        
+    },
+
+    openModal () {
+        this.setState({
+            showModal: true
+        });
+    },
+
+    closeModal () {
+        this.setState({
+            showModal: false
+        });
+    },
      
     render: function() { 
+        console.log(this.state);
         var text = 'If you had to choose one, what would be you main hair concern today ?';
         var firstSelectOptions = this.state.firstSelectOptions;
         var arrayFirstHalf = [];
         var arraySecondHalf = [];
         var el;
-        for (var i=0; i < Math.ceil(firstSelectOptions.length / 2);  i++) { 
+        for (var  i = 0; i < Math.ceil(firstSelectOptions.length / 2);  i++) { 
             el = <div className="checkOption" key={Math.random()} >
                     <input type="checkbox" className="checkbox" id={firstSelectOptions[i]}/>
                     <label className="checkboxLabel" onClick={this.onAnswerSelected} htmlFor={firstSelectOptions[i]}>
@@ -115,34 +148,47 @@ var Question4 = React.createClass({
                             {arraySecondHalf}  
                         </div>                       
                     </div>
-                    <div className="wrapper-counter">
-                        <Link to="/question/1" className="round" ></Link>   
-                        <HorizontalLine />
-                        <Link to="/question/2" className="round" ></Link> 
-                        <HorizontalLine />
-                        <Link to="/question/3" className="round" ></Link>  
-                        <HorizontalLine />
-                        <Link to="/question/4" className="activeRound" ></Link>
-                        <HorizontalLine />
-                        <Link to="/question/5" className="round" ></Link>
-                        <HorizontalLine />
-                        <Link to="/question/6" className="round" ></Link>
-                        <HorizontalLine />
-                        <Link to="/question/7" className="round" ></Link>
-                        <HorizontalLine />
-                        <Link to="/question/8" className="round" ></Link>
-                        <HorizontalLine />
-                        <Link to="/question/9" className="round"></Link>
-                        <HorizontalLine />
-                        <Link to="/question/10" className="round" ></Link>
-                    </div>
+                    
                 </div>
                 <div className="wrapperNext">
                     <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                    <Link className="linkArrow" to="/question/5">
+                    <Link className="linkArrow" onClick={this.changeHeight} to={this.state.checkedAnswer ? "/question/5" : "/question/4"}>
                     </Link>
                 </div>
-            </div>
+       
+                <div className="wrapper-counter">
+                    <Link to="/question/1" className="round" onClick={this.changePage}></Link>   
+                    <HorizontalLine />
+                    <Link to="/question/2" className="round" onClick={this.changePage}></Link> 
+                    <HorizontalLine />
+                    <Link to="/question/3" className="round" onClick={this.changePage}></Link>  
+                    <HorizontalLine />
+                    <Link to="/question/4" className="activeRound" onClick={this.changePage}></Link>
+                    <HorizontalLine />
+                    <Link to="/question/5" className="round" onClick={this.changePage}></Link>
+                    <HorizontalLine />
+                    <Link to="/question/6" className="round" onClick={this.changePage}></Link>
+                    <HorizontalLine />
+                    <Link to="/question/7" className="round" onClick={this.changePage}></Link>
+                    <HorizontalLine />
+                    <Link to="/question/8" className="round" ></Link>
+                    <HorizontalLine />
+                    <Link to="/question/9" className="round"></Link>
+                    <HorizontalLine />
+                    <Link to="/question/10" className="round" ></Link>
+                </div>
+                <Modal show={this.state.showModal} onHide={this.closeModal}>
+
+                <Modal.Body>
+                    <p className="customersText">Please, choose one answer</p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <button className="btn customersText" onClick={this.closeModal}>Close</button>
+                </Modal.Footer>
+                </Modal>
+                </div>
+                
         );
     }
 });

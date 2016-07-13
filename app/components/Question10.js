@@ -3,6 +3,7 @@ import Parse from 'parse';
 import React from 'react';
 import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import { Modal } from 'react-bootstrap';
 
 import Header from './Header';
 import TitleComponent from './TitleComponent';
@@ -41,6 +42,10 @@ var Question10 = React.createClass({
         $("#app").height('auto');
     },
 
+    changeHeight(){
+        $('#app').height('100%');
+    },
+
     getAnswers(id, selectOption) {
         var _this = this;
         var query = new Parse.Query(ParseQuestions);
@@ -73,6 +78,30 @@ var Question10 = React.createClass({
         });
 
         console.log(this.state.answers);
+    },
+
+    changeHeight(){
+        var answersLength = this.state.answers.length;
+        if (answersLength === 0) {
+            this.openModal();
+        } else {
+            this.setState({
+                checkedAnswer:true
+            });
+            replace(null, '/signUp');
+        }   
+    },
+
+    openModal () {
+        this.setState({
+            showModal: true
+        });
+    },
+
+    closeModal () {
+        this.setState({
+            showModal: false
+        });
     },
 
     render: function() {
@@ -115,32 +144,42 @@ var Question10 = React.createClass({
                         </div>                       
                     </div>
                     <div className="wrapper-counter">
-                        <Link to="/question/1" className="round"></Link>   
+                        <Link to="/question/1" className="round" onClick={this.changeHeight}></Link>   
                         <HorizontalLine />
-                        <Link to="/question/2" className="round"></Link> 
+                        <Link to="/question/2" className="round" onClick={this.changeHeight}></Link> 
                         <HorizontalLine />
-                        <Link to="/question/3" className="round"></Link>  
+                        <Link to="/question/3" className="round" onClick={this.changeHeight}></Link>  
                         <HorizontalLine />
-                        <Link to="/question/4" className="round"></Link>
+                        <Link to="/question/4" className="round" onClick={this.changeHeight}></Link>
                         <HorizontalLine />
-                        <Link to="/question/5" className="round"></Link>
+                        <Link to="/question/5" className="round" onClick={this.changeHeight}></Link>
                         <HorizontalLine />
-                        <Link to="/question/6" className="round"></Link>
+                        <Link to="/question/6" className="round" onClick={this.changeHeight}></Link>
                         <HorizontalLine />
-                        <Link to="/question/7" className="round"></Link>
+                        <Link to="/question/7" className="round" onClick={this.changeHeight}></Link>
                         <HorizontalLine />
-                        <Link to="/question/8" className="round"></Link>
+                        <Link to="/question/8" className="round" onClick={this.changeHeight}></Link>
                         <HorizontalLine />
-                        <Link to="/question/9" className="round"></Link>
+                        <Link to="/question/9" className="round" onClick={this.changeHeight}></Link>
                         <HorizontalLine />
-                        <Link to="/question/10" className="activeRound"></Link>
+                        <Link to="/question/10" className="activeRound" onClick={this.changeHeight}></Link>
                     </div>
                 </div>
                 <div className="wrapperNext">
                     <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                    <Link className="linkArrow" to="/question/10">
+                    <Link className="linkArrow" onClick={this.changeHeight} to={this.state.checkedAnswer ? "/signUp" : "/question/10"}>
                     </Link>
                 </div>
+                <Modal show={this.state.showModal} onHide={this.closeModal}>
+
+                <Modal.Body>
+                    <p className="customersText">Please, choose one answer</p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <button className="btn customersText" onClick={this.closeModal}>Close</button>
+                </Modal.Footer>
+                </Modal>
             </div>
         );
     }

@@ -46,8 +46,6 @@
 
 .question-text_wrapper {
     text-align: center;
-    margin-top: 60px!important;
-    margin-bottom: 60px!important;
 }
 
 .selectpicker {
@@ -197,11 +195,21 @@
 .question4_wrapper .wrapperTitle, 
 .question10_wrapper .wrapperTitle{
     height: auto;
+
 }
 
 .question4_wrapper .question-wrapper,
 .question10_wrapper .question-wrapper {
     margin-top: 20px;
+}
+
+.question4_wrapper {
+    position: relative;
+}
+
+.customersText {
+    font-size: 16px;
+    font-family: "InterstateLight";
 }
 
 

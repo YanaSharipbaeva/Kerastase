@@ -51,7 +51,12 @@
     align-items: center;
     width: 100%;
     margin-bottom: 40px;
+    padding-right: 67px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
+
+
 
 .checkboxSignUp {
     color: #fff;
@@ -70,6 +75,7 @@
 
 .last {
     margin-bottom: 0px;
+    padding:0px;
 }
 
 .signUp-wrapper .checkbox:not(checked) {
@@ -104,6 +110,34 @@
     padding-top: 75px;
 }
 
+.skipButton {
+    font-size: 19px;
+    color:#353535;
+    font-family: 'InterstateLight';
+    width:80px;
+    height: 42px;
+    border: 1px solid #484848;
+    box-sizing: border-box;
+    background-color: #d7d7d7;
+    position: absolute;
+    right:35px;
+    bottom: 30px;
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 1s ease;
+}
+
+.signUp-main-wrapper {
+    position: relative;
+}
+
+.skipButton:hover {
+    text-decoration: none;
+    background: #484848;
+    color:#d7d7d7;
+}
 
 
 

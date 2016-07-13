@@ -5,6 +5,7 @@
 .checkboxLabel {
     font-size: 20px;
     cursor: pointer!important;
+    clear: both;
 }
 
 .checkbox {
@@ -70,7 +71,7 @@
 
 .checkOption-wrapper {
     margin-bottom: 0px;
-    width: 40%;
+    width: 50%;
     display: inline-block;
     vertical-align: top;
 }

@@ -13,6 +13,7 @@ import HorizontalLine from './HorizontalLine';
 
 import '../styles/Question.css';
 import '../styles/Main.css';
+import '../styles/Media.css';
 
 var ParseQuestions = Parse.Object.extend('Questions');
 import ReactSelect from 'react-bootstrap-select';
