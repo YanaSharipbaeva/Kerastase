@@ -18,7 +18,7 @@ import '../styles/Main.css';
 var ParseQuestions = Parse.Object.extend('Questions');
 
 
-var Question3 = React.createClass({
+var Question10 = React.createClass({
     mixins: [
         LinkedStateMixin
     ],
@@ -29,18 +29,16 @@ var Question3 = React.createClass({
 
      getInitialState() {
         return {
-            pageNumber:'3',
+            pageNumber:'10',
             firstSelectOptions: [],
             secondSelectOptions: [],
-            thirdSelectOptions: [],
             answers:[]
         };
     },
 
     componentWillMount() {
-        this.getAnswers('ausAe1ZaIK', 'first');
-        this.getAnswers('WS2RGxVAKk', 'second' );
-        this.getAnswers('aBeKdLM3E1', 'third' );
+        this.getAnswers('8PFxrNoerA', 'first');
+        $("#app").height('auto');
     },
 
     getAnswers(id, selectOption) {
@@ -56,18 +54,6 @@ var Question3 = React.createClass({
                         firstSelectOptions: options.map((option) => option.get('title'))
                     });
                 }
-
-                if (selectOption === 'second') {
-                    _this.setState({
-                        secondSelectOptions: options.map((option) => option.get('title'))
-                    });
-                }
-
-                if (selectOption === 'third') {
-                    _this.setState({
-                        thirdSelectOptions: options.map((option) => option.get('title'))
-                    });
-                }
             
                 }, (error) => {
                     console.log('Error getting products');
@@ -76,50 +62,64 @@ var Question3 = React.createClass({
             ) 
     },
 
-    onAnswerSelected(){
-        var answers = [];
-        $('.selectpicker li.selected').each(function () {
-            answers.push($(this).text())
-        });
+    onAnswerSelected(event, currentAnswer) {
+        currentAnswer = event.currentTarget.textContent;
+        if (this.state.answers.length > 0) {
+            this.state.answers.splice(0, 1);
+        }
+        this.state.answers.push(currentAnswer);
         this.setState({
-            answers:answers
+            answers:this.state.answers
         });
+
+        console.log(this.state.answers);
     },
 
     render: function() {
-        var text = 'tell us about yourself';
+        var text = 'The finishing touch, choose how you would prefer to style your hair:';
+        var firstSelectOptions = this.state.firstSelectOptions;
+        var arrayFirstHalf = [];
+        var arraySecondHalf = [];
+        var el;
+        for (var i=0; i < Math.ceil(firstSelectOptions.length / 2);  i++) { 
+            el = <div className="checkOption" key={Math.random()} >
+                    <input type="checkbox" className="checkbox" id={firstSelectOptions[i]}/>
+                    <label className="checkboxLabel" onClick={this.onAnswerSelected} htmlFor={firstSelectOptions[i]}>
+                        {firstSelectOptions[i]} 
+                    </label>
+                </div> 
+            arrayFirstHalf.push(el);                
+        }
+
+        for (  var j = Math.ceil(firstSelectOptions.length / 2); j < firstSelectOptions.length; j++) {
+            el = <div className="checkOption" key={Math.random()}>
+            <input type="checkbox" className="checkbox" value={firstSelectOptions[j]} id={firstSelectOptions[j]} key={Math.random()}/>
+            <label onClick={this.onAnswerSelected} className="checkboxLabel" htmlFor={firstSelectOptions[j]} key={Math.random()}>
+                {firstSelectOptions[j]} 
+            </label>   
+                </div>   
+            arraySecondHalf.push(el);                
+        }
+
         return (
-            <div className="wrapperPhrase">
+            <div className="wrapperPhrase question10_wrapper">
                 <Header />
                 <TitleComponent pageNumber={this.state.pageNumber} text={text}/>
                 <div className="question-wrapper">
-                    <div className="question-text_wrapper">
-                        { this.state.firstSelectOptions.length !== 0 ?
-                            <div className="question-text">I wash my hair
-                                <ReactSelect>
-                                    {this.state.firstSelectOptions.map(function(option, index) {
-                                        return <option key={index} value={option} >{option}</option>        
-                                    })}
-                                </ReactSelect>,
-                                <ReactSelect>
-                                    {this.state.secondSelectOptions.map(function(option, index) {
-                                        return <option key={index} value={option} >{option}</option>        
-                                    })}
-                                </ReactSelect>and I
-                                <ReactSelect>
-                                    {this.state.thirdSelectOptions.map(function(option, index) {
-                                        return <option key={index} value={option} >{option}</option>        
-                                    })}
-                                </ReactSelect>
-                            </div>
-                        : null }
+                    <div className="question-text_wrapper multiple">
+                        <div className="question-text checkOption-wrapper"> 
+                            {arrayFirstHalf}  
+                        </div> 
+                        <div className="question-text checkOption-wrapper"> 
+                            {arraySecondHalf}  
+                        </div>                       
                     </div>
                     <div className="wrapper-counter">
-                        <Link to="/question/1" className="round"></Link> 
+                        <Link to="/question/1" className="round"></Link>   
                         <HorizontalLine />
                         <Link to="/question/2" className="round"></Link> 
                         <HorizontalLine />
-                        <Link to="/question/3" className="activeRound"></Link> 
+                        <Link to="/question/3" className="round"></Link>  
                         <HorizontalLine />
                         <Link to="/question/4" className="round"></Link>
                         <HorizontalLine />
@@ -133,17 +133,17 @@ var Question3 = React.createClass({
                         <HorizontalLine />
                         <Link to="/question/9" className="round"></Link>
                         <HorizontalLine />
-                        <Link to="/question/10" className="round"></Link>
-                    </div>
-                    </div>
-                    <div className="wrapperNext">
-                        <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                        <Link className="linkArrow" to="/question/4">
-                        </Link>
+                        <Link to="/question/10" className="activeRound"></Link>
                     </div>
                 </div>
+                <div className="wrapperNext">
+                    <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
+                    <Link className="linkArrow" to="/question/10">
+                    </Link>
+                </div>
+            </div>
         );
     }
 });
 
-module.exports = Question3;
+module.exports = Question10;

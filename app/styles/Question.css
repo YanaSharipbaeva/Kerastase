@@ -14,7 +14,7 @@
     color: #fff;
     float: right;
     margin-right: 50px;
-    margin-top: 40px;
+    margin-top: 45px;
     width: 100%;
     text-align: right;
 }
@@ -46,6 +46,8 @@
 
 .question-text_wrapper {
     text-align: center;
+    margin-top: 60px!important;
+    margin-bottom: 60px!important;
 }
 
 .selectpicker {
@@ -187,17 +189,19 @@
 .wrapper-select .form-group {
 
 }
-/*
-.question-text .form-control {
-    font-size: 34px;
-    top: 5px;
-/*    position: absolute;*/
-/*display:block!important;
-padding: 0px;
-    z-index: 9999;
+
+.itchy-options:not(checked) + label {
+    float:none!important;
 }
 
-.select-wrapper {
-    position: relative;
-}*/
+.question4_wrapper .wrapperTitle, 
+.question10_wrapper .wrapperTitle{
+    height: auto;
+}
+
+.question4_wrapper .question-wrapper,
+.question10_wrapper .question-wrapper {
+    margin-top: 20px;
+}
+
 

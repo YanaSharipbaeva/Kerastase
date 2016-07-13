@@ -17,7 +17,7 @@ import '../styles/Main.css';
 var ParseQuestions = Parse.Object.extend('Questions');
 import ReactSelect from 'react-bootstrap-select';
     
-var Question1 = React.createClass({
+var Question9 = React.createClass({
     mixins: [
         LinkedStateMixin
     ],
@@ -28,7 +28,7 @@ var Question1 = React.createClass({
 
     getInitialState() {
         return {
-            pageNumber:'1',
+            pageNumber:'9',
             firstSelectOptions: [],
             secondSelectOptions: [],
             thirdSelectOptions: [],
@@ -43,11 +43,8 @@ var Question1 = React.createClass({
     },
 
     componentWillMount() {
-        this.getAnswers('VGF1UCoZU5', 'first');
-        this.getAnswers('oWlblkHGpC', 'second' );
-        this.getAnswers('6TTHPSneQU', 'third' );
-        this.getAnswers('cJBGsiHH1Y', 'fourth' );
-        this.getAnswers('DNigZ6egMc', 'fifth' );
+        this.getAnswers('VaP4llxFOs', 'first');
+        this.getAnswers('kGTNTx95ds', 'second' );
     },
 
     onAnswerSelected (event) {
@@ -80,24 +77,6 @@ var Question1 = React.createClass({
                         secondSelectOptions: options.map((option) => option.get('title'))
                     });
                 }
-
-                if (selectOption === 'third') {
-                    _this.setState({
-                        thirdSelectOptions: options.map((option) => option.get('title'))
-                    });
-                }
-
-                if (selectOption === 'fourth') {
-                    _this.setState({
-                        fourthSelectOptions: options.map((option) => option.get('title'))
-                    });
-                }
-
-                if (selectOption === 'fifth') {
-                    _this.setState({
-                        fifthSelectOptions: options.map((option) => option.get('title'))
-                    });
-                }
             
                 }, (error) => {
                     console.log('Error getting products');
@@ -124,46 +103,24 @@ var Question1 = React.createClass({
                     <div  className="question-wrapper">
                         <div className="question-text_wrapper" ref="select">
                                 { this.state.firstSelectOptions.length !== 0 ?
-                                    <div className="question-text">I am a                                       
+                                    <div className="question-text">I wish                                       
                                         <ReactSelect className="selectAnswer">
                                             {this.state.firstSelectOptions.map(function(option, index) {
                                                 return <option key={index}   value={option} >{option}</option>        
                                             })}                                         
                                         </ReactSelect > 
-                                        between
+                                        another desire:
                                         <ReactSelect onChange={this.onAnswerSelected} >
                                             {this.state.secondSelectOptions.map(function(option, index) {
                                                 return <option key={index}  value={option} >{option} years old</option>        
                                             })}
                                         </ReactSelect>
                                     </div>
-                                : null }
-
-                                {this.state.firstSelectOptions.length !== 0 ?
-                                    <div className="question-text">I live in 
-                                        <ReactSelect onChange={this.onAnswerSelected}>
-                                            {this.state.thirdSelectOptions.map(function(option, index) {
-                                                return <option key={index} value={option} >{option}</option>        
-                                            })}
-                                        </ReactSelect>
-                                        and I visit a salon every
-                                        <ReactSelect onChange={this.onAnswerSelected}>
-                                            {this.state.fourthSelectOptions.map(function(option, index) {
-                                                return <option key={index}  value={option} >{option}</option>        
-                                        })},
-                                        </ReactSelect>
-                                        the world, your hair lives in
-                                        <ReactSelect onChange={this.onAnswerSelected}>
-                                            {this.state.fifthSelectOptions.map(function(option, index) {
-                                                return <option key={index}  value={option}>{option}</option>        
-                                        })}
-                                        </ReactSelect>
-                                    </div>
                                 : null }                         
                         </div>
                         <div className="wrapper-counter">
 
-                            <Link to="/question/1" className="activeRound"></Link> 
+                            <Link to="/question/1" className="round"></Link> 
                             <HorizontalLine />
                             <Link to="/question/2" className="round"></Link> 
                             <HorizontalLine />
@@ -179,14 +136,14 @@ var Question1 = React.createClass({
                             <HorizontalLine />
                             <Link to="/question/8" className="round"></Link>
                             <HorizontalLine />
-                            <Link to="/question/9" className="round"></Link>
+                            <Link to="/question/9" className="activeRound"></Link>
                             <HorizontalLine />
                             <Link to="/question/10" className="round"></Link>
                         </div>
                     </div>
                     <div className="wrapperNext">
                         <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                        <Link className="linkArrow" to="/question/2">
+                        <Link className="linkArrow" to="/question/10">
                         </Link>
                     </div>
             </div>
@@ -194,4 +151,4 @@ var Question1 = React.createClass({
     }
 });
 
-module.exports = Question1;
+module.exports = Question9;

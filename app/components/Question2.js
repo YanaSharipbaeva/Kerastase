@@ -18,7 +18,7 @@ import '../styles/Main.css';
 var ParseQuestions = Parse.Object.extend('Questions');
 
 
-var Question1 = React.createClass({
+var Question2 = React.createClass({
     mixins: [
         LinkedStateMixin
     ],
@@ -39,11 +39,11 @@ var Question1 = React.createClass({
     },
 
     componentWillMount() {
-        this.getAnswers('Q2PKiGIjNy', 'first');
-        this.getAnswers('Nj4thsyXB4', 'second' );
-        this.getAnswers('LpEGWms9Ij', 'third' );
-        this.getAnswers('74xfhZEQn0', 'fourth' );
-        this.getAnswers('tfbP19tBc7', 'fifth' );
+        this.getAnswers('ozSM3igXSx', 'first');
+        this.getAnswers('r0IbnW3wp0', 'second' );
+        this.getAnswers('7RhOrbGGni', 'third' );
+        this.getAnswers('asqvsXw4be', 'fourth' );
+        this.getAnswers('2QfVi8YVhM', 'fifth' );
     },
 
     getAnswers(id, selectOption) {
@@ -91,80 +91,85 @@ var Question1 = React.createClass({
             ) 
     },
 
+    onAnswerSelected(){
+        var answers = [];
+        $('.selectpicker li.selected').each(function () {
+            answers.push($(this).text())
+        });
+    },
+
     render: function() {
         var text = 'tell us about yourself';
         return (
-            <div className="wrapperPhrase1">
+            <div className="wrapperPhrase">
                 <Header />
                 <TitleComponent pageNumber={this.state.pageNumber} text={text}/>
-                <div className="question-wrapper">
-                    <div className="question-text_wrapper">
-                        { this.state.firstSelectOptions.length !== 0 ?
-                            <div className="question-text">My hair is
-                                <ReactSelect>
-                                    {this.state.firstSelectOptions.map(function(option, index) {
-                                        return <option key={index} value={option} >{option}</option>        
-                                    })}
-                                </ReactSelect>,
-                                <ReactSelect>
-                                    {this.state.secondSelectOptions.map(function(option, index) {
-                                        return <option key={index} value={option} >{option}</option>        
-                                    })}
-                                </ReactSelect>and
-                                <ReactSelect>
-                                    {this.state.thirdSelectOptions.map(function(option, index) {
-                                        return <option key={index} value={option} >{option}</option>        
-                                    })}
-                                </ReactSelect>
-                            </div>
-                        : null }
-                        { this.state.firstSelectOptions.length !== 0 ?
-                            <div className="question-text">My hair is
-                                <ReactSelect>
-                                    {this.state.fourthSelectOptions.map(function(option, index) {
-                                        return <option key={index} value={option} >{option}</option>        
-                                    })}
-                                </ReactSelect>and it's shape is
-                                <ReactSelect>
-                                    {this.state.fifthSelectOptions.map(function(option, index) {
-                                        return <option key={index} value={option} >{option}</option>        
-                                    })}
-                                </ReactSelect>
-                            </div>
-                        : null }
-                    </div>
-                    </div>
-                    <div className="wrapper-counter">
-                            <CounterRound />
+                    <div className="question-wrapper">
+                        <div className="question-text_wrapper">
+                            { this.state.firstSelectOptions.length !== 0 ?
+                                <div className="question-text">My hair is
+                                    <ReactSelect>
+                                        {this.state.firstSelectOptions.map(function(option, index) {
+                                            return <option key={index} value={option} >{option}</option>        
+                                        })}
+                                    </ReactSelect>,
+                                    <ReactSelect>
+                                        {this.state.secondSelectOptions.map(function(option, index) {
+                                            return <option key={index} value={option} >{option}</option>        
+                                        })}
+                                    </ReactSelect>and
+                                    <ReactSelect>
+                                        {this.state.thirdSelectOptions.map(function(option, index) {
+                                            return <option key={index} value={option} >{option}</option>        
+                                        })}
+                                    </ReactSelect>
+                                </div>
+                            : null }
+                            { this.state.firstSelectOptions.length !== 0 ?
+                                <div className="question-text">My hair is
+                                    <ReactSelect>
+                                        {this.state.fourthSelectOptions.map(function(option, index) {
+                                            return <option key={index} value={option} >{option}</option>        
+                                        })}
+                                    </ReactSelect>and it's shape is
+                                    <ReactSelect>
+                                        {this.state.fifthSelectOptions.map(function(option, index) {
+                                            return <option key={index} value={option} >{option}</option>        
+                                        })}
+                                    </ReactSelect>
+                                </div>
+                            : null }
+                        </div>               
+                        <div className="wrapper-counter">
+                            <Link to="/question/1" className="round"></Link> 
                             <HorizontalLine />
-                            <ActiveCounterRound />
+                            <Link to="/question/2" className="activeRound"></Link> 
                             <HorizontalLine />
-                            <CounterRound />
+                            <Link to="/question/3" className="round"></Link> 
                             <HorizontalLine />
-                            <CounterRound />
+                            <Link to="/question/4" className="round"></Link>
                             <HorizontalLine />
-                            <CounterRound />
+                            <Link to="/question/5" className="round"></Link>
                             <HorizontalLine />
-                            <CounterRound />
+                            <Link to="/question/6" className="round"></Link>
                             <HorizontalLine />
-                            <CounterRound />
+                            <Link to="/question/7" className="round"></Link>
                             <HorizontalLine />
-                            <CounterRound />
+                            <Link to="/question/8" className="round"></Link>
                             <HorizontalLine />
-                            <CounterRound />
+                            <Link to="/question/9" className="round"></Link>
                             <HorizontalLine />
-                            <CounterRound />
+                            <Link to="/question/10" className="round"></Link>
                         </div>
-                    {this.state.firstSelectOptions.length !== 0 ?
-                        <div className="wrapperNext">
-                            <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                            <Link className="linkArrow" to="/question/3">
-                            </Link>
                     </div>
-                    : null }
+                    <div className="wrapperNext">
+                        <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
+                        <Link className="linkArrow" to="/question/3">
+                        </Link>
+                    </div>
                 </div>
         );
     }
 });
 
-module.exports = Question1;
+module.exports = Question2;

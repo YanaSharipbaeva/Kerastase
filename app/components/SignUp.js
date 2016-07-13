@@ -33,14 +33,10 @@ var SignUp = React.createClass({
         }
     },
 
-    componentDidMount() {
-        console.log(this.refs.select.value());  
-    },
-
     handleChange: function(){
         this.setState({
             newsletter: !this.state.newsletter
-            });
+        });
         console.log(this.state);
     },
 
@@ -97,15 +93,15 @@ var SignUp = React.createClass({
         });
     },
 
-    handleSelect (e) {
-        console.log('rembo');
-    },    
     render: function() {
         var text = 'Sign up';
         return (
             <div className="wrapperPhrase1">
                 <Header />
-                <TitleComponent  text={text}/>
+                <div className="wrapperTitle signUp">
+                    <p className="questionTitle">k-profile</p>
+                    <p className="questionTitle">SIGN UP</p>
+                </div>
                     <div className="question-text_wrapper question-wrapper signUp-wrapper">
                         <div className="signUp-input_wrapper">
                             <div className="signUp-input_text">My name is</div>

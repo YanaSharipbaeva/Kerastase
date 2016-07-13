@@ -4,6 +4,7 @@
     border-radius:50%;
     background-color: #fff;
     margin:5px auto;
+    display: block;
 }
 
 .activeRound {
@@ -14,6 +15,7 @@
     border-radius: 50%;
     background: transparent;
     margin:2px 0px;
+    display: block;
 }
 
 .horizontalLine {

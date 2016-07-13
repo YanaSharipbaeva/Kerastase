@@ -70,11 +70,33 @@
 
 .checkOption-wrapper {
     margin-bottom: 0px;
-    width: 50%;
+    width: 40%;
     display: inline-block;
     vertical-align: top;
 }
 
 .checkOption {
     position: relative;
+}
+
+.checkOption .checkbox{
+    display: none;
+}
+
+.checkOption1 #checkbox1{
+    opacity: 0;
+    position: absolute;
+    top: 18px;
+    left: 20px;
+}
+
+.checkOption2 #checkbox2{
+    opacity: 0;
+    position: absolute;
+    top: 18px;
+    left: 20px;
+}
+
+.multiple {
+    padding: 0px 35px;
 }

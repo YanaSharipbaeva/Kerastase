@@ -13,6 +13,13 @@ import Start from './Start';
 import Question1 from './Question1';
 import Question2 from './Question2';
 import Question3 from './Question3';
+import Question4 from './Question4';
+import Question5 from './Question5';
+import Question6 from './Question6';
+import Question7 from './Question7';
+import Question8 from './Question8';
+import Question9 from './Question9';
+import Question10 from './Question10';
 import TitleComponent from './TitleComponent';
 import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
@@ -24,9 +31,9 @@ require('../styles/Main.css');
 var Main = React.createClass({
     render: function() {
         return (
-                <div className="main-container">
-                    <Start/>
-                </div>
+            <div className="main-container">
+                <Start/>
+            </div>
         );
     }
 });
@@ -34,11 +41,16 @@ var Main = React.createClass({
 render((
     <Router history={browserHistory}>
         <Route path="/" component={Main}></Route>
-        <Route path="/start" component={Start}></Route>
         <Route path="/question/1" component={Question1}></Route>
         <Route path="/question/2" component={Question2}></Route>
         <Route path="/question/3" component={Question3}></Route>
-        <Route path="/question/4" component={SignUp}></Route>
+        <Route path="/question/4" component={Question4}></Route>
+        <Route path="/question/5" component={Question5}></Route>
+        <Route path="/question/6" component={Question6}></Route>
+        <Route path="/question/7" component={Question7}></Route>
+        <Route path="/question/8" component={Question8}></Route>
+        <Route path="/question/9" component={Question9}></Route>
+        <Route path="/question/10" component={Question10}></Route>
     </Router>
 ), document.getElementById("app"));
 
