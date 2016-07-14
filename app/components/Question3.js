@@ -33,7 +33,9 @@ var Question3 = React.createClass({
             firstSelectOptions: [],
             secondSelectOptions: [],
             thirdSelectOptions: [],
-            answers:[]
+            questions:[],
+            answers:[],
+            questionTitles:[]
         };
     },
 
@@ -50,6 +52,8 @@ var Question3 = React.createClass({
         query.include('answers');
         query.first().then(
             (questions) => {
+                this.state.questions.push(questions);
+                this.state.questionTitles.push(questions.get("title"));
                 var options = questions.get('answers'); 
                 if (selectOption === 'first') {
                     _this.setState({
@@ -81,9 +85,29 @@ var Question3 = React.createClass({
         $('.selectpicker li.selected').each(function () {
             answers.push($(this).text())
         });
-        this.setState({
-            answers:answers
+        var answerObjects = [];
+        this.state.questions.forEach(function(item, index){
+            answerObjects.push(item.get('answers'));
         });
+        var titles = [],
+        arr = [];
+
+        // console.log(answerObjects)
+        answerObjects.forEach(function(el, index) {
+            for (var j = 0; j < answerObjects.length; j++) {
+                if (el[j]) {
+                    for (var k = 0; k < answers.length; k++) {
+                        if(el[j].get('title') === answers[k] ) {
+                        
+                            this.state.answers.push(el[j]);
+                        }
+                    }                 
+                }
+            }
+        }.bind(this));
+        console.log(this.state.answers);
+        console.log(this.state.questions);
+        console.log(this.state.questionTitles);
     },
 
     render: function() {

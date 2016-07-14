@@ -37,7 +37,10 @@ var Question4 = React.createClass({
             firstSelectOptions: [],
             answers:[],
             showModal:false,
-            checkedAnswer:false
+            checkedAnswer:false,
+            questions:[],
+            answers:[],
+            questionTitles:[]
 
         }
     },
@@ -49,15 +52,28 @@ var Question4 = React.createClass({
 
     onAnswerSelected(event, currentAnswer) {
         currentAnswer = event.currentTarget.textContent;
+       
+        var answers = [];
         if (this.state.answers.length > 0) {
             this.state.answers.splice(0, 1);
         }
-
-        this.state.answers.push(currentAnswer);
-        this.setState({
-            answers:this.state.answers
+        var answerObjects = [];
+        this.state.questions.forEach(function(item, index){
+            answerObjects.push(item.get('answers'));
         });
-        console.log(this.state.answers);
+
+        answerObjects.forEach(function(el, index) {
+            for (var j = 0; j < answerObjects.length; j++) {
+                console.dir(el[j].get('title'));
+                if (el[j].get('title') === answers[j]){
+                    console.log('yes');
+                }
+            }
+        }.bind(this));
+
+        // console.log(this.state.answers);
+        // console.log(this.state.questions);
+        // console.log(this.state.questionTitles);
     },
 
     getAnswers(id, selectOption) {
@@ -67,6 +83,8 @@ var Question4 = React.createClass({
         query.include('answers');
         query.first().then(
             (questions) => {
+                this.state.questions.push(questions);
+                this.state.questionTitles.push(questions.get("title"));
                 var options = questions.get('answers'); 
                 if (selectOption === 'first') {
                     _this.setState({

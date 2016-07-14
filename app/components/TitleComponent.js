@@ -10,7 +10,7 @@ var TitleComponent = React.createClass({
         return (
             <div className="wrapperTitle">
                 {this.props.pageNumber?
-                    <div className="questionNumber">{this.props.pageNumber} / 10</div>
+                    <div className="questionNumber">{this.props.pageNumber + 1} / 10</div>
                 : null }
                     <p className="questionTitle">k-profile</p>
                     <p className="questionTitle">{this.props.text}</p>

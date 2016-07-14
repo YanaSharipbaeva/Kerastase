@@ -35,7 +35,9 @@ var Question5 = React.createClass({
             pageNumber:'5',
             firstSelectOptions: [],
             secondSelectOptions: [],
-            answers:[]
+            questions:[],
+            answers:[],
+            questionTitles:[]
         };
     },
 
@@ -52,6 +54,8 @@ var Question5 = React.createClass({
         query.include('answers');
         query.first().then(
             (questions) => {
+                this.state.questions.push(questions);
+                this.state.questionTitles.push(questions.get("title"));
                 var options = questions.get('answers'); 
                 if (selectOption === 'first') {
                     _this.setState({
@@ -71,12 +75,29 @@ var Question5 = React.createClass({
         if (this.state.answers.length > 0) {
             this.state.answers.splice(0, 1);
         }
-        this.state.answers.push(currentAnswer);
-        this.setState({
-            answers:this.state.answers
+        console.log(currentAnswer);
+        var answers = [];
+        var answerObjects = [];
+        answers.push(currentAnswer);
+        this.state.questions.forEach(function(item, index){
+            answerObjects.push(item.get('answers'));
         });
 
+        answerObjects.forEach(function(el, index) {
+            for (var j = 0; j < answerObjects.length; j++) {
+
+                if (el[j]) {
+                    for (var k = 0; k < answers.length; k++) {
+                        if(el[j].get('title') === answers[k] ) {
+                            answers.push(el[j]);
+                        }
+                    }                 
+                }
+            }
+        }.bind(this));
         console.log(this.state.answers);
+        console.log(this.state.questions);
+        console.log(this.state.questionTitles);
     },
 
     changeHeight(){
@@ -121,7 +142,7 @@ var Question5 = React.createClass({
             arrayFirstHalf.push(el);                
         }
 
-        for (  var j = Math.ceil(firstSelectOptions.length / 2); j < firstSelectOptions.length; j++) {
+        for (var j = Math.ceil(firstSelectOptions.length / 2); j < firstSelectOptions.length; j++) {
             el = <div className="checkOption" key={Math.random()}>
             <input type="checkbox" className="checkbox itchy-options" value={firstSelectOptions[j]} id={firstSelectOptions[j]} key={Math.random()}/>
             <label onClick={this.onAnswerSelected} className="checkboxLabel" htmlFor={firstSelectOptions[j]} key={Math.random()}>

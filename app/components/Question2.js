@@ -34,7 +34,10 @@ var Question2 = React.createClass({
             secondSelectOptions: [],
             thirdSelectOptions: [],
             fourthSelectOptions: [],
-            fifthSelectOptions: []
+            fifthSelectOptions: [],
+            questions:[],
+            answers:[],
+            questionTitles:[]
         };
     },
 
@@ -53,6 +56,8 @@ var Question2 = React.createClass({
         query.include('answers');
         query.first().then(
             (questions) => {
+                this.state.questions.push(questions);
+                this.state.questionTitles.push(questions.get("title"));
                 var options = questions.get('answers'); 
                 if (selectOption === 'first') {
                     _this.setState({
@@ -96,6 +101,34 @@ var Question2 = React.createClass({
         $('.selectpicker li.selected').each(function () {
             answers.push($(this).text())
         });
+        var answerObjects = [];
+        this.state.questions.forEach(function(item, index){
+            answerObjects.push(item.get('answers'));
+        });
+        var titles = [],
+        arr = [];
+
+
+        console.log(this.state.answers);
+        console.log(this.state.questions);
+        console.log(this.state.questionTitles);
+
+        // console.log(answerObjects)
+        answerObjects.forEach(function(el, index) {
+            for (var j = 0; j < answerObjects.length; j++) {
+                if (el[j]) {
+                    for (var k = 0; k < answers.length; k++) {
+                        if(el[j].get('title') === answers[k]) {
+                        
+                            this.state.answers.push(el[j]);
+                        }
+                    }                 
+                }
+            }
+        }.bind(this));
+        console.log(this.state.answers);
+        console.log(this.state.questions);
+        console.log(this.state.questionTitles);
     },
 
     render: function() {
@@ -143,8 +176,8 @@ var Question2 = React.createClass({
                         
                     </div>
                     <div className="wrapperNext">
-                        <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                        <Link className="linkArrow" to="/question/3">
+                        <div className="linkText" onClick={this.onAnswerSelected} >Next</div>
+                        <Link className="linkArrow"  to="/question/3">
                         </Link>
                     </div>
                     <div className="wrapper-counter">

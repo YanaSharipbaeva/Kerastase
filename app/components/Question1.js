@@ -34,11 +34,9 @@ var Question1 = React.createClass({
             secondSelectOptions: [],
             thirdSelectOptions: [],
             fourthSelectOptions: [],
-            firstAnswer:'',
-            secondAnswer:'',
-            thirdAnswer:'',
-            fourthAnswer:'',
-            selectedAnswers:[]
+            questions:[],
+            answers:[],
+            questionTitles:[]
 
         };
     },
@@ -51,29 +49,23 @@ var Question1 = React.createClass({
         this.getAnswers('DNigZ6egMc', 'fifth' );
     },
 
-    onAnswerSelected (event) {
-        console.log(event);
-        var selectedAnswers = this.state.selectedAnswers;
-        selectedAnswers.push(event.target.value);
-        console.log(event.target.value);
-        this.setState({
-            selectedAnswers: selectedAnswers
-        });
-        console.log(this.state.selectedAnswers);
-    },
-
     getAnswers(id, selectOption) {
         var _this = this;
         var query = new Parse.Query(ParseQuestions);
         query.equalTo('objectId', id);
         query.include('answers');
+
+
         query.first().then(
             (questions) => {
+                this.state.questions.push(questions);
+                this.state.questionTitles.push(questions.get("title"));
                 var options = questions.get('answers'); 
                 if (selectOption === 'first') {
                     _this.setState({
                         firstSelectOptions: options.map((option) => option.get('title'))
                     });
+
                 }
 
                 if (selectOption === 'second') {
@@ -104,18 +96,61 @@ var Question1 = React.createClass({
                     console.log('Error getting products');
                     console.log(error);
                 }
-            ) 
+            )
+        return query;
     },
 
-    onAnswerSelected(){
+    onAnswerSelected(e){
+    console.log('target');
+    console.log(e.target.value);
+
         var answers = [];
         $('.selectpicker li.selected').each(function () {
-            answers.push($(this).text())
+            var myIndex = ($(this).attr('index'));
+        console.log('myIndex');
+    console.log(myIndex);
+
+            answers.push($(this).attr('index'));
         });
+        var answerObjects = [];
+        this.state.questions.forEach(function(item, index){
+            answerObjects.push(item.get('answers'));
+        });
+        var titles = [],
+        arr = [];
+
+
+        console.log(this.state.answers);
+        console.log(this.state.questions);
+        console.log(this.state.questionTitles);
+
+        // console.log(answerObjects)
+        answerObjects.forEach(function(el, index) {
+            for (var j = 0; j < answerObjects.length; j++) {
+                if (el[j]) {
+                    for (var k = 0; k < answers.length; k++) {
+                        if(el[j].get('title') === answers[k]) {
+
+                            this.state.answers.push(el[j]);
+                        }
+                    }                 
+                }
+            }
+        }.bind(this));
+        console.log(this.state.answers);
+        console.log(this.state.questions);
+        console.log(this.state.questionTitles);
+
+
+        // console.log('titles', titles);
+
+        // titles.forEach
+        // sessionStorage.setItem('answers', answers);
+        // console.log(this.state.questions);
+
     },
 
     render: function() {
-        
     
         var text = 'tell us about yourself';
         return (
@@ -126,15 +161,15 @@ var Question1 = React.createClass({
                     <div className="question-text_wrapper" ref="select">
                             { this.state.firstSelectOptions.length !== 0 ?
                                 <div className="question-text">I am a                                       
-                                    <ReactSelect className="selectAnswer">
+                                    <ReactSelect onChange={this.onAnswerSelected} className="selectAnswer">
                                         {this.state.firstSelectOptions.map(function(option, index) {
-                                            return <option key={index}   value={option} >{option}</option>        
+                                            return <option key={index} index={index}  value={option} >{option}</option>        
                                         })}                                         
                                     </ReactSelect > 
                                     between
                                     <ReactSelect onChange={this.onAnswerSelected} >
                                         {this.state.secondSelectOptions.map(function(option, index) {
-                                            return <option key={index}  value={option} >{option} years old</option>        
+                                            return <option key={index}  index={index} value={option} >{option} years old</option>        
                                         })}
                                     </ReactSelect>
                                 </div>
@@ -165,7 +200,7 @@ var Question1 = React.createClass({
                 </div>
                 <div className="wrapperNext">
                     <div className="linkText" onClick={this.onAnswerSelected}>Next</div>
-                    <Link className="linkArrow" to="/question/2">
+                    <Link className="linkArrow"  to="/question/2">
                     </Link>
                 </div>
                 <div className="wrapper-counter">
@@ -195,3 +230,16 @@ var Question1 = React.createClass({
 });
 
 module.exports = Question1;
+
+
+    getNewLine(text){
+        if (text.indexOf('/') === 0) {
+            return </br>
+        }
+
+        else {
+            return null;
+        }
+    },
+
+          this.getNewLine(item.text); 
