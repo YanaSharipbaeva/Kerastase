@@ -178,6 +178,7 @@ body {
     display: block;
     background: url(../images/next_arrow.png) no-repeat center;
     margin: 0 auto;
+    cursor:pointer;
 }
 
 .linkText{
@@ -217,4 +218,18 @@ body {
 
 .question10_wrapper .question-text_wrapper {
   margin:0px;
+}
+
+.QCM-long{
+    height: auto!important;
+
+}
+
+.QCM-long .question-text_wrapper {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.QCM-long .wrapperTitle {
+  height: auto;
 }

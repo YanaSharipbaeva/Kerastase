@@ -22,7 +22,7 @@
 .question-text {
     font-size: 35px;
     color:#fff;
-    font-family: 'InterstateLight';
+     font-family: 'TradeGothicLTLight';
 }
 
 .selectpickerOption {
@@ -212,4 +212,33 @@
     font-family: "InterstateLight";
 }
 
+/*--------*/
+
+.question-text_wrapper .question-text {
+    display: inline-block;
+}
+
+.question-text_wrapper .form-group{
+    width: auto;
+    display: inline-block;
+}
+
+.question-text_wrapper .form-control {
+    font-size: 35px;
+    color: #fff;
+    font-family: 'TradeGothicLTLight';
+    background: transparent;
+    border-radius: 0px;
+}
+
+.question-text_wrapper .btn-group .dropdown-toggle:active, .question-text_wrapper .btn-group.open .dropdown-toggle {
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font-family: 'TradeGothicLTLight';
+}
+
+.wrapper-counter span:last-child .horizontalLine{
+    display: none;
+}
 
