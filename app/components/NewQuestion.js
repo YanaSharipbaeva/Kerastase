@@ -68,6 +68,7 @@ var NewQuestion = React.createClass({
         dynamicDataQuery.notEqualTo('type', 'pro');
         dynamicDataQuery.ascending('positionConsumer');
         dynamicDataQuery.include('answers.profiles');
+        dynamicDataQuery.include('answers.profiles.products');
         
         hardCodedDataQuery.find().then(
             (hardCodedQuestions) => {

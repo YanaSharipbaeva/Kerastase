@@ -198,7 +198,7 @@ var SignUp = React.createClass({
             // console.log('stats are ',stats);
             // console.log('nativeProfiles are ', nativeProfiles);
 
-        });
+            });
             profiles.push(nativeProfiles['D5']);
 
             console.log('PROFILES', profiles);
@@ -261,7 +261,17 @@ var SignUp = React.createClass({
                 <div className="question-text_wrapper question-wrapper signUp-wrapper">
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">My name is</div>
-                        <input className="signUp-input" id="userName" type="text"></input>
+                        <Validation.Input
+                            className="signUp-input"
+                            blocking='input'
+                            onError={function(validation) {console.log(validation.rule)}}
+                            validations={[
+                                {
+                                    rule: 'isRequired',
+                                    errorMessage: 'mandatory field'
+                                } 
+                                ]}
+                            />
                     </div>
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">I live in</div>
@@ -307,7 +317,7 @@ var SignUp = React.createClass({
 
                 <Modal.Body>
                     <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
-                    <p className="customersText">Please fill input with correct email adress</p>
+                    <p className="customersText">Please, enter correct email address</p>
                 </Modal.Body>
             </Modal>
             </div>

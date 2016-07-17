@@ -19,6 +19,8 @@ import SignUp from './SignUp';
 import Result1 from './Result1';
 import Result2 from './Result2';
 import Result3 from './Result3';
+import Result4 from './Result4';
+import Result5 from './Result5';
 
 require('../styles/Main.css');
 
@@ -40,6 +42,9 @@ render((
         <Route path="/signUp" component={SignUp}></Route>
         <Route path="/result/1" component={Result1}></Route>
         <Route path="/result/2" component={Result2}></Route>
+        <Route path="/result/3" component={Result3}></Route>
+        <Route path="/result/4" component={Result4}></Route>
+        <Route path="/result/5" component={Result5}></Route>
         <Router history={browserHistory} />
     </Router>
 ), document.getElementById("app"));

@@ -15,7 +15,7 @@ import HorizontalLine from './HorizontalLine';
 require('../styles/Main.css');
 require('../styles/Result.css');
 
-var Result2 = React.createClass({
+var Result3 = React.createClass({
     mixins: [
         LinkedStateMixin
     ],
@@ -26,67 +26,69 @@ var Result2 = React.createClass({
 
     getInitialState() {
         return {
-            pageNumber: 1,
+            pageNumber: 3,
             result: []
         };
     },
 
     componentWillMount() {
         $('#app').addClass('QCM-long');
+  
         console.log('PROPS',  this.props.location.state);
         this.state.profiles = this.props.location.state.profiles;
-        console.log(this.state);
+        console.log("PRODUCTS" , this.state.products);
     },
 
     dynanamicPagination(){
         var pagination = [];
-        for (var k = 0; k < 4; k++) {
+        for (var k = 0; k < 5; k++) {
             pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
         }
         return pagination
 
     },
 
-    dynanamicPagination(){
-        var pagination = [];
-        for (var k = 0; k < 4; k++) {
-            pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
-        }
-        return pagination
-
+    nextPage(){
+        console.log('nextPage');
+        this.context.router.push({
+            pathname: '/result/4',
+            state: { 
+                    profiles: this.state.profiles
+                }
+        });
     },
 
     render: function() {
         return (
             <div className="wrapper-in-salon_ritual">
-                <div className="info-block">
-                    <div className="info-block_title">in-salon ritual</div>
+                <div className="info-block_title">AT-Home PROGRAM</div>
+                <div className="info-block image-block">
                     <div className="info-block_wrapper">
                         <div className="info-image1"></div>
                         <div className="info-image2"></div>
-                        
+                        <a href="" className="salon_link"> > Shop Now</a>
                     </div>
                 </div>
-                <div className="info-block">
-                    <div className="info-block_wrapper">
-                 
-                        <div className="text_wrapper">
-                            <ul className="info-text">
-                                <li>3 benefits of in-salon treatment:</li>
-                                <li>1. Prescription: Your hairdresser applies the correct dosage tailored to your specific level of dryness.</li>
-                                <li>2. Transformation: Hair is instantly suppler, shinier. You experience the Nutritive touch.</li>
-                                <li>3. Extension: The treatment anchors nutrients inside the hair, even after several shampoos.</li>
-                            </ul>
-                        </div>
-                        <div className="text_wrapper">
-                            <p className="result-title info-text_title">Nutritive protocole immunité secheresse</p>
-                            <p className="info-text">Kérastase presents custom solutions that respond to any levels of dryness thoroughly, from the inside out, restoring an irresistible sense of touch. Protocole Immunité goes one level deeper to restore a sense of touch to the hair, available only in Kérastase Salons.</p>
-                        </div>
+                <div className="info-block text_block">
+                     <div className="text_wrapper">
+                        <p className="result-title info-text_title">Nutritive protocole immunité secheresse</p>
+                        <p className="info-text">The Kérastase Nutritive range, a nourishing care designed to make hair supple and irresistibly soft to the touch, targets dry hair symptoms at the core with a custom routine for three levels of dryness. Nutritive Irisome 1 answers to the first level of dryness: slightly dry hair.</p>
+                    </div>
+                    <div className="text_wrapper">
+                        <ul className="info-text">
+                            <li>recommended routine</li>
+                            <li>1. Bathe : Bain satin 1</li>
+                            <li>2. Treat : Lait Vital</li>
+                            <li>3. Texturize : Nectar thermique</li>
+                        </ul>
+                    </div>
+                    <div className="products">
+                        
                     </div>
                 </div>
                 <div>
                     <div className="wrapperNext">
-                        <div className="linkText">At-Home program</div>
+                        <div className="linkText">Receive by</div>
                         <div className="linkArrow"  onClick={this.nextPage}></div>
                     </div>
                     <div className="social-links">
@@ -108,6 +110,6 @@ var Result2 = React.createClass({
     }
 });
 
-module.exports = Result2;
+module.exports = Result3;
 
 

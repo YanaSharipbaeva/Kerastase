@@ -22,8 +22,6 @@
 }
 
 .buttonStyles:hover {
-    color: #fff;
-    background: #282828;
     text-decoration:none;
 }
 
@@ -61,4 +59,11 @@
     display: inline-block;
     vertical-align: top;
     margin-bottom: 0px;
+}
+
+.signUp-main-wrapper .bootstrap-select.btn-group .dropdown-menu li a{
+    font-family: 'TradeGothicLTLight';
+    font-size: 34px;
+    color: #666;
+    border-bottom: 1px solid #e3e3e3;
 }
