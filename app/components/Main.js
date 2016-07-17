@@ -16,6 +16,9 @@ import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import SignUp from './SignUp';
+import Result1 from './Result1';
+import Result2 from './Result2';
+import Result3 from './Result3';
 
 require('../styles/Main.css');
 
@@ -32,8 +35,12 @@ var Main = React.createClass({
 render((
     <Router history={browserHistory}>
         <Route path="/" component={Start}></Route>
+        <Route path="/start" component={Start}></Route>
         <Route path="/question/1" component={NewQuestion}></Route>
         <Route path="/signUp" component={SignUp}></Route>
+        <Route path="/result/1" component={Result1}></Route>
+        <Route path="/result/2" component={Result2}></Route>
+        <Router history={browserHistory} />
     </Router>
 ), document.getElementById("app"));
 

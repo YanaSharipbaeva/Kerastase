@@ -130,6 +130,11 @@ body {
     box-sizing: border-box;
 }
 
+.header-icon:hover {
+  text-decoration: none;
+  color: #282828;
+}
+
 #app {
     background: url(../images/background_image-min.jpg) no-repeat center;
     background-size: cover;
@@ -179,6 +184,7 @@ body {
     background: url(../images/next_arrow.png) no-repeat center;
     margin: 0 auto;
     cursor:pointer;
+    border: 0px;
 }
 
 .linkText{
@@ -187,6 +193,10 @@ body {
     color:#fff;
     text-align: center;
     margin-bottom: 30px;
+    background: transparent;
+    border: 0px;
+    margin: 0 auto;
+    display: block;
 }
 
 .wrapperTitle {
@@ -233,3 +243,38 @@ body {
 .QCM-long .wrapperTitle {
   height: auto;
 }
+
+.modal-content {
+  border-radius: 0px;
+}
+.wrapper-footer{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+  }
+
+.social-links_title {
+    font-size: 12px;
+    text-transform: uppercase;
+    color:#fff;
+    font-family: 'TradeGothicLTLight'; 
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.social-links {
+  display:inline-block;
+}
+
+.restart_profile:before{
+  background: url('../images/restart.png') no-repeat center;
+  width: 13px;
+  height:12px;
+  content: "";
+  display: inline-block;
+}
+

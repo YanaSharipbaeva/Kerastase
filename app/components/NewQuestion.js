@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
-
+import { Modal } from 'react-bootstrap';
 
 import Header from './Header';
 import TitleComponent from './TitleComponent';
@@ -21,7 +21,6 @@ import '../styles/Media.css';
 
 
 var ParseQuestions = Parse.Object.extend('Questions');
-import NewComponent from 'react-bootstrap-select';
     
 var NewQuestion = React.createClass({
     mixins: [
@@ -35,32 +34,19 @@ var NewQuestion = React.createClass({
     getInitialState() {
         return {
             pageNumber:0,
-            dataSource:[ ],
+            dataSource:[],
             questions:[],
             answers:[],
             questionTitles:[],
             answerTitles:[],
             profilesArray:[],
-            QCMtext:''
+            showModal:false,
         };
-    },
-
-    componentDidMount() {
-
-            $('#app').height('auto');
-    
-    },
-
-    componentDidMount() {
-     
     },
 
     componentWillMount() {
         console.log(this.state.pageNumber);
         this.getAnswers();
-
-       
-   
     },
 
     getAnswers() {
@@ -71,10 +57,6 @@ var NewQuestion = React.createClass({
         var objectIdsArray = ["VGF1UCoZU5", "oWlblkHGpC", "6TTHPSneQU", 
                        "cJBGsiHH1Y", "DNigZ6egMc", "r0IbnW3wp0", "asqvsXw4be", "ozSM3igXSx", "2QfVi8YVhM",
                   "7RhOrbGGni", "ausAe1ZaIK", "WS2RGxVAKk", "aBeKdLM3E1", "VaP4llxFOs", "kGTNTx95ds"];
-
-
-      
-
 
         hardCodedDataQuery = new Parse.Query(ParseQuestions),
         hardCodedDataQuery.containedIn("objectId", objectIdsArray);
@@ -89,17 +71,10 @@ var NewQuestion = React.createClass({
         
         hardCodedDataQuery.find().then(
             (hardCodedQuestions) => {
-                console.log('hardCodedQuestions');
-               // console.log(JSON.stringify(hardCodedQuestions));
-                console.log(hardCodedQuestions);
-
                 dynamicDataQuery.find().then(
                     (dynamicQuestions) => {
                     console.log('dynamicQuestions');
-                    //console.log(JSON.stringify(dynamicQuestions));
-                    //console.log(dynamicQuestions);
                      var arr = _this.buildDataSource(hardCodedQuestions,dynamicQuestions);
-                     console.log('before set state', arr);
                      _this.setState({
                         dataSource: arr
                      })
@@ -110,18 +85,12 @@ var NewQuestion = React.createClass({
                     }
                 )
             }
-
         )
-     
     },
 
     buildDataSource: function (hardCodedQuestions, dynamicQuestions) {
-        var tempArray = [[], [], [], []];
-        console.log('build datasourceBegin');
-        console.log(hardCodedQuestions);
-        
+        var tempArray = [[], [], [], []];    
         hardCodedQuestions.forEach(function (hardCodedQuestion, index) {
-           console.log(index);
             switch (index) {
                 case 0:
                     hardCodedQuestion.text="I am a ";
@@ -195,9 +164,6 @@ var NewQuestion = React.createClass({
         dynamicQuestions.splice(2, 0, tempArray[2]);
         dynamicQuestions.splice(8, 0, tempArray[3]);
 
-        console.log('built array');
-        console.log(dynamicQuestions);
-
         dynamicQuestions.forEach(function(item){
             console.log($.isArray(item));
         });
@@ -207,9 +173,8 @@ var NewQuestion = React.createClass({
     },
 
     getSentences() {
+       $('#app').removeClass('QCM-long');
         var _this = this;
-        console.log('getSentences');
-        console.log('data', this.state.dataSource);
         var obj = [];
         var elem;
         var answers;
@@ -218,13 +183,12 @@ var NewQuestion = React.createClass({
             console.log(this);
 
             elem = <span key={index} className="question-text">
-                    <span > {item.text}</span>
-                
-                        <ReactSelect className="selectAnswer">
-                            {item.get('answers').map(function(option, indexAnswer) {
-                            return <option className="selectOption" key={indexAnswer} value={indexAnswer}  data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option>   
-                            })}                                         
-                        </ReactSelect> 
+                    <span > {item.text}</span>         
+                    <ReactSelect className="selectAnswer">
+                        {item.get('answers').map(function(option, indexAnswer) {
+                        return <option className="selectOption" key={indexAnswer} value={indexAnswer} data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option>   
+                        })}                                         
+                    </ReactSelect> 
               
                     </span>
             obj.push(elem) 
@@ -234,47 +198,52 @@ var NewQuestion = React.createClass({
     },
 
     getQCM () {
-        var el1;
+        var pageNumber = this.state.pageNumber;
+        if (pageNumber === 10 || pageNumber === 7 || pageNumber === 9) {
+            $('#app').addClass('QCM-long');
+        }
+
+        $(".radio").attr('checked', false);
+        var element;
         var obj = [];
         var data = this.state.dataSource[this.state.pageNumber];
  
         for (var i = 0; i < data.get('answers').length; i++) {
-            el1 = <div key={i} className="question-text checkOption-wrapper col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            element = <div key={i} className="question-text checkOption-wrapper col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div className="checkOption" >
-                        <input type="checkbox" value={i} className="checkbox" data-indexAnswer={i} id={data.get('answers')[i].get('title')} />
+                        <input type="radio"  className="radio" name= "radio" data-indexAnswer={i} id={data.get('answers')[i].get('title')} />
                         <label className="checkboxLabel"  htmlFor={data.get('answers')[i].get('title')}>
                            {data.get('answers')[i].get('title')}
                         </label>
                     </div> 
                 </div>
-            obj.push(el1);                
+            obj.push(element);                
         }; 
-
 
         return obj
     },
 
-    nextPage(){
+    nextPage() {
         console.log('nextPage');
         var pageObject = this.state.dataSource[this.state.pageNumber];
+
         if (this.isQCM() === false) {
             this.getSelectedAnswers();
         } else {
             this.getCheckedAnswers();
         }
-         var newPageNumber = this.state.pageNumber + 1;
-         var totalPage = this.state.dataSource.length;
+
+        var newPageNumber = this.state.pageNumber + 1;
+        var totalPage = this.state.dataSource.length;
 
         //if (newPageNumber === totalPage) {
-        if (newPageNumber === 6) {
+        if (newPageNumber === 10) {
             this.goToLogin();
-         }
-        else{
-        this.setState({  
-            pageNumber:this.state.pageNumber + 1
-        });
-    }
-
+        } else {
+            this.setState({  
+                pageNumber:this.state.pageNumber + 1
+            });
+        }
     },
 
     goToLogin() {
@@ -287,36 +256,23 @@ var NewQuestion = React.createClass({
                     answerTitles:  this.state.answerTitles
                 }
             });
-
-
     },
 
-    getCheckedAnswers(){
-       
+    getCheckedAnswers(){  
         var checkedAnswer = $( "input:checked" )[0];
-        console.log(checkedAnswer);
 
-            var answerIndex = checkedAnswer.getAttribute('data-indexAnswer');
-          
-            console.log('our value', checkedAnswer);
-            console.log('our indexes',answerIndex);
-
-
-            console.log('PAGE NUMBER',this.state.pageNumber)
-           var questionObject = this.state.dataSource[this.state.pageNumber];
-           var answerObject = this.state.dataSource[this.state.pageNumber].get('answers')[answerIndex];
-
-            
-            this.state.questions.push(questionObject)
-            this.state.answers.push(answerObject)
-            this.state.questionTitles.push(questionObject.get('title'));
-            this.state.answerTitles.push(answerObject.get('title'));
-
-            console.log(this.state, "QMC");
-
+        var answerIndex = checkedAnswer.getAttribute('data-indexAnswer');
       
+        console.log('our value', checkedAnswer);
+        console.log('our indexes',answerIndex);
 
-        console.log('CHECKED!!!QMC');
+        var questionObject = this.state.dataSource[this.state.pageNumber];
+        var answerObject = this.state.dataSource[this.state.pageNumber].get('answers')[answerIndex];
+
+        this.state.questions.push(questionObject)
+        this.state.answers.push(answerObject)
+        this.state.questionTitles.push(questionObject.get('title'));
+        this.state.answerTitles.push(answerObject.get('title'));
     },
 
     getSelectedAnswers(){
@@ -337,20 +293,11 @@ var NewQuestion = React.createClass({
             _this.state.answers.push(answerObject)
             _this.state.questionTitles.push(questionObject.get('title'));
             _this.state.answerTitles.push(answerObject.get('title'));
-
-            console.log(_this.state, "STATE");
-        });
-
-        console.log(array, "our array");
-     
+        }); 
     },
 
-
-
     getQCMOrSentences(){
-        console.log('getQCMOrSentences')
         var item = this.state.dataSource[this.state.pageNumber];
-        console.log('item', item);
 
         if (this.isQCM() === false) {
             return this.getSentences();
@@ -359,26 +306,22 @@ var NewQuestion = React.createClass({
         }
     },
 
-
-
     dynanamicPagination(){
         var pagination = [];
-        for (var k=0; k < 10; k++) {
+        for (var k = 0; k < 10; k++) {
             pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
         }
         return pagination
 
     },
 
-    getQCMtext(){
+    getQCMtext() {
        var text = this.state.dataSource[this.state.pageNumber].get('title');
        return text;
     },
 
-   isQCM(){
+   isQCM() {
         var item = this.state.dataSource[this.state.pageNumber];
-        console.log('item', item);
-
         if ($.isArray(item)) {
             return false;
         } else {
@@ -387,9 +330,19 @@ var NewQuestion = React.createClass({
   
     },
 
+    openModal () {
+        this.setState({
+            showModal: true
+        });
+    },
+
+    closeModal () {
+        this.setState({
+            showModal: false
+        });
+    },
+
     render: function() {
-  
-        console.log('render')
         var text = 'tell us about yourself';
 
         if (this.state.dataSource.length === 0) {
@@ -412,6 +365,16 @@ var NewQuestion = React.createClass({
                     <div className="wrapper-counter">
                     {this.dynanamicPagination()}
                     </div>
+                    <Modal show={this.state.showModal} onHide={this.closeModal}>
+
+                    <Modal.Body>
+                        <p className="customersText">Please, choose one answer</p>
+                    </Modal.Body>
+
+                    <Modal.Footer>
+                        <button className="btn customersText" onClick={this.closeModal}>Close</button>
+                    </Modal.Footer>
+                    </Modal>
                 </div>
             );
         }

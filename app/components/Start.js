@@ -16,6 +16,10 @@ var Start = React.createClass({
         router: React.PropTypes.object.isRequired
     },
 
+    componentWillMount() {
+        $('#app').removeClass('QCM-long');
+    },
+
     render: function() {
         return (
             <div className="wrapper">

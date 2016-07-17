@@ -51,7 +51,7 @@
     align-items: center;
     width: 100%;
     margin-bottom: 40px;
-    padding-right: 67px;
+    padding-right: 110px;
     margin-top: 30px;
     margin-bottom: 30px;
 }
@@ -139,7 +139,78 @@
     color:#d7d7d7;
 }
 
+.signUp-main-wrapper .selectpicker {
+    color: #696969;
+    border-radius: 4px;
+}
 
+.signUp-main-wrapper .signUp-input {
+    background: #fff;
+    border-radius: 4px;
+}
 
+.checkbox {
+  vertical-align: top;
+  margin: 0 3px 0 0;
+  width: 17px;
+  height: 17px;
+}
+/* Это для всех браузеров, кроме совсем старых, которые не поддерживают
+селекторы с плюсом. Показываем, что label кликабелен. */
+.checkbox + label {
+  cursor: pointer;
+}
 
+/* Далее идет оформление чекбокса в современных браузерах, а также IE9 и выше.
+Благодаря тому, что старые браузеры не поддерживают селекторы :not и :checked,
+в них все нижеследующие стили не сработают. */
+
+/* Прячем оригинальный чекбокс. */
+.checkbox:not(checked) {
+    opacity: 0;
+}
+.checkbox:not(checked) + label {
+    position: relative; /* будем позиционировать псевдочекбокс относительно label */
+    padding: 0 0 0 95px; /* оставляем слева от label место под псевдочекбокс */
+    line-height: 60px;
+    float: left;
+    margin-bottom: 20px;
+}
+/* Оформление первой части чекбокса в выключенном состоянии (фон). */
+.checkbox:not(checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    cursor: pointer;
+}
+/* Оформление второй части чекбокса в выключенном состоянии (переключатель). */
+.checkbox:not(checked) + label:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    background: #fff;
+    transition: all .2s; /* анимация, чтобы чекбокс переключался плавно */
+}
+/* Меняем фон чекбокса, когда он включен. */
+.checkbox:checked + label:before {
+  background: #000;
+    border:20px solid #fff;
+}
+
+.signUp-main-wrapper .linkText {
+    margin-bottom: 30px;
+}
+
+.wrapperNext{
+    padding-top: 45px;
+    padding-bottom: 40px;
+}
+
+.linkText {
+    margin-bottom: 30px;
+}
 

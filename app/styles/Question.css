@@ -152,7 +152,7 @@
 .question-text .form-group .bootstrap-select.btn-group, 
 .question-text .form-horizontal .bootstrap-select.btn-group, 
 .question-text .form-inline .bootstrap-select.btn-group {
-    width: auto;
+    width: 100%;
     background: transparent;
 }
 
@@ -210,8 +210,17 @@
 .customersText {
     font-size: 16px;
     font-family: "InterstateLight";
+    width: auto;
+    position: absolute;
+    top: 40px;
 }
 
+.customersText-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
 /*--------*/
 
 .question-text_wrapper .question-text {
@@ -242,3 +251,8 @@
     display: none;
 }
 
+
+ .modal-content {
+    width: 400px;
+    height: 180px;
+}

@@ -2,13 +2,13 @@
     width: 100%;
 }
 
-.checkboxLabel {
+.radioLabel {
     font-size: 20px;
     cursor: pointer!important;
     clear: both;
 }
 
-.checkbox {
+.radio {
   vertical-align: top;
   margin: 0 3px 0 0;
   width: 17px;
@@ -16,7 +16,7 @@
 }
 /* Это для всех браузеров, кроме совсем старых, которые не поддерживают
 селекторы с плюсом. Показываем, что label кликабелен. */
-.checkbox + label {
+.radio + label {
   cursor: pointer;
 }
 
@@ -25,10 +25,10 @@
 в них все нижеследующие стили не сработают. */
 
 /* Прячем оригинальный чекбокс. */
-.checkbox:not(checked) {
+.radio:not(checked) {
     opacity: 0;
 }
-.checkbox:not(checked) + label {
+.radio:not(checked) + label {
     position: relative; /* будем позиционировать псевдочекбокс относительно label */
     padding: 0 0 0 95px; /* оставляем слева от label место под псевдочекбокс */
     line-height: 60px;
@@ -36,7 +36,7 @@
     margin-bottom: 20px;
 }
 /* Оформление первой части чекбокса в выключенном состоянии (фон). */
-.checkbox:not(checked) + label:before {
+.radio:not(checked) + label:before {
     content: '';
     position: absolute;
     left: 0;
@@ -46,7 +46,7 @@
     cursor: pointer;
 }
 /* Оформление второй части чекбокса в выключенном состоянии (переключатель). */
-.checkbox:not(checked) + label:after {
+.radio:not(checked) + label:after {
     content: '';
     position: absolute;
     top: 3px;
@@ -55,7 +55,7 @@
     transition: all .2s; /* анимация, чтобы чекбокс переключался плавно */
 }
 /* Меняем фон чекбокса, когда он включен. */
-.checkbox:checked + label:before {
+.radio:checked + label:before {
   background: #000;
     border:20px solid #fff;
 }
@@ -80,18 +80,18 @@
     position: relative;
 }
 
-.checkOption .checkbox{
+.checkOption .radio{
     display: none;
 }
 
-.checkOption1 #checkbox1{
+.checkOption1 #radio1{
     opacity: 0;
     position: absolute;
     top: 18px;
     left: 20px;
 }
 
-.checkOption2 #checkbox2{
+.checkOption2 #radio2{
     opacity: 0;
     position: absolute;
     top: 18px;

@@ -4,11 +4,13 @@ import React from 'react';
 import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import SelectBox from 'react-select-box';
-
+import { Modal } from 'react-bootstrap';
 import Header from './Header';
 import NextLink from './NextLink';
 import ReactSelect from 'react-bootstrap-select';
 import TitleComponent from './TitleComponent';
+var Validation = require('react-validation');
+var validator = require('validator');
 
 var ParseUsers = Parse.Object.extend('User');
 var ParseDiagnostic = Parse.Object.extend('Diagnostic');
@@ -32,8 +34,7 @@ var SignUp = React.createClass({
             email:'',
             newsletter: true,
             password: '<8mB3c,%^cu~72&3',
-        
-                 questions:[],
+            questions:[],
             answers:[],
             questionTitles:[],
             answerTitles:[]
@@ -42,8 +43,8 @@ var SignUp = React.createClass({
     },
 
     componentDidMount(){
-        console.log(this.props.location.state);
-
+        console.log(this.props);
+        $('#app').addClass('QCM-long');
 
         this.state.questions = this.props.location.state.questions;
         this.state.answers = this.props.location.state.answers;
@@ -51,13 +52,17 @@ var SignUp = React.createClass({
         this.state.answerTitles = this.props.location.state.answerTitles;
 
         this.getWinningProfiles(this.props.location.state);
+
+        Validation.extendErrors({
+            isEmail: {
+                className: 'ui-input_state_email-pattern-failed',
+                // validator already has strong email-pattern, so we don't have to extend it by custom 
+                message: 'should be email'
+            }
+        });
     },
 
-    componentWillMount(){
-        $('#app').height('auto');
-    },
-
-    handleChange: function(){
+    OnNewsletter: function(){
         this.setState({
             newsletter: !this.state.newsletter
         });
@@ -178,36 +183,51 @@ var SignUp = React.createClass({
                     stats[key]=newValue;
                     nativeProfiles[key]=profile;
 
+
                 });
             }
 
-            profiles.push(nativeProfiles[0]);
-            profiles.push(nativeProfiles[1]);
-            profiles.push(nativeProfiles[2]);
-            console.log('profiles are ',stats);
-            this.state.profiles = profiles;
 
-            console.log('stats are ',stats);
-            console.log('nativeProfiles are ', nativeProfiles);
+            // profiles.push(nativeProfiles[1]);
+            // profiles.push(nativeProfiles[2]);
+            // console.log('profiles are ',profiles);
+            // console.log(profiles);
+
+          
+
+            // console.log('stats are ',stats);
+            // console.log('nativeProfiles are ', nativeProfiles);
 
         });
+            profiles.push(nativeProfiles['D5']);
 
-
+            console.log('PROFILES', profiles);
+            this.setState({
+                profiles: profiles
+            });
     },
-
-    submitAndDisplay(){
-
-       
-
-
-        this.saveDiagnostic();
-
-    },
-
 
     displayResult(){
+        console.log('RESULT',  this.state);
+        this.context.router.push({
+            pathname: '/result/1',
+            state: { 
+                    profiles: this.state.profiles
+                }
+            });
 
+    },
 
+    submitAndDisplay: function(event) {
+        event.preventDefault();
+   
+        if (this.refs.form._validations.email) {
+            this.saveDiagnostic();
+            this.displayResult();
+            console.log(this.state);
+        } else {
+            this.openModal();
+        }
     },
 
 
@@ -216,10 +236,23 @@ var SignUp = React.createClass({
         $('#app').height('100%');
     },
 
+    openModal () {
+        this.setState({
+            showModal: true
+        });
+    },
+
+    closeModal () {
+        this.setState({
+            showModal: false
+        });
+    },
+
     render: function() {
         var text = 'Sign up';
         return (
-            <div className="wrapperPhrase signUp-main-wrapper">
+            <div>
+            <Validation.Form  onSubmit={this.submitAndDisplay} ref='form' className="wrapperPhrase signUp-main-wrapper">
                 <Header />
                 <div className="wrapperTitle signUp">
                     <p className="questionTitle">k-profile</p>
@@ -228,19 +261,30 @@ var SignUp = React.createClass({
                 <div className="question-text_wrapper question-wrapper signUp-wrapper">
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">My name is</div>
-                        <input  valueLink={this.linkState("name")} className="signUp-input" id="userName" type="text"></input>
+                        <input className="signUp-input" id="userName" type="text"></input>
                     </div>
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">I live in</div>
-                        <ReactSelect className="signUp-input" ref="select" onChange={this.handleSelect}>
+                        <ReactSelect className="signUp-input" ref="select">
                             <option>UK</option>
                             <option>Germany</option>
                             <option>France</option>
                         </ReactSelect>
                     </div>
                     <div className="signUp-input_wrapper last">
-                        <div className="signUp-input_text">My email is</div>
-                        <input  valueLink={this.linkState("email")} className="signUp-input email" id="userEmail" type="text" ></input>
+                        <div className="signUp-input_text ">My email is</div>
+                        <Validation.Input
+                            blocking='input'
+                            className='signUp-input email'
+                            validations={[
+                                {
+                                    rule: 'isEmail'
+                                }
+                            ]}
+                            name='email'
+                            type='text'
+                      
+                            />
                     </div>
                     <div className="checkbox-wrapper">
                         <input  type="checkbox" 
@@ -249,15 +293,23 @@ var SignUp = React.createClass({
                                 ref="complete"
                                 />
                         <label  className="checkboxSignUp" 
-                                onClick={this.handleChange}
+                                onClick={this.OnNewsletter}
                                 htmlFor="userNewsletter">I would like to receive my hair diagnosis and the latest Kérastase news by email</label>
                     </div>
                 </div>
                 <div className="wrapperNext" >
-                    <div className="linkText" onClick={this.displayResult}>Next</div>
-                    <div className="linkArrow"  onClick={this.submitAndDisplay}></div>
+                    <div  className="linkText" value="Next">Next</div>
+                    <button className="linkArrow"  type="submit" onClick={this.submitAndDisplay}></button>
                 </div>
                 <Link to="/" className="skipButton" onClick={this.displayResult}>skip</Link>
+            </Validation.Form >
+            <Modal show={this.state.showModal} sign-up-modal onHide={this.closeModal}>
+
+                <Modal.Body>
+                    <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
+                    <p className="customersText">Please fill input with correct email adress</p>
+                </Modal.Body>
+            </Modal>
             </div>
         );
     }

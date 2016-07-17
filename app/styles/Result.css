@@ -1,0 +1,176 @@
+.wrapper-result .linkText{
+    font-family: 'TradeGothicLTLight';
+}
+
+.result-title {
+    color:#d7d7d7;
+    font-size: 19px;
+    text-transform: uppercase;
+    font-family: 'TradeGothicLTLight';
+    text-align: center;
+}
+
+.result-title_value {
+    font-size: 114px;
+    color:#fff;
+}
+
+.result-text {
+    font-size: 30px;
+}
+
+.result-text_red {
+    font-size: 30px;
+    color:#e24b37;
+}
+
+.top-wrapper{
+    height:30%;
+}
+
+.wrapper-result {
+    height: 100%;
+}
+
+.profile-solution {
+    font-size: 34px;
+    font-family: 'InterstateThin';
+    color: #fff;
+    text-align: center;
+}
+
+.wrapper-result .wrapper-counter {
+    margin-top: -55px;
+}
+
+.result-text_thin {
+    font-family: 'InterstateThin';;
+    font-size: 34px;
+    color:#d7d7d7;
+    text-align: center;
+}
+
+.wrapper-result {
+    padding-left: 30px;
+    padding-right: 30px;
+    box-sizing: border-box;
+}
+
+.wrapperPhrase .wrapperNext {
+    padding:0px;
+}
+
+.wrapper-in-salon_ritual .wrapper-counter{
+    margin-top: -56px;
+}
+
+.wrapper-in-salon_ritual .linkText {
+    font-family: 'TradeGothicLTLight';
+}
+
+.wrapper-in-salon_ritual{
+    padding-bottom: 20px;   
+    box-sizing: border-box;
+}
+
+.info-image1 {
+    width: 170px;
+    height: 171px;
+    background: url('../images/in-salon1.jpg')no-repeat center;
+    display: inline-block;
+    float: left;
+}
+
+.info-image2 {
+    width: 170px;
+    height: 153px;
+    background: url('../images/in-salon2.jpg')no-repeat center;
+    display: inline-block;
+    float: left;
+}
+
+.info-text_title {
+    font-size: 24px;
+    color: #e24b37;
+    text-align:left;
+    margin-bottom: 30px;
+}
+
+.info-text {
+    font-size: 18px;
+    font-family: 'TradeGothicLTLight';
+    color:#fff;
+
+    line-height: 27px;
+}
+
+.text_wrapper {
+    display: inline-block;
+    width: calc(100% - 320px);
+}
+
+.info-block_title {
+    color:#d7d7d7;
+    font-size: 40px;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: 'TradeGothicLTLight';
+    margin-bottom: 65px;
+}
+.wrapper-in-salon_ritual{
+    padding-top: 175px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.info-block:after{
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
+
+ul.info-text li:first-child {
+    text-transform: uppercase;
+    font-size: 17px;
+    font-family: 'TradeGothicLTLight';
+}
+ul.info-text{
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.restart_profile {
+    font-size: 12px;
+    font-family: 'TradeGothicLTLight'; 
+    color:#fff;
+    text-transform: uppercase;
+    float: right;
+    display:inline-block;
+}
+
+.restart_profile:hover{
+    text-decoration: none!important;
+}
+.restart_profile:before {
+    margin-right: 10px;
+}
+
+.s_link {
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    line-height: 25px;
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    margin-right: 4px;
+}
+
+.fa, .fa:hover{
+    text-decoration: none!important;
+    color: #000;
+}

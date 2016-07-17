@@ -44,6 +44,8 @@
     "react": "^15.2.0",
     "react-checkbox": "^0.1.3",
     "react-hot-loader": "^1.3.0",
+    "react-validation": "^1.7.4",
+    "validator": "^5.4.0",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
   }

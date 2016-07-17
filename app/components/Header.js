@@ -3,6 +3,7 @@
 import Parse from 'parse';
 import React from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import { Link } from 'react-router';
 
 
 var Header = React.createClass({
@@ -20,7 +21,7 @@ var Header = React.createClass({
             <header className="header container">
                 <div className="row header-wrapper">
                     <div className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4"> 
-                        <span className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 fa fa-bars header-icon" aria-hidden="true"></span> 
+                        <Link to="/start" className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 fa fa-bars header-icon" aria-hidden="true"></Link> 
                     </div>
                     <div className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 logo-wrapper"> 
                         <a className="header-logo" href="https://www.kerastase-usa.com"></a>
