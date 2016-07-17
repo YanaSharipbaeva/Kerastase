@@ -186,8 +186,8 @@ ul.info-text{
     display: inline-block;
 }
 
-.text_block {
-    width: calc(100% - 225px);
+.result3 .text_block {
+    width: calc(100% - 700px);
 }
 
 .image-block{
@@ -243,7 +243,7 @@ ul.info-text{
     height: 130px;
     margin: 0 auto;
 }
-.wrapper-in-salon_ritual .salon_link{
+.map-wrapper .salon_link{
     width: 285px!important;
     margin: 0 auto;
     text-transform: uppercase;
@@ -329,4 +329,13 @@ ul.info-text{
 }
 .reseiveByEmail{
     padding-bottom: 50px;
+}
+
+.products {
+    display:inline-block;
+    width: 475px;
+}
+
+ .products img{
+    width: 33%;
 }

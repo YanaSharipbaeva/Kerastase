@@ -45,7 +45,7 @@ var Result1 = React.createClass({
 
     dynanamicPagination(){
         var pagination = [];
-        for (var k = 0; k < 4; k++) {
+        for (var k = 0; k < 5; k++) {
             pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
         }
         return pagination

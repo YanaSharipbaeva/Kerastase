@@ -26,7 +26,7 @@ var Result4 = React.createClass({
 
     getInitialState() {
         return {
-            pageNumber: 4,
+            pageNumber: 3,
             result: []
         };
     },

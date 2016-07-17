@@ -11,6 +11,7 @@ import { Link } from 'react-router';
 import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
+import { Modal } from 'react-bootstrap';
 
 require('../styles/Main.css');
 require('../styles/Result.css');
@@ -26,7 +27,7 @@ var Result3 = React.createClass({
 
     getInitialState() {
         return {
-            pageNumber: 3,
+            pageNumber: 2,
             result: []
         };
     },
@@ -36,6 +37,7 @@ var Result3 = React.createClass({
   
         console.log('PROPS',  this.props.location.state);
         this.state.profiles = this.props.location.state.profiles;
+        this.state.products = this.props.location.state.profiles[0].products;
         console.log("PRODUCTS" , this.state.products);
     },
 
@@ -58,9 +60,33 @@ var Result3 = React.createClass({
         });
     },
 
-    render: function() {
+    getProducts(){
+        var imageUrl =  [];
+        for (var i = 0; i <  this.state.products.length; i++) {
+            imageUrl.push(<img  onClick={this.openModal} key={i} src={this.state.products[0].image.url}></img>);
+        }
+
+        return imageUrl;
+    },
+
+    openModal () {
+        this.setState({
+            showModal: true
+        });
+    },
+
+    closeModal () {
+        this.setState({
+            showModal: false
+        });
+    },
+
+    render: function() {  
+
+
+ 
         return (
-            <div className="wrapper-in-salon_ritual">
+            <div className="wrapper-in-salon_ritual result3">
                 <div className="info-block_title">AT-Home PROGRAM</div>
                 <div className="info-block image-block">
                     <div className="info-block_wrapper">
@@ -71,21 +97,23 @@ var Result3 = React.createClass({
                 </div>
                 <div className="info-block text_block">
                      <div className="text_wrapper">
-                        <p className="result-title info-text_title">Nutritive protocole immunité secheresse</p>
-                        <p className="info-text">The Kérastase Nutritive range, a nourishing care designed to make hair supple and irresistibly soft to the touch, targets dry hair symptoms at the core with a custom routine for three levels of dryness. Nutritive Irisome 1 answers to the first level of dryness: slightly dry hair.</p>
+                        <p className="result-title info-text_title">{this.state.products[0].title}</p>
+                        <p className="info-text">{this.state.products[0].description}</p>
                     </div>
                     <div className="text_wrapper">
                         <ul className="info-text">
                             <li>recommended routine</li>
-                            <li>1. Bathe : Bain satin 1</li>
-                            <li>2. Treat : Lait Vital</li>
-                            <li>3. Texturize : Nectar thermique</li>
+                            <li>1. Bathe : {this.state.products[0].title}</li>
+                            <li>2. Treat : {this.state.products[1].title} </li>
+                            <li>3. Texturize : {this.state.products[2].title}</li>
+                   
                         </ul>
                     </div>
-                    <div className="products">
-                        
-                    </div>
+                    
                 </div>
+                <div className="products">
+                        {this.getProducts()}   
+                    </div>
                 <div>
                     <div className="wrapperNext">
                         <div className="linkText">Receive by</div>
@@ -105,6 +133,16 @@ var Result3 = React.createClass({
                 <div className="wrapper-counter">
                     {this.dynanamicPagination()}
                 </div>
+                <Modal show={this.state.showModal} onHide={this.closeModal}>
+
+                    <Modal.Body>
+                        <p className="customersText">Please, choose one answer</p>
+                    </Modal.Body>
+
+                    <Modal.Footer>
+                        <button className="btn customersText" onClick={this.closeModal}>Close</button>
+                    </Modal.Footer>
+                    </Modal>
             </div>
         );
     }

@@ -26,7 +26,7 @@ var Result3 = React.createClass({
 
     getInitialState() {
         return {
-            pageNumber: 5,
+            pageNumber: 4,
             result: []
         };
     },
@@ -72,8 +72,8 @@ var Result3 = React.createClass({
                 </div>
                 <div>
                     <div className="wrapperNext">
-                        <div className="linkText">Restart Diagnosis</div>
-                        <div className="linkArrow restart_image"  onClick={this.nextPage}></div>
+                        <div  className="linkText">Restart Diagnosis</div>
+                        <Link to="/start" className="linkArrow restart_image" ></Link>
                     </div>
                 </div>
                 <div className="wrapper-counter">

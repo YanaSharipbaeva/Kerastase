@@ -13,6 +13,7 @@ import TitleComponent from './TitleComponent';
 import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
+import { Modal } from 'react-bootstrap';
 
 require('../styles/Main.css');
 require('../styles/Result.css');
@@ -28,7 +29,7 @@ var Result2 = React.createClass({
 
     getInitialState() {
         return {
-            pageNumber: 2,
+            pageNumber: 1,
             result: []
         };
     },
@@ -42,16 +43,7 @@ var Result2 = React.createClass({
 
     dynanamicPagination(){
         var pagination = [];
-        for (var k = 0; k < 4; k++) {
-            pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
-        }
-        return pagination
-
-    },
-
-    dynanamicPagination(){
-        var pagination = [];
-        for (var k = 0; k < 4; k++) {
+        for (var k = 0; k < 5; k++) {
             pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
         }
         return pagination
@@ -82,7 +74,7 @@ var Result2 = React.createClass({
                 </div>
                 <div className="info-block text_block">
                      <div className="text_wrapper">
-                        <p className="result-title info-text_title">Nutritive protocole immunité secheresse</p>
+                        <p className="result-title info-text_title">{this.state.profiles[0].prescriptionServices}</p>
                         <p className="info-text">Kérastase presents custom solutions that respond to any levels of dryness thoroughly, from the inside out, restoring an irresistible sense of touch. Protocole Immunité goes one level deeper to restore a sense of touch to the hair, available only in Kérastase Salons.</p>
                     </div>
                     <div className="text_wrapper">
