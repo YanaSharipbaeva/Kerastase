@@ -62,7 +62,7 @@ var Result2 = React.createClass({
 
     render: function() {
         return (
-            <div className="wrapper-in-salon_ritual">
+            <div className="wrapper-in-salon_ritual result2">
                 <div className="info-block_title">in-salon ritual</div>
                 <div className="info-block image-block">
                     <div className="info-block_wrapper">

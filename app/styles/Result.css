@@ -396,5 +396,15 @@ ul.info-text{
     padding-left: 50px;
     padding-top: 50px;
 }
+.result2 .text_block{
+    width: calc(100% - 225px );
+}
+
+.checkOption:after{
+    clear:both;
+    content:"";
+    display: table;
+
+}
 
 

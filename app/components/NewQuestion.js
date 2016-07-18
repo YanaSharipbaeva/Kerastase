@@ -45,7 +45,6 @@ var NewQuestion = React.createClass({
     },
 
     componentWillMount() {
-        console.log(this.state.pageNumber);
         this.getAnswers();
     },
 
@@ -181,7 +180,6 @@ var NewQuestion = React.createClass({
         var answers;
         var data = this.state.dataSource[this.state.pageNumber];
         data.forEach(function(item, index) { 
-            console.log(this);
 
             elem = <span key={index} className="question-text">
                     <span > {item.text}</span>         
@@ -225,7 +223,6 @@ var NewQuestion = React.createClass({
     },
 
     nextPage() {
-        console.log('nextPage');
         var pageObject = this.state.dataSource[this.state.pageNumber];
 
         if (this.isQCM() === false) {
@@ -263,9 +260,6 @@ var NewQuestion = React.createClass({
         var checkedAnswer = $( "input:checked" )[0];
 
         var answerIndex = checkedAnswer.getAttribute('data-indexAnswer');
-      
-        console.log('our value', checkedAnswer);
-        console.log('our indexes',answerIndex);
 
         var questionObject = this.state.dataSource[this.state.pageNumber];
         var answerObject = this.state.dataSource[this.state.pageNumber].get('answers')[answerIndex];
@@ -283,12 +277,8 @@ var NewQuestion = React.createClass({
             array.push(el);
 
             var answerIndex = el.getAttribute('data-original-index');
-          
-            console.log('our value', el.innerText);
-            console.log('our indexes',answerIndex);
-
-           var questionObject = _this.state.dataSource[_this.state.pageNumber][i];
-           var answerObject = _this.state.dataSource[_this.state.pageNumber][i].get('answers')[answerIndex];
+            var questionObject = _this.state.dataSource[_this.state.pageNumber][i];
+            var answerObject = _this.state.dataSource[_this.state.pageNumber][i].get('answers')[answerIndex];
              
             _this.state.questions.push(questionObject)
             _this.state.answers.push(answerObject)

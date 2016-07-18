@@ -3,6 +3,7 @@ import Parse from 'parse';
 import React from 'react';
 import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
 import SelectBox from 'react-select-box';
 import { Modal } from 'react-bootstrap';
 import Header from './Header';
@@ -77,8 +78,6 @@ var SignUp = React.createClass({
         var questionTitles = this.state.questionTitles;
         var answerTitles = this.state.answerTitles;
         var profiles = this.state.profiles;
-        console.log('questionsSAVE', questions);
-        console.log('profileBeforeSave', profiles);
 
 
         diagnostic.set('questions', questions);
@@ -159,14 +158,9 @@ var SignUp = React.createClass({
 
             if (question.category === "DIAG") {
                 var ponderation = question.ponderation;
-                console.log("ponderation", ponderation);
-                console.log("question", question);
-                console.log("answer", answer);
 
                 answer.profiles.forEach(function (profile) {
-                    console.log(profile);
                     var key = profile.code;
-                    console.log('key is', key);
                     if (stats.hasOwnProperty(key) === false) {
                         console.log('Has no key', key);
                         stats[key] = 0;
@@ -177,9 +171,7 @@ var SignUp = React.createClass({
                     }
 
                     var currentValue = stats[key];
-                    console.log('currentValue', currentValue);
                     var newValue = currentValue + (ponderation);
-                    console.log('newValue', newValue);
                     stats[key]=newValue;
                     nativeProfiles[key]=profile;
 
@@ -263,7 +255,6 @@ var SignUp = React.createClass({
                         <div className="signUp-input_text">My name is</div>
                         <Validation.Input
                             className="signUp-input"
-                            blocking='input'
                             onError={function(validation) {console.log(validation.rule)}}
                             validations={[
                                 {
@@ -284,7 +275,6 @@ var SignUp = React.createClass({
                     <div className="signUp-input_wrapper last">
                         <div className="signUp-input_text ">My email is</div>
                         <Validation.Input
-                            blocking='input'
                             className='signUp-input email'
                             validations={[
                                 {
@@ -309,7 +299,7 @@ var SignUp = React.createClass({
                 </div>
                 <div className="wrapperNext" >
                     <div  className="linkText" value="Next">Next</div>
-                    <button className="linkArrow"  type="submit" onClick={this.submitAndDisplay}></button>
+                    <input className="linkArrow"   onClick={this.submitAndDisplay}></input>
                 </div>
                 <Link to="/" className="skipButton" onClick={this.displayResult}>skip</Link>
             </Validation.Form >
