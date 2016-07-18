@@ -36,11 +36,33 @@ var InSalon = React.createClass({
 
     componentWillMount() {
         $('#app').addClass('QCM-long');
-        this.state.profile = this.props.location.state.profile;
-        this.state.products = this.props.location.state.products;
 
-        console.log('PROPS',  this.props.location.state);
-        console.log(this.state);
+        console.log("componentWillMount",this.props.location.state);
+
+        var profile = this.props.location.state.profile;
+        var jsonProducts = this.props.location.state.products;
+        var products=[];
+
+        if(profile.hasOwnProperty("get")==false){
+
+            profile.className = "Profile";
+            profile =  Parse.Object.fromJSON(profile);
+
+
+
+            for (var k = 0; k < jsonProducts.length; k++) {
+
+                var product = jsonProducts[k];
+                product.className="Product"
+                products.push(Parse.Object.fromJSON(product))
+
+            }
+
+        }
+
+
+        this.state.profile = profile;
+        this.state.products = products;
     },
 
     dynanamicPagination(){
