@@ -36,8 +36,10 @@ var InSalon = React.createClass({
 
     componentWillMount() {
         $('#app').addClass('QCM-long');
+        this.state.profile = this.props.location.state.profile;
+        this.state.products = this.props.location.state.products;
+
         console.log('PROPS',  this.props.location.state);
-        this.state.profiles = this.props.location.state.profiles;
         console.log(this.state);
     },
 
@@ -55,7 +57,8 @@ var InSalon = React.createClass({
         this.context.router.push({
             pathname: '/at-home',
             state: { 
-                    profiles: this.state.profiles
+                    profile: this.state.profile,
+                    products:this.state.products
                 }
         });
     },
@@ -74,7 +77,7 @@ var InSalon = React.createClass({
                 </div>
                 <div className="info-block text_block">
                      <div className="text_wrapper">
-                        <p className="result-title info-text_title">{this.state.profiles[0].prescriptionServices}</p>
+                        <p className="result-title info-text_title">{this.state.profile.prescriptionServices}</p>
                         <p className="info-text">Kérastase presents custom solutions that respond to any levels of dryness thoroughly, from the inside out, restoring an irresistible sense of touch. Protocole Immunité goes one level deeper to restore a sense of touch to the hair, available only in Kérastase Salons.</p>
                     </div>
                     <div className="text_wrapper">

@@ -37,10 +37,29 @@ var Profile = React.createClass({
     },
 
     componentWillMount() {
-        $('#app').removeClass('QCM-long');
+
+        console.log("componentWillMount");
+
+        this.state.profile = this.props.location.state.profiles[0];
+
+        var _this = this;
+
+        Parse.Object.fetchAllIfNeeded(this.state.profile .get("products"), {
+            success: function(list) {
+                console.log("success",list);
+
+                _this.setState({
+                    products: list
+                })
+
+
+            },
+            error: function(error) {
+                console.log("error",error);
+            },
+        });
+
         console.log('PROPS',  this.props.location.state);
-        this.state.profiles = this.props.location.state.profiles;
-        console.log('RESULT1', this.state);
     },
 
     dynanamicPagination(){
@@ -58,12 +77,13 @@ var Profile = React.createClass({
         this.setState({  
             pageNumber:this.state.pageNumber + 1
         });
-        console.log(this.context.router);
+
 
         this.context.router.push({
             pathname: '/at-home',
             state: { 
-                    profiles: this.state.profiles
+                    profile: this.state.profile,
+                    products: this.state.products
                 }
             });
     },
@@ -77,8 +97,8 @@ var Profile = React.createClass({
                     <div className="result-title">result</div>
                     <div className="result-title result-title_value">k-profile</div>
                     <div className="result-title result-text">you are in</div>
-                    // <div className="result-title result-text_red">{this.state.profiles[0].profileBenefit}</div>
-                    // <div className=" result-text_thin">{this.state.profiles[0].profileDescription}</div>
+                    <div className="result-title result-text_red">{this.state.profile.get("profileBenefit")}</div>
+                    <div className=" result-text_thin">{this.state.profile.get("profileDescription")}</div>
                     <div className="wrapper-counter">
                         {this.dynanamicPagination()}
                     </div>

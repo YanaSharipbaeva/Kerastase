@@ -36,11 +36,15 @@ var AtHome = React.createClass({
 
     componentWillMount() {
         $('#app').addClass('QCM-long');
-  
-        console.log('PROPS',  this.props.location.state);
-        this.state.profiles = this.props.location.state.profiles;
-        // this.state.products = this.props.location.state.profiles[0].products;
-        console.log("PRODUCTS" , this.state.products);
+
+        console.log("componentWillMount");
+        this.state.profile = this.props.location.state.profile;
+        this.state.products = this.props.location.state.products;
+
+
+
+
+
     },
 
     dynanamicPagination(){
@@ -57,28 +61,46 @@ var AtHome = React.createClass({
         this.context.router.push({
             pathname: '/store-locator',
             state: { 
-                    profiles: this.state.profiles
+                    profile: this.state.profile,
+                    products:this.state.products
                 }
         });
     },
 
     getProducts(){
-        // var imageUrl =  [];
-        // for (var y = 0; y <  this.state.products.length; y++) {
 
-            // var product=this.state.products[0];
-            // console.log("Product", product);
-        //     imageUrl.push(<img  data-image={y} onClick={this.openModal} key={y} src={product.image.url}></img>);
-        // }
+        console.log("get products",this.state.products);
 
-        // return imageUrl;
+        var imageUrl =  [];
+        for (var y = 0; y <  this.state.products.length; y++) {
+
+            var product=this.state.products[y];
+            console.log("Product", product);
+
+
+            var image = product.get("image");
+            if(image) {
+
+                imageUrl.push(<img data-image={y} onClick={this.openModal} key={y}
+                                   src={product.get("image").url}></img>);
+            }
+        }
+
+        return imageUrl;
     },
 
     showProductInfo(e){
+
+            if(!this.state.product){
+
+                return null;
+
+            }
+
            var modal = [<div><div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
                         <div className="product-wrapper">
-                            <div className="product_title">{this.state.title}</div>
-                            <div className="product_text">{this.state.description}</div>
+                            <div className="product_title">{this.state.product.get("title")}</div>
+                            <div className="product_text">{this.state.product.get("description")}</div>
                             <a className="product_link">Find your product in salon ></a>
                             <a className="product_link">Shop now online ></a>
                         </div>
@@ -95,8 +117,9 @@ var AtHome = React.createClass({
         this.setState({
             showModal: true,
             image:e.target.src,
-            title:this.state.products[imageIndex].title,
-            description:this.state.products[imageIndex].description
+            product:this.state.products[imageIndex],
+            title:this.state.products[imageIndex].get("title"),
+            description:this.state.products[imageIndex].get("description")
         });
           this.showProductInfo(e);
 
@@ -122,12 +145,15 @@ var AtHome = React.createClass({
    
                     <div className="info-block text_block">
                         <div className="text_wrapper  ">
-
+                            <p className="result-title info-text_title">{this.state.products[0].title}</p>
+                            <p className="info-text">{this.state.products[0].description}</p>
                         </div>
                         <div className="text_wrapper ">
                             <ul className="info-text">
                                 <li>recommended routine</li>
-
+                                <li>1. Bathe : {this.state.products[0].title}</li>
+                                <li>2. Treat : {this.state.products[1].title} </li>
+                                <li>3. Texturize : {this.state.products[2].title}</li>
                        
                             </ul>
                         </div>
