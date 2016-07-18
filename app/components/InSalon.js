@@ -77,8 +77,8 @@ var InSalon = React.createClass({
                 </div>
                 <div className="info-block text_block">
                      <div className="text_wrapper">
-                        <p className="result-title info-text_title">{this.state.profile.prescriptionServices}</p>
-                        <p className="info-text">Kérastase presents custom solutions that respond to any levels of dryness thoroughly, from the inside out, restoring an irresistible sense of touch. Protocole Immunité goes one level deeper to restore a sense of touch to the hair, available only in Kérastase Salons.</p>
+                        <p className="result-title info-text_title">{this.state.profile.get("prescriptionServices")}</p>
+                        <p className="info-text">{this.state.profile.get("descriptionService")}</p>
                     </div>
                     <div className="text_wrapper">
                         <ul className="info-text">

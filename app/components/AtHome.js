@@ -79,18 +79,22 @@ var AtHome = React.createClass({
 
 
             var image = product.get("image");
+            console.log("image ",image);
             if(image) {
 
                 imageUrl.push(<img data-image={y} onClick={this.openModal} key={y}
-                                   src={product.get("image").url}></img>);
+                                   src={image.url()}></img>);
             }
         }
+
 
         return imageUrl;
     },
 
     showProductInfo(e){
 
+
+            console.log("showProductInfo",this.state.product);
             if(!this.state.product){
 
                 return null;
@@ -105,7 +109,7 @@ var AtHome = React.createClass({
                             <a className="product_link">Shop now online ></a>
                         </div>
                         <div className="image-wrapper">
-                        <img  src={this.state.image} className="product_image"></img></div></div>]
+                        <img  src={this.state.product.get("image").url()} className="product_image"></img></div></div>]
             return modal;
     },
 
@@ -116,10 +120,7 @@ var AtHome = React.createClass({
         console.log(this.state.products);      
         this.setState({
             showModal: true,
-            image:e.target.src,
             product:this.state.products[imageIndex],
-            title:this.state.products[imageIndex].get("title"),
-            description:this.state.products[imageIndex].get("description")
         });
           this.showProductInfo(e);
 
@@ -145,18 +146,10 @@ var AtHome = React.createClass({
    
                     <div className="info-block text_block">
                         <div className="text_wrapper  ">
-                            <p className="result-title info-text_title">{this.state.products[0].title}</p>
-                            <p className="info-text">{this.state.products[0].description}</p>
+                            <p className="result-title info-text_title">{this.state.profile.get("prescriptionAtHome")}</p>
+                            <p className="info-text">{this.state.profile.get("descriptionAtHome")}</p>
                         </div>
-                        <div className="text_wrapper ">
-                            <ul className="info-text">
-                                <li>recommended routine</li>
-                                <li>1. Bathe : {this.state.products[0].title}</li>
-                                <li>2. Treat : {this.state.products[1].title} </li>
-                                <li>3. Texturize : {this.state.products[2].title}</li>
-                       
-                            </ul>
-                        </div>
+
                     </div>
                     <div className="products">
                         {this.getProducts()}   

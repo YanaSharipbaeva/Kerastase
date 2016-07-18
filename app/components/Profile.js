@@ -80,7 +80,7 @@ var Profile = React.createClass({
 
 
         this.context.router.push({
-            pathname: '/at-home',
+            pathname: '/in-salon',
             state: { 
                     profile: this.state.profile,
                     products: this.state.products
