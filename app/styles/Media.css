@@ -14,9 +14,22 @@
     }
 }
 
+@media (max-width: 840px) {
+    .questionTitle, .question-text_wrapper {
+        width: auto;
+    }
+
+
+
+}
+
 @media (max-width: 800px) {
     .questionTitle, .question-text_wrapper {
         width: auto;
+    }
+
+    .question-text_wrapper .question-text {
+        font-size: 50px!important;
     }
 
 }

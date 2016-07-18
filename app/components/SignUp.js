@@ -214,12 +214,12 @@ var SignUp = React.createClass({
         sortedKeys.forEach(function (key, index) {
             var originalValue=stats[key];
 
-            if(lockValue==0)
+            if(lockValue == 0)
             {
-                lockValue=originalValue;
+                lockValue = originalValue;
             }
 
-            if(originalValue==lockValue && index<=2)
+            if(originalValue == lockValue && index <= 2)
             {
                 profiles.push(nativeProfiles[key]);
 
