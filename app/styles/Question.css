@@ -46,6 +46,9 @@
 
 .question-text_wrapper {
     text-align: center;
+    display: table-cell;
+    margin: 0 auto;
+    vertical-align: middle;
 }
 
 .selectpicker {

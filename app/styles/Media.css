@@ -7,9 +7,80 @@
         width: calc(100% - 225px)!important;
     }
 }
+
+@media (max-width: 980px) {
+    .result-title_value {
+        font-size: 82px!important;
+    }
+}
+
 @media (max-width: 800px) {
     .questionTitle, .question-text_wrapper {
         width: auto;
+    }
+
+}
+
+@media (max-width: 700px) {
+    .signUp-input_wrapper{
+        padding-right: 0px!important;
+    }
+
+    .signUp-input_text {
+        text-align: center!important;
+        width: 100%!important;
+    }
+
+    .email{
+
+        float:none!important;
+    }
+
+    .result4-image_map{
+        width: auto!important;
+    }
+
+}
+
+@media (max-width: 640px) {
+    .buttonStyles {
+        font-family: 'InterstateLight';
+        font-size: 24px;
+        width: auto;
+        padding: 0 20px;
+    }
+
+    .result-title_value {
+        font-size: 56px!important;
+    }
+
+    .top-wrapper {
+        height: 28%;
+    }
+}
+
+@media (max-width: 490px) {
+    .email {
+        width: 100%!important;
+    }
+
+    .result-title_value {
+        font-size: 30px!important;
+    }
+
+    .top-wrapper {
+        height: 23%!important;
+    }
+}
+
+@media (max-width: 400px) {
+    .buttonStyles {
+        font-family: 'InterstateLight';
+        font-size: 16px;
+    }
+    .result-text_thin {
+        font-family: 'InterstateThin';
+        font-size: 29px!important;
     }
 
 }

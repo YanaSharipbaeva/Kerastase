@@ -207,10 +207,10 @@ body {
 
 .question-wrapper {
     height: calc(100% - 375px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: table;
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .wrapperPhrase {
@@ -274,5 +274,8 @@ body {
   height:12px;
   content: "";
   display: inline-block;
+}
+.email_title{
+  width:auto!important;
 }
 

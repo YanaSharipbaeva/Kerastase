@@ -322,8 +322,8 @@ var SignUp = React.createClass({
                         </ReactSelect>
                     </div>
                     <div className="signUp-input_wrapper last">
-                        <div className="signUp-input_text ">My email is</div>
-                        <Validation.Input
+                        <div className="signUp-input_text email_title">My email is</div>
+                        <Validation.Input 
                             className='signUp-input email'
                             validations={[
                                 {
