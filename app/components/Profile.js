@@ -44,16 +44,16 @@ var Profile = React.createClass({
         this.state.selectedProfileIndex=0;
         var profile = this.props.location.state.profiles[this.state.selectedProfileIndex];
 
-        if(profile.hasOwnProperty("get")==false){
-
+        if(profile instanceof Parse.Object==false){
+            console.log("has not get method");
             profile.className = "Profile";
-            profile =  Parse.Object.fromJSON(profile);
+             profile =  Parse.Object.fromJSON(profile);
 
         }
 
 
-
         this.state.profile = profile;
+
 
 
         console.log("componentWillMount",this.props.location.state);
@@ -62,10 +62,10 @@ var Profile = React.createClass({
 
         console.log("this profile",this.state.profile);
 
+        console.log("profile",profile instanceof Parse.Object);
 
 
-
-        Parse.Object.fetchAllIfNeeded(this.state.profile.get("products"), {
+        Parse.Object.fetchAllIfNeeded(profile.get("products"), {
             success: function(list) {
                 console.log("success",list);
 

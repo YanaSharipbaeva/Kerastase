@@ -44,7 +44,7 @@ var InSalon = React.createClass({
         var jsonProducts = this.props.location.state.products;
         var products=[];
 
-        if(profile.hasOwnProperty("get")==false){
+        if(profile instanceof Parse.Object==false){
 
             profile.className = "Profile";
             profile =  Parse.Object.fromJSON(profile);
@@ -54,7 +54,7 @@ var InSalon = React.createClass({
             for (var k = 0; k < jsonProducts.length; k++) {
 
                 var product = jsonProducts[k];
-                product.className="Product"
+                product.className="Product";
                 products.push(Parse.Object.fromJSON(product))
 
             }

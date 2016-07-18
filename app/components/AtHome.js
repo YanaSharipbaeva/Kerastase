@@ -43,7 +43,18 @@ var AtHome = React.createClass({
         var jsonProducts = this.props.location.state.products;
         var products=[];
 
-        if(profile.hasOwnProperty("get")==false){
+
+
+        this.state.profile = profile;
+        this.state.products = jsonProducts;
+
+        console.log("this product",this.state.products);
+
+
+
+
+
+        if(profile instanceof Parse.Object==false){
 
             profile.className = "Profile";
             profile =  Parse.Object.fromJSON(profile);
@@ -58,9 +69,6 @@ var AtHome = React.createClass({
 
             }
         }
-
-        this.state.profile = profile;
-        this.state.products = products;
 
     },
 
