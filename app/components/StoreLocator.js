@@ -35,7 +35,9 @@ var StoreLocator = React.createClass({
         $('#app').addClass('QCM-long');
   
         console.log('PROPS',  this.props.location.state);
-        this.state.profiles = this.props.location.state.profiles;
+        this.state.profile = this.props.location.state.profile;
+        this.state.products = this.props.location.state.products;
+
         console.log("PRODUCTS" , this.state.products);
     },
 
@@ -53,7 +55,8 @@ var StoreLocator = React.createClass({
         this.context.router.push({
             pathname: '/share-diagnosys',
             state: { 
-                    profiles: this.state.profiles
+                    profile: this.state.profile,
+                    products:this.state.products
                 }
         });
     },
