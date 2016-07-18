@@ -1,2 +1,2 @@
 # KerastaseWeb
-To deploy the project run npm install command
+To deploy the project npm install
