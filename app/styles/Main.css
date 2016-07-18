@@ -305,4 +305,8 @@ body {
   width:280px!important;
 }
 
+.bootstrap-select.form-control:not([class*=col-]){
+  width:280px;
+}
+
 

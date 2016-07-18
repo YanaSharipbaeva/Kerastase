@@ -38,7 +38,7 @@ var Profile = React.createClass({
     },
 
     componentWillMount() {
-
+        $('#app').addClass('QCM-long')
         console.log("componentWillMount",this.props);
 
         this.state.selectedProfileIndex=0;

@@ -201,10 +201,11 @@
 
 }
 
-.question4_wrapper .question-wrapper,
+.question4_wrapper .customersText,
 .question10_wrapper .question-wrapper {
     margin-top: 20px;
-    
+
+
 }
 
 .question4_wrapper {
@@ -217,6 +218,7 @@
     width: auto;
     position: absolute;
     top: 40px;
+    font-size: 30px;
 }
 
 .customersText-icon {
