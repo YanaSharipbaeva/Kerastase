@@ -48,6 +48,10 @@ var NewQuestion = React.createClass({
         this.getAnswers();
     },
 
+    componentDidMount() {
+        
+    },
+
     getAnswers() {
         var _this = this;
         var hardCodedDataQuery,
@@ -367,7 +371,7 @@ var NewQuestion = React.createClass({
                         </div>
                     </div>
                     <div className="wrapperNext">
-                        <div className="linkText" onClick={this.nextPage}>Next</div>
+                        <div className="linkText">Next</div>
                         <div className="linkArrow"  onClick={this.nextPage}>
                         </div>
                     </div>
