@@ -58,7 +58,7 @@ var Profile = React.createClass({
         this.setState({  
             pageNumber:this.state.pageNumber + 1
         });
-
+        console.log(this.context.router);
 
         this.context.router.push({
             pathname: '/at-home',
@@ -77,8 +77,8 @@ var Profile = React.createClass({
                     <div className="result-title">result</div>
                     <div className="result-title result-title_value">k-profile</div>
                     <div className="result-title result-text">you are in</div>
-                    <div className="result-title result-text_red">{this.state.profiles[0].profileBenefit}</div>
-                    <div className=" result-text_thin">{this.state.profiles[0].profileDescription}</div>
+                    // <div className="result-title result-text_red">{this.state.profiles[0].profileBenefit}</div>
+                    // <div className=" result-text_thin">{this.state.profiles[0].profileDescription}</div>
                     <div className="wrapper-counter">
                         {this.dynanamicPagination()}
                     </div>

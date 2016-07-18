@@ -39,7 +39,7 @@ var AtHome = React.createClass({
   
         console.log('PROPS',  this.props.location.state);
         this.state.profiles = this.props.location.state.profiles;
-        this.state.products = this.props.location.state.profiles[0].products;
+        // this.state.products = this.props.location.state.profiles[0].products;
         console.log("PRODUCTS" , this.state.products);
     },
 
@@ -63,15 +63,15 @@ var AtHome = React.createClass({
     },
 
     getProducts(){
-        var imageUrl =  [];
-        for (var y = 0; y <  this.state.products.length; y++) {
+        // var imageUrl =  [];
+        // for (var y = 0; y <  this.state.products.length; y++) {
 
-            var product=this.state.products[0];
+            // var product=this.state.products[0];
             // console.log("Product", product);
-            imageUrl.push(<img  data-image={y} onClick={this.openModal} key={y} src={product.image.url}></img>);
-        }
+        //     imageUrl.push(<img  data-image={y} onClick={this.openModal} key={y} src={product.image.url}></img>);
+        // }
 
-        return imageUrl;
+        // return imageUrl;
     },
 
     showProductInfo(e){
@@ -122,15 +122,12 @@ var AtHome = React.createClass({
    
                     <div className="info-block text_block">
                         <div className="text_wrapper  ">
-                            <p className="result-title info-text_title">{this.state.products[0].title}</p>
-                            <p className="info-text">{this.state.products[0].description}</p>
+
                         </div>
                         <div className="text_wrapper ">
                             <ul className="info-text">
                                 <li>recommended routine</li>
-                                <li>1. Bathe : {this.state.products[0].title}</li>
-                                <li>2. Treat : {this.state.products[1].title} </li>
-                                <li>3. Texturize : {this.state.products[2].title}</li>
+
                        
                             </ul>
                         </div>
