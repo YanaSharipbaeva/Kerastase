@@ -39,13 +39,33 @@ var Profile = React.createClass({
 
     componentWillMount() {
 
-        console.log("componentWillMount");
+        console.log("componentWillMount",this.props);
 
-        this.state.profile = this.props.location.state.profiles[0];
+        this.state.selectedProfileIndex=0;
+        var profile = this.props.location.state.profiles[this.state.selectedProfileIndex];
+
+        if(profile.hasOwnProperty("get")==false){
+
+            profile.className = "Profile";
+            profile =  Parse.Object.fromJSON(profile);
+
+        }
+
+
+
+        this.state.profile = profile;
+
+
+        console.log("componentWillMount",this.props.location.state);
 
         var _this = this;
 
-        Parse.Object.fetchAllIfNeeded(this.state.profile .get("products"), {
+        console.log("this profile",this.state.profile);
+
+
+
+
+        Parse.Object.fetchAllIfNeeded(this.state.profile.get("products"), {
             success: function(list) {
                 console.log("success",list);
 
@@ -84,7 +104,8 @@ var Profile = React.createClass({
             pathname: '/in-salon',
             state: { 
                     profile: this.state.profile,
-                    products: this.state.products
+                    products: this.state.products,
+                    selectedProfileIndex:this.state.selectedProfileIndex
                 }
             });
     },

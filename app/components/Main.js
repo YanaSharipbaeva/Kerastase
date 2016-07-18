@@ -5,7 +5,7 @@ Parse.initialize("KerastaseBO");
 Parse.serverURL = 'http://kerastase-server.development-desk.fr/parse';
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, Redirect, IndexRoute, browserHistory,hashHistory } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
 import Header from './Header';
