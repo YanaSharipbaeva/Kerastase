@@ -172,6 +172,10 @@ var NewQuestion = React.createClass({
 
     },
 
+    addColorToSelectedOption () {
+        consolo.log('OPTION');
+    },
+
     getSentences() {
        $('#app').removeClass('QCM-long');
         var _this = this;
@@ -183,9 +187,10 @@ var NewQuestion = React.createClass({
 
             elem = <span key={index} className="question-text">
                     <span > {item.text}</span>         
-                    <ReactSelect className="selectAnswer">
+                    <ReactSelect className="selectAnswer" >
                         {item.get('answers').map(function(option, indexAnswer) {
-                        return <option className="selectOption" key={indexAnswer} value={indexAnswer} data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option>   
+                            return <option  className="selectOption" key={indexAnswer} value={indexAnswer} data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option> 
+
                         })}                                         
                     </ReactSelect> 
               
@@ -254,7 +259,7 @@ var NewQuestion = React.createClass({
                     answerTitles:  this.state.answerTitles
                 }
             });
-        
+
     },
 
     getCheckedAnswers(){  

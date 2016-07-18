@@ -6,9 +6,13 @@
     .result3 .text_block {
         width: calc(100% - 225px)!important;
     }
+     .question-text {
+      /*  margin-bottom: 30px;*/
+    }
+
 }
 
-@media (max-width: 980px) {
+/*@media (max-width: 980px) {
     .result-title_value {
         font-size: 82px!important;
     }
@@ -20,16 +24,11 @@
     }
 
 
-
 }
-
+*/
 @media (max-width: 800px) {
     .questionTitle, .question-text_wrapper {
         width: auto;
-    }
-
-    .question-text_wrapper .question-text {
-        font-size: 50px!important;
     }
 
 }
@@ -51,6 +50,17 @@
 
     .result4-image_map{
         width: auto!important;
+    }
+    .question-text_wrapper .form-group {
+        width: 100%!important;
+    }   
+
+    .signUp-input {
+        width: 100%!important;
+    }
+
+    .signUp-input_wrapper .bootstrap-select {
+        width: 100%!important; 
     }
 
 }

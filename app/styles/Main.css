@@ -276,6 +276,14 @@ body {
   display: inline-block;
 }
 .email_title{
-  width:auto!important;
+    width:auto!important;
 }
+
+.question-text .bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    height: 45px;
+    color: grey;
+    border-bottom: 1px solid grey;
+}
+
+
 

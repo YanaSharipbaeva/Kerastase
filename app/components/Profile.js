@@ -37,7 +37,7 @@ var Profile = React.createClass({
     },
 
     componentWillMount() {
-
+        $('#app').removeClass('QCM-long');
         console.log("componentWillMount");
 
         this.state.profile = this.props.location.state.profiles[0];
