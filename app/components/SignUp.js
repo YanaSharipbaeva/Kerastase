@@ -180,6 +180,10 @@ var SignUp = React.createClass({
             }
 
 
+
+
+
+
             // profiles.push(nativeProfiles[1]);
             // profiles.push(nativeProfiles[2]);
             // console.log('profiles are ',profiles);
@@ -191,6 +195,40 @@ var SignUp = React.createClass({
             // console.log('nativeProfiles are ', nativeProfiles);
 
             });
+
+        console.log("sorted profiles",sortedKeys);
+        var sortedKeys = this.getSortedKeys(stats);
+        console.log('stats are ',stats);
+
+
+        var finalArray=[];
+
+        var lockValue = 0;
+
+        let index = sortedKeys.indexOf("undefined");
+        if(index !== -1) {
+            sortedKeys.splice(index, 1);
+            console.log("WARNING : UNDEFINED VALUES FOR PONDERATION HAVE BEEN FOUND");
+        }
+        console.log("sortedKeys",sortedKeys);
+        sortedKeys.forEach(function (key, index) {
+            var originalValue=stats[key];
+
+            if(lockValue==0)
+            {
+                lockValue=originalValue;
+            }
+
+            if(originalValue==lockValue && index<=2)
+            {
+                profiles.push(nativeProfiles[key]);
+
+            }
+
+        });
+
+
+
             console.log('STATS', data.answers);
             profiles.push(data.answers[0].get('profiles')[0]);
 
@@ -199,6 +237,12 @@ var SignUp = React.createClass({
             this.setState({
                 profiles: profiles
             });
+    },
+
+
+    getSortedKeys(obj) {
+        var keys = []; for(var key in obj) keys.push(key);
+        return keys.sort(function(a,b){return obj[b]-obj[a]});
     },
 
     displayResult(){
@@ -211,6 +255,7 @@ var SignUp = React.createClass({
             });
 
     },
+
 
     skipAndDisplay(){
         this.displayResult();
