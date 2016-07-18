@@ -15,7 +15,7 @@ import HorizontalLine from './HorizontalLine';
 require('../styles/Main.css');
 require('../styles/Result.css');
 
-var Result4 = React.createClass({
+var StoreLocator = React.createClass({
     mixins: [
         LinkedStateMixin
     ],
@@ -51,7 +51,7 @@ var Result4 = React.createClass({
     nextPage(){
         console.log('nextPage');
         this.context.router.push({
-            pathname: '/result/5',
+            pathname: '/share-diagnosys',
             state: { 
                     profiles: this.state.profiles
                 }
@@ -92,6 +92,6 @@ var Result4 = React.createClass({
     }
 });
 
-module.exports = Result4;
+module.exports = StoreLocator;
 
 

@@ -67,7 +67,7 @@ var NewQuestion = React.createClass({
         dynamicDataQuery.notEqualTo('type', 'pro');
         dynamicDataQuery.ascending('positionConsumer');
         dynamicDataQuery.include('answers.profiles');
-        dynamicDataQuery.include('answers.profiles.products');
+        // dynamicDataQuery.include('answers.profiles.products');
         
         hardCodedDataQuery.find().then(
             (hardCodedQuestions) => {
@@ -235,7 +235,7 @@ var NewQuestion = React.createClass({
         var totalPage = this.state.dataSource.length;
 
         //if (newPageNumber === totalPage) {
-        if (newPageNumber === 10) {
+        if (newPageNumber === 3) {
             this.goToLogin();
         } else {
             this.setState({  
@@ -254,6 +254,7 @@ var NewQuestion = React.createClass({
                     answerTitles:  this.state.answerTitles
                 }
             });
+        
     },
 
     getCheckedAnswers(){  
@@ -271,6 +272,18 @@ var NewQuestion = React.createClass({
     },
 
     getSelectedAnswers(){
+        // var dropDownWidth = $('.dropdown-menu');
+        // var selectBox = $('.form-control');
+        // selectBox.forEach(function(element){
+        //     for (var l=0; l < selectBox.length; l++ ) {
+        //         element.width(dropDownWidth[l].width());
+        //     }
+        // });
+        // console.log('dropDownWidth', dropDownWidth);
+        // console.log('selectBox', selectBox);
+
+
+
         var _this = this;
         var array =[];
         $('li.selected').each(function(i, el) {

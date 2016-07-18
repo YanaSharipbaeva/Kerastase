@@ -18,7 +18,7 @@ import { Modal } from 'react-bootstrap';
 require('../styles/Main.css');
 require('../styles/Result.css');
 
-var Result2 = React.createClass({
+var InSalon = React.createClass({
     mixins: [
         LinkedStateMixin
     ],
@@ -53,7 +53,7 @@ var Result2 = React.createClass({
     nextPage(){
         console.log('nextPage');
         this.context.router.push({
-            pathname: '/result/3',
+            pathname: '/at-home',
             state: { 
                     profiles: this.state.profiles
                 }
@@ -110,6 +110,6 @@ var Result2 = React.createClass({
     }
 });
 
-module.exports = Result2;
+module.exports = InSalon;
 
 

@@ -26,7 +26,7 @@ var Start = React.createClass({
                 <Header />
                 <div className="start-wrapper">
                     <h1 className="start-title">k-profile</h1>
-                    <Link  className="buttonStyles" to="/question/1">start your hair diagnosis</Link>
+                    <Link  className="buttonStyles" to="/question">start your hair diagnosis</Link>
                 </div>
             </div>
         );

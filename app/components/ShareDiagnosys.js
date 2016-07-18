@@ -15,7 +15,7 @@ import HorizontalLine from './HorizontalLine';
 require('../styles/Main.css');
 require('../styles/Result.css');
 
-var Result3 = React.createClass({
+var ShareDiagnosys = React.createClass({
     mixins: [
         LinkedStateMixin
     ],
@@ -84,6 +84,6 @@ var Result3 = React.createClass({
     }
 });
 
-module.exports = Result3;
+module.exports = ShareDiagnosys;
 
 

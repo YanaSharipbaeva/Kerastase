@@ -16,7 +16,7 @@ import { Modal } from 'react-bootstrap';
 require('../styles/Main.css');
 require('../styles/Result.css');
 
-var Result3 = React.createClass({
+var AtHome = React.createClass({
     mixins: [
         LinkedStateMixin
     ],
@@ -55,7 +55,7 @@ var Result3 = React.createClass({
     nextPage(){
         console.log('nextPage');
         this.context.router.push({
-            pathname: '/result/4',
+            pathname: '/store-locator',
             state: { 
                     profiles: this.state.profiles
                 }
@@ -109,9 +109,6 @@ var Result3 = React.createClass({
     },
 
     render: function() {  
-
-
- 
         return (
             <div className="wrapper-in-salon_ritual result3">
                 <div className="info-block_title">AT-Home PROGRAM</div>
@@ -171,6 +168,6 @@ var Result3 = React.createClass({
     }
 });
 
-module.exports = Result3;
+module.exports = AtHome;
 
 

@@ -20,7 +20,7 @@ import SignUp from './SignUp';
 require('../styles/Main.css');
 require('../styles/Result.css');
 
-var Result1 = React.createClass({
+var Profile = React.createClass({
     mixins: [
         LinkedStateMixin
     ],
@@ -59,8 +59,9 @@ var Result1 = React.createClass({
             pageNumber:this.state.pageNumber + 1
         });
 
+
         this.context.router.push({
-            pathname: '/result/2',
+            pathname: '/at-home',
             state: { 
                     profiles: this.state.profiles
                 }
@@ -91,6 +92,6 @@ var Result1 = React.createClass({
     }
 });
 
-module.exports = Result1;
+module.exports = Profile;
 
 

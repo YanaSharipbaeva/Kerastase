@@ -156,11 +156,11 @@ var SignUp = React.createClass({
         data.answers.forEach(function (answer, index) {
             var question = data.questions[index];
 
-            if (question.category === "DIAG") {
-                var ponderation = question.ponderation;
+            if (question.get('category') === "DIAG") {
+                var ponderation = question.get('ponderation');
 
-                answer.profiles.forEach(function (profile) {
-                    var key = profile.code;
+                answer.get('profiles').forEach(function (profile) {
+                    var key = profile.get('code');
                     if (stats.hasOwnProperty(key) === false) {
                         console.log('Has no key', key);
                         stats[key] = 0;
@@ -191,7 +191,9 @@ var SignUp = React.createClass({
             // console.log('nativeProfiles are ', nativeProfiles);
 
             });
-            profiles.push(nativeProfiles['N1']);
+            console.log('STATS', data.answers);
+            profiles.push(data.answers[0].get('profiles')[0]);
+
 
             console.log('PROFILES', profiles);
             this.setState({
@@ -202,12 +204,16 @@ var SignUp = React.createClass({
     displayResult(){
         console.log('RESULT',  this.state);
         this.context.router.push({
-            pathname: '/result/1',
+            pathname: '/profile',
             state: { 
                     profiles: this.state.profiles
                 }
             });
 
+    },
+
+    skipAndDisplay(){
+        this.displayResult();
     },
 
     submitAndDisplay: function(event) {
@@ -221,8 +227,6 @@ var SignUp = React.createClass({
             this.openModal();
         }
     },
-
-
 
     changeHeight(){
         $('#app').height('100%');
@@ -301,7 +305,7 @@ var SignUp = React.createClass({
                     <div  className="linkText" value="Next">Next</div>
                     <input className="linkArrow"   onClick={this.submitAndDisplay}></input>
                 </div>
-                <Link to="/" className="skipButton" onClick={this.displayResult}>skip</Link>
+                <div  className="skipButton" onClick={this.skipAndDisplay}>skip</div>
             </Validation.Form >
             <Modal show={this.state.showModal} sign-up-modal onHide={this.closeModal}>
 

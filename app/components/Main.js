@@ -16,11 +16,11 @@ import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import SignUp from './SignUp';
-import Result1 from './Result1';
-import Result2 from './Result2';
-import Result3 from './Result3';
-import Result4 from './Result4';
-import Result5 from './Result5';
+import Profile from './Profile';
+import InSalon from './InSalon';
+import AtHome from './AtHome';
+import StoreLocator from './StoreLocator';
+import ShareDiagnosys from './ShareDiagnosys';
 
 require('../styles/Main.css');
 
@@ -38,13 +38,13 @@ render((
     <Router history={browserHistory}>
         <Route path="/" component={Start}></Route>
         <Route path="/start" component={Start}></Route>
-        <Route path="/question/1" component={NewQuestion}></Route>
+        <Route path="/question" component={NewQuestion}></Route>
         <Route path="/signUp" component={SignUp}></Route>
-        <Route path="/result/1" component={Result1}></Route>
-        <Route path="/result/2" component={Result2}></Route>
-        <Route path="/result/3" component={Result3}></Route>
-        <Route path="/result/4" component={Result4}></Route>
-        <Route path="/result/5" component={Result5}></Route>
+        <Route path="/profile" component={Profile}></Route>
+        <Route path="/in-salon" component={InSalon}></Route>
+        <Route path="/at-home" component={AtHome}></Route>
+        <Route path="/store-locator" component={StoreLocator}></Route>
+        <Route path="/share-diagnosys" component={ShareDiagnosys}></Route>
         <Router history={browserHistory} />
     </Router>
 ), document.getElementById("app"));
