@@ -28,7 +28,9 @@ var Result3 = React.createClass({
     getInitialState() {
         return {
             pageNumber: 2,
-            result: []
+            result: [],
+            title:'',
+            description:''
         };
     },
 
@@ -62,17 +64,42 @@ var Result3 = React.createClass({
 
     getProducts(){
         var imageUrl =  [];
-        for (var i = 0; i <  this.state.products.length; i++) {
-            imageUrl.push(<img  onClick={this.openModal} key={i} src={this.state.products[0].image.url}></img>);
+        for (var y = 0; y <  this.state.products.length; y++) {
+
+            var product=this.state.products[0];
+            // console.log("Product", product);
+            imageUrl.push(<img  data-image={y} onClick={this.openModal} key={y} src={product.image.url}></img>);
         }
 
         return imageUrl;
     },
 
-    openModal () {
+    showProductInfo(e){
+           var modal = [<div><div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
+                        <div className="product-wrapper">
+                            <div className="product_title">{this.state.title}</div>
+                            <div className="product_text">{this.state.description}</div>
+                            <a className="product_link">Find your product in salon ></a>
+                            <a className="product_link">Shop now online ></a>
+                        </div>
+                        <div className="image-wrapper">
+                        <img  src={this.state.image} className="product_image"></img></div></div>]
+            return modal;
+    },
+
+
+
+    openModal (e) {
+       var imageIndex = e.target.getAttribute('data-image')    
+        console.log(this.state.products);      
         this.setState({
-            showModal: true
+            showModal: true,
+            image:e.target.src,
+            title:this.state.products[imageIndex].title,
+            description:this.state.products[imageIndex].description
         });
+          this.showProductInfo(e);
+
     },
 
     closeModal () {
@@ -88,30 +115,30 @@ var Result3 = React.createClass({
         return (
             <div className="wrapper-in-salon_ritual result3">
                 <div className="info-block_title">AT-Home PROGRAM</div>
-                <div className="info-block image-block">
-                    <div className="info-block_wrapper">
-                        <div className="info-image1"></div>
-                        <div className="info-image2"></div>
-                        <a href="" className="salon_link"> > Shop Now</a>
+                    <div className="info-block image-block  ">
+                        <div className="info-block_wrapper">
+                            <div className="info-image1"></div>
+                            <div className="info-image2"></div>
+                            <a href="" className="salon_link"> > Shop Now</a>
+                        </div>
                     </div>
-                </div>
-                <div className="info-block text_block">
-                     <div className="text_wrapper">
-                        <p className="result-title info-text_title">{this.state.products[0].title}</p>
-                        <p className="info-text">{this.state.products[0].description}</p>
+   
+                    <div className="info-block text_block">
+                        <div className="text_wrapper  ">
+                            <p className="result-title info-text_title">{this.state.products[0].title}</p>
+                            <p className="info-text">{this.state.products[0].description}</p>
+                        </div>
+                        <div className="text_wrapper ">
+                            <ul className="info-text">
+                                <li>recommended routine</li>
+                                <li>1. Bathe : {this.state.products[0].title}</li>
+                                <li>2. Treat : {this.state.products[1].title} </li>
+                                <li>3. Texturize : {this.state.products[2].title}</li>
+                       
+                            </ul>
+                        </div>
                     </div>
-                    <div className="text_wrapper">
-                        <ul className="info-text">
-                            <li>recommended routine</li>
-                            <li>1. Bathe : {this.state.products[0].title}</li>
-                            <li>2. Treat : {this.state.products[1].title} </li>
-                            <li>3. Texturize : {this.state.products[2].title}</li>
-                   
-                        </ul>
-                    </div>
-                    
-                </div>
-                <div className="products">
+                    <div className="products">
                         {this.getProducts()}   
                     </div>
                 <div>
@@ -136,12 +163,8 @@ var Result3 = React.createClass({
                 <Modal show={this.state.showModal} onHide={this.closeModal}>
 
                     <Modal.Body>
-                        <p className="customersText">Please, choose one answer</p>
+                        {this.showProductInfo()}
                     </Modal.Body>
-
-                    <Modal.Footer>
-                        <button className="btn customersText" onClick={this.closeModal}>Close</button>
-                    </Modal.Footer>
                     </Modal>
             </div>
         );

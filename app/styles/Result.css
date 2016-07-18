@@ -339,3 +339,62 @@ ul.info-text{
  .products img{
     width: 33%;
 }
+
+
+.product-wrapper, .product_image{
+    display: inline-block;
+}
+.product-wrapper{
+    float: left;
+}
+
+.image-wrapper {
+    width: 215px;
+    display: inline-block;
+}
+
+.image-wrapper img {
+    width: 100%;
+}
+
+.modal-content {
+    width: auto;
+    max-width: 730px;
+    height: auto;
+}
+
+.product_text {
+    max-width: 318px;
+}
+
+.product_link {
+    display: block;
+    color:#434343;
+    font-family: 'TradeGothicLTLight';
+    font-size: 14px;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.product_title {
+    color:#e24b37;
+    font-family: 'TradeGothicLTLight';
+    font-size: 19px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.product_text {
+    color:#191919;
+    font-family: 'TradeGothicLTLight';
+    font-size: 16px;
+    margin-bottom: 35px;
+    line-height: 24px;
+}
+
+.modal-body {
+    padding-left: 50px;
+    padding-top: 50px;
+}
+
+
