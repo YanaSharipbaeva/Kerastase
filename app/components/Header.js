@@ -24,7 +24,7 @@ var Header = React.createClass({
                         <Link to="/start" className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 fa fa-bars header-icon" aria-hidden="true"></Link> 
                     </div>
                     <div className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 logo-wrapper"> 
-                        <a className="header-logo" href="https://www.kerastase-usa.com"></a>
+                        <a className="header-logo" target="_blank" href="http://www.kerastase.co.uk/"></a>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 "> 
                         <div className="user_icon pull-right"></div>

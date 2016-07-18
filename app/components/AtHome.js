@@ -12,6 +12,7 @@ import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import { Modal } from 'react-bootstrap';
+import Header from './Header';
 
 require('../styles/Main.css');
 require('../styles/Result.css');
@@ -135,7 +136,9 @@ var AtHome = React.createClass({
     render: function() {  
         return (
             <div className="wrapper-in-salon_ritual result3">
+                <Header />
                 <div className="info-block_title">AT-Home PROGRAM</div>
+                <div className="at-home-wrapper">
                     <div className="info-block image-block  ">
                         <div className="info-block_wrapper">
                             <div className="info-image1"></div>
@@ -154,6 +157,7 @@ var AtHome = React.createClass({
                     <div className="products">
                         {this.getProducts()}   
                     </div>
+                </div>
                 <div>
                     <div className="wrapperNext">
                         <div className="linkText">Receive by</div>

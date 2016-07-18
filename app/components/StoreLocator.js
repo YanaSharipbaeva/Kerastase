@@ -11,6 +11,7 @@ import { Link } from 'react-router';
 import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
+import Header from './Header';
 
 require('../styles/Main.css');
 require('../styles/Result.css');
@@ -64,12 +65,13 @@ var StoreLocator = React.createClass({
     render: function() {
         return (
             <div className="wrapper-in-salon_ritual">
+                <Header />
                 <div className="info-block_title">SALON LOCATOR</div>
                 <div className="result4-text">Find a kérastase salon</div>
                 <div className="result4-text_info">Only an expert observation and touch can confirm these results. Experience personalized luxury with a Kérastase Consultant near you.</div>
                 <div className="map-wrapper">
                     <div className="result4-image_map"></div>
-                    <a className="salon_link"> > Find your nearest Salon</a>
+                    <a target="_blank" href="http://salons.kerastase.co.uk/" className="salon_link"> > Find your nearest Salon</a>
                 </div>
                 <div>
                     <div className="wrapperNext">

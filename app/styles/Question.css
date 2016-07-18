@@ -204,6 +204,7 @@
 .question4_wrapper .question-wrapper,
 .question10_wrapper .question-wrapper {
     margin-top: 20px;
+    
 }
 
 .question4_wrapper {
@@ -254,6 +255,9 @@
     display: none;
 }
 
+.checkOptionBlock {
+    text-align: left;
+}
 
 
 

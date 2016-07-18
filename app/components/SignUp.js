@@ -58,7 +58,7 @@ var SignUp = React.createClass({
             isEmail: {
                 className: 'ui-input_state_email-pattern-failed',
                 // validator already has strong email-pattern, so we don't have to extend it by custom 
-                message: 'should be email'
+                message: ''
             }
         });
     },
@@ -302,20 +302,15 @@ var SignUp = React.createClass({
                 <div className="question-text_wrapper question-wrapper signUp-wrapper">
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">My name is</div>
-                        <Validation.Input
-                            className="signUp-input"
-                            onError={function(validation) {console.log(validation.rule)}}
-                            validations={[
-                                {
-                                    rule: 'isRequired',
-                                    errorMessage: 'mandatory field'
-                                } 
-                                ]}
-                            />
+                        <input type="text" className="signUp-input" />
+                    </div>
+                    <div className="signUp-input_wrapper">
+                        <div className="signUp-input_text">My surname is</div>
+                        <input type="text" className="signUp-input" />
                     </div>
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">I live in</div>
-                        <ReactSelect className="signUp-input" ref="select">
+                        <ReactSelect className="signUp-input" id="signUp-input" ref="select">
                             <option>UK</option>
                             <option>Germany</option>
                             <option>France</option>
@@ -352,13 +347,15 @@ var SignUp = React.createClass({
                 </div>
                 <div  className="skipButton" onClick={this.skipAndDisplay}>skip</div>
             </Validation.Form >
-            <Modal show={this.state.showModal} sign-up-modal onHide={this.closeModal}>
+            <div className="modal-wrapper">
+                <Modal show={this.state.showModal} className="signUp" sign-up-modal onHide={this.closeModal}>
 
-                <Modal.Body>
-                    <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
-                    <p className="customersText">Please, enter correct email address</p>
-                </Modal.Body>
-            </Modal>
+                    <Modal.Body >
+                        <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
+                        <p className="customersText">Please, enter correct email address</p>
+                    </Modal.Body>
+                </Modal>
+            </div>
             </div>
         );
     }

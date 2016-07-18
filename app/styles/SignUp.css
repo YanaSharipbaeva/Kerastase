@@ -209,12 +209,39 @@
 
 .wrapperNext{
     padding-top: 45px;
-    padding-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .linkText {
     margin-bottom: 30px;
 }
 
+.signUp-main-wrapper .question-text_wrapper {
+    width: 780px;
+}
+.modal-wrapper .modal-dialog{
+    height: 200px;
+}
 
 
+/*.modal-dialog {
+    width: 340px!important;
+}
+
+.modal-body {
+    padding-left: 30px;
+    padding-top: 50px;
+    padding-right: 30px;
+
+    height: 150px;
+}*/
+.signUp-main-wrapper .bootstrap-select.form-control {
+    width: auto;
+}
+.signUp  .modal-body{
+    padding-left: 50px;
+    padding-top: 50px;
+    padding: 50px;
+    height: 200px;
+    text-align: center;
+}

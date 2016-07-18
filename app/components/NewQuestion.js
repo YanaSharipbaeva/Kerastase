@@ -213,11 +213,11 @@ var NewQuestion = React.createClass({
         var data = this.state.dataSource[this.state.pageNumber];
  
         for (var i = 0; i < data.get('answers').length; i++) {
-            element = <div key={i} className="question-text checkOption-wrapper col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            element = <div key={i} className="question-text checkOption-wrapper col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <div className="checkOption" >
                         <input type="radio"  className="radio" name= "radio" data-indexAnswer={i} id={data.get('answers')[i].get('title')} />
                         <label className="checkboxLabel"  htmlFor={data.get('answers')[i].get('title')}>
-                           {data.get('answers')[i].get('title')}
+                           <div className="checkOptionBlock">{data.get('answers')[i].get('title')}</div>
                         </label>
                     </div> 
                 </div>
@@ -240,7 +240,7 @@ var NewQuestion = React.createClass({
         var totalPage = this.state.dataSource.length;
 
         //if (newPageNumber === totalPage) {
-        if (newPageNumber === 3) {
+        if (newPageNumber === 10) {
             this.goToLogin();
         } else {
             this.setState({  
@@ -362,7 +362,7 @@ var NewQuestion = React.createClass({
                     <Header />
                     <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
                     <div  className="question-wrapper">
-                        <div className="question-text_wrapper" >
+                        <div className="question-text_wrapper row" >
                             {this.getQCMOrSentences()}     
                         </div>
                     </div>

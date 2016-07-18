@@ -17,19 +17,33 @@
         font-size: 82px!important;
     }
 }
-
+*/
 @media (max-width: 840px) {
     .questionTitle, .question-text_wrapper {
         width: auto;
     }
-
+    .checkOption-wrapper{
+        width:100%;
+    }
 
 }
-*/
+
 @media (max-width: 800px) {
     .questionTitle, .question-text_wrapper {
         width: auto;
     }
+    .question-wrapper{
+        width: auto;
+    }
+     .question-wrapper{
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .signUp-main-wrapper .question-text_wrapper {
+        width: 100%!important;
+    }
+
 
 }
 
@@ -60,7 +74,14 @@
     }
 
     .signUp-input_wrapper .bootstrap-select {
-        width: 100%!important; 
+        /*width: 100%; */
+    }
+    #signUp-input  {
+        width:280px!important;
+    }
+
+    .signUp-input_text {
+        margin-bottom: 20px;
     }
 
 }

@@ -199,18 +199,19 @@ body {
 
 .wrapperTitle {
     height: 145px;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
 }
 
-.wrapperNext {
+/*.wrapperNext {
     height: 155px;
-}
+}*/
 
 .question-wrapper {
     height: calc(100% - 375px);
     display: table;
-    width: 100%;
-    padding-left: 40px;
-    padding-right: 40px;
+    width: 780px;
 }
 
 .wrapperPhrase {
@@ -278,12 +279,30 @@ body {
 .email_title{
     width:auto!important;
 }
-
-.question-text .bootstrap-select.btn-group .dropdown-toggle .filter-option {
+/*.question-text .bootstrap-select.btn-group .dropdown-toggle .filter-option {
     height: 45px;
     color: grey;
     border-bottom: 1px solid grey;
 }
+*/
 
+
+
+.QCM-long .question-wrapper {
+  margin-top: 40px;
+}
+
+.question-wrapper {
+    width: 780px;
+    margin: 0 auto;
+}
+
+.signUp .question-text_wrapper .form-group {
+    width: 280px;
+}
+
+#signUp-input  {
+  width:280px!important;
+}
 
 

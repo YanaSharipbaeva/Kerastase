@@ -17,6 +17,7 @@ import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import SignUp from './SignUp';
 
+
 require('../styles/Main.css');
 require('../styles/Result.css');
 
@@ -37,7 +38,7 @@ var Profile = React.createClass({
     },
 
     componentWillMount() {
-        $('#app').removeClass('QCM-long');
+
         console.log("componentWillMount");
 
         this.state.profile = this.props.location.state.profiles[0];
@@ -92,8 +93,8 @@ var Profile = React.createClass({
         console.log(this.state);
         return (
             <div className="wrapper-result">
-                <div className="top-wrapper"></div>
-                <div>
+                <Header />
+                <div className="profile-text-wrapper">
                     <div className="result-title">result</div>
                     <div className="result-title result-title_value">k-profile</div>
                     <div className="result-title result-text">you are in</div>

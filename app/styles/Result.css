@@ -13,6 +13,7 @@
 .result-title_value {
     font-size: 114px;
     color:#fff;
+    margin-bottom: 50px;
 }
 
 .result-text {
@@ -22,6 +23,7 @@
 .result-text_red {
     font-size: 30px;
     color:#e24b37;
+    margin-bottom: 40px;
 }
 
 .top-wrapper{
@@ -51,8 +53,8 @@
 }
 
 .wrapper-result {
-    padding-left: 30px;
-    padding-right: 30px;
+/*    padding-left: 30px;
+    padding-right: 30px;*/
     box-sizing: border-box;
 }
 
@@ -116,11 +118,12 @@
     text-align: center;
     font-family: 'TradeGothicLTLight';
     margin-bottom: 65px;
+    margin-top: 175px;
 }
 .wrapper-in-salon_ritual{
-    padding-top: 175px;
+/*    padding-top: 175px;
     padding-left: 60px;
-    padding-right: 60px;
+    padding-right: 60px;*/
 }
 
 .info-block:after{
@@ -405,6 +408,31 @@ ul.info-text{
     content:"";
     display: table;
 
+}
+
+.profile-text-wrapper {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 160px;
+}
+
+.main-in-salon-wrapper {
+    box-sizing: border-box;
+    padding-right: 60px;
+    padding-left: 60px;
+}
+
+.at-home-wrapper{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.restart_profile {
+    margin-right: 60px;
+}
+
+.social-links {
+    margin-left: 60px;
 }
 
 

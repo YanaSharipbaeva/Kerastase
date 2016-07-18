@@ -74,6 +74,7 @@
     width: 50%;
     display: inline-block;
     vertical-align: top;
+    float: left;
 }
 
 .checkOption {
@@ -100,4 +101,10 @@
 
 .multiple {
     padding: 0px 35px;
+}
+
+.checkOption-wrapper:after {
+    content: '';
+    display: block;
+    clear: both;
 }

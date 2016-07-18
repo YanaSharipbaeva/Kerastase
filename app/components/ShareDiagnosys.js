@@ -11,6 +11,7 @@ import { Link } from 'react-router';
 import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
+import Header from './Header';
 
 require('../styles/Main.css');
 require('../styles/Result.css');
@@ -52,16 +53,17 @@ var ShareDiagnosys = React.createClass({
     render: function() {
         return (
             <div className="wrapper-in-salon_ritual reseiveByEmail">
+                <Header /> 
                 <div className="info-block_title">Receive by email</div>
                 <div className="result4-text_info result5-text_info">Keep your personal routine recommendation handy by saving it in your inbox.</div>
                 <div className="result-send">Send </div>
                 <div className="connect-title">connect with us</div>
                 <div className="social-wrapper">
-                    <a href="https://www.instagram.com" className="social-link_big fa fa-instagram" aria-hidden="true">
+                    <a href="http://instagram.com/kerastaseuk" target="_blank" className="social-link_big fa fa-instagram" aria-hidden="true">
                     </a>
-                    <a href="https://www.youtube.com" className="social-link_big fa fa-youtube-play" aria-hidden="true">
+                    <a href="https://www.youtube.com/user/KerastaseUK" target="_blank" className="social-link_big fa fa-youtube-play" aria-hidden="true">
                     </a>
-                    <a href="https://www.facebook.com" className="social-link_big fa fa-facebook" aria-hidden="true">
+                    <a href="https://www.facebook.com/KerastaseUK" target="_blank" className="social-link_big fa fa-facebook" aria-hidden="true">
                     </a>
 
                 </div>

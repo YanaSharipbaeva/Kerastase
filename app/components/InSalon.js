@@ -14,6 +14,7 @@ import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import { Modal } from 'react-bootstrap';
+import Header from './Header';
 
 require('../styles/Main.css');
 require('../styles/Result.css');
@@ -66,27 +67,30 @@ var InSalon = React.createClass({
     render: function() {
         return (
             <div className="wrapper-in-salon_ritual result2">
+                <Header />
                 <div className="info-block_title">in-salon ritual</div>
-                <div className="info-block image-block">
-                    <div className="info-block_wrapper">
-                        <div className="info-image1"></div>
-                        <div className="info-image2"></div>
-                        <a href="" className="salon_link">> Find your nearest salon</a>
-                        
+                <div className="main-in-salon-wrapper">
+                    <div className="info-block image-block">
+                        <div className="info-block_wrapper">
+                            <div className="info-image1"></div>
+                            <div className="info-image2"></div>
+                            <a href="" className="salon_link">> Find your nearest salon</a>
+                            
+                        </div>
                     </div>
-                </div>
-                <div className="info-block text_block">
-                     <div className="text_wrapper">
-                        <p className="result-title info-text_title">{this.state.profile.get("prescriptionServices")}</p>
-                        <p className="info-text">{this.state.profile.get("descriptionService")}</p>
-                    </div>
-                    <div className="text_wrapper">
-                        <ul className="info-text">
-                            <li>3 benefits of in-salon treatment:</li>
-                            <li>1. Prescription: Your hairdresser applies the correct dosage tailored to your specific level of dryness.</li>
-                            <li>2. Transformation: Hair is instantly suppler, shinier. You experience the Nutritive touch.</li>
-                            <li>3. Extension: The treatment anchors nutrients inside the hair, even after several shampoos.</li>
-                        </ul>
+                    <div className="info-block text_block">
+                         <div className="text_wrapper">
+                            <p className="result-title info-text_title">{this.state.profile.get("prescriptionServices")}</p>
+                            <p className="info-text">{this.state.profile.get("descriptionService")}</p>
+                        </div>
+                        <div className="text_wrapper">
+                            <ul className="info-text">
+                                <li>3 benefits of in-salon treatment:</li>
+                                <li>1. Prescription: Your hairdresser applies the correct dosage tailored to your specific level of dryness.</li>
+                                <li>2. Transformation: Hair is instantly suppler, shinier. You experience the Nutritive touch.</li>
+                                <li>3. Extension: The treatment anchors nutrients inside the hair, even after several shampoos.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div>
