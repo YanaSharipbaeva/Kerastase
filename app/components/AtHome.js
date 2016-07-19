@@ -27,17 +27,23 @@ var AtHome = React.createClass({
     },
 
     getInitialState() {
+
+
+
         return {
             pageNumber: 2,
             result: [],
             title:'',
             description:''
         };
+
+
     },
+
+
 
     componentWillMount() {
         $('#app').addClass('QCM-long');
-
 
         var profile = this.props.location.state.profile;
         var jsonProducts = this.props.location.state.products;
@@ -46,11 +52,10 @@ var AtHome = React.createClass({
 
 
         this.state.profile = profile;
-        this.state.products = jsonProducts;
+        //this.state.products = jsonProducts;
 
+        console.log("this profile",this.state.profile);
         console.log("this product",this.state.products);
-
-
 
 
 
@@ -68,9 +73,24 @@ var AtHome = React.createClass({
                 products.push(Parse.Object.fromJSON(product))
 
             }
+
+            console.log("created products",products);
         }
 
+        console.log("PRofile and Products",profile, products);
+
+        if(products.length==0)
+        products=jsonProducts;
+
+        this.setState({
+            products:products,
+            profile:profile,
+        });
+
+
+
     },
+
 
     dynanamicPagination(){
         var pagination = [];
