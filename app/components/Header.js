@@ -21,7 +21,7 @@ var Header = React.createClass({
             <header className="header container">
                 <div className="row header-wrapper">
                     <div className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4"> 
-                        <Link to="/start" className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 fa fa-bars header-icon" aria-hidden="true"></Link> 
+                        <Link to="/" className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 fa fa-bars header-icon" aria-hidden="true"></Link> 
                     </div>
                     <div className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 logo-wrapper"> 
                         <a className="header-logo" target="_blank" href="http://www.kerastase.co.uk/"></a>

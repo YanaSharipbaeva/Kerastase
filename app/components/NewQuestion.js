@@ -41,6 +41,7 @@ var NewQuestion = React.createClass({
             answerTitles:[],
             profilesArray:[],
             showModal:false,
+            maxWidthTitle:0
         };
     },
 
@@ -180,9 +181,31 @@ var NewQuestion = React.createClass({
         consolo.log('OPTION');
     },
 
-    getSentences() {
-       $('#app').removeClass('QCM-long');
+    getCharacters(index){
+        var _this = this;
+        var maxWidthTitle = 0;
+                   var maxTitle = "";
+        var data = this.state.dataSource[this.state.pageNumber];
+        data[index].get('answers').forEach(function(option){
+            if (option.get('title').length > maxWidthTitle) {
+                maxWidthTitle = option.get('title').length;  
+            }
 
+ 
+            for (var m = 0; m < maxWidthTitle; m++) {
+                 maxTitle = maxTitle + "&nbsp;";
+            }
+
+        });
+    
+        maxTitle = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+        return maxTitle;
+    
+    },
+
+    getSentences() {
+        console.log("getCharacters", this.getCharacters(0));
+       $('#app').removeClass('QCM-long');
         var _this = this;
         var obj = [];
         var elem;
@@ -194,14 +217,12 @@ var NewQuestion = React.createClass({
                     <span > {item.text}</span>         
                     <ReactSelect className="selectpicker selectAnswer" 
                     hideDisabled="true"
-                    width="true"
-                    data-width='auto'
-                    title="" 
+                    title={_this.getCharacters(index)}
                      >
-                        <option   selected="selected" disabled="disabled" className="selectOption" key={20} data-hidden="true"></option> 
+                        <option    selected="selected" disabled="disabled" className="selectOption" key={20} data-hidden="true"></option> 
                         {item.get('answers').map(function(option, indexAnswer) {
-
-                            return <option  key={indexAnswer}  data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option> 
+                        
+                            return <option  className="optionName" key={indexAnswer}  data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option> 
 
                         })}                                         
                     </ReactSelect> 
@@ -246,17 +267,17 @@ var NewQuestion = React.createClass({
     },
 
     isAllSelected(){
-        console.log('Check if all selected');
         var _this = this;
-        var isSelected = true;
+        var isSelected = false;
         var selectedOptions = [];
         $('.selected').each(function (option) {
-            $(this).hasClass('hidden') ? _this.openModal() : _this.nextPage();
+            $(this).hasClass('hidden') ? _this.openModal() : _this.nextPage()
         });
+        return isSelected
     },
 
     nextPage() {
-        if (this.isAllSelected()) {
+      
             var pageObject = this.state.dataSource[this.state.pageNumber];
 
             if (this.isQCM() === false) {
@@ -276,7 +297,7 @@ var NewQuestion = React.createClass({
                     pageNumber:this.state.pageNumber + 1
                 });
             }
-        }
+  
     },
 
     goToLogin() {
@@ -404,7 +425,7 @@ var NewQuestion = React.createClass({
                     { this.state.pageNumber === -1 ? null:
                         <div className="wrapperNext">
                             <div className="linkText">Next</div>
-                            <div className="linkArrow"  onClick={this.isAllSelected()}>
+                            <div className="linkArrow"  onClick={this.nextPage}>
                             </div>
                         </div>
                     }
