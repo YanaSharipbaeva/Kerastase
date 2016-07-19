@@ -271,13 +271,12 @@ var NewQuestion = React.createClass({
         var isSelected = false;
         var selectedOptions = [];
         $('.selected').each(function (option) {
+            console.log($(this).hasClass('hidden'));
             $(this).hasClass('hidden') ? _this.openModal() : _this.nextPage()
         });
-        return isSelected
     },
 
     nextPage() {
-      
             var pageObject = this.state.dataSource[this.state.pageNumber];
 
             if (this.isQCM() === false) {
@@ -314,6 +313,7 @@ var NewQuestion = React.createClass({
     },
 
     getCheckedAnswers(){  
+
         var checkedAnswer = $( "input:checked" )[0];
 
         var answerIndex = checkedAnswer.getAttribute('data-indexAnswer');
@@ -328,7 +328,7 @@ var NewQuestion = React.createClass({
     },
 
     getSelectedAnswers(){
-
+        console.log($('li.selected'));
         var _this = this;
         var array = [];
         $('li.selected').each(function(i, el) {
@@ -425,22 +425,21 @@ var NewQuestion = React.createClass({
                     { this.state.pageNumber === -1 ? null:
                         <div className="wrapperNext">
                             <div className="linkText">Next</div>
-                            <div className="linkArrow"  onClick={this.nextPage}>
+                            <div className="linkArrow"  onClick={this.isAllSelected}>
                             </div>
                         </div>
                     }
                     <div className="wrapper-counter">
                     {this.dynanamicPagination()}
                     </div>
-                    <Modal show={this.state.showModal} onHide={this.closeModal}>
+                    <Modal show={this.state.showModal} onHide={this.closeModal} className="modalQuestion">
 
                     <Modal.Body>
-                        <p className="customersText">Please, choose one answer</p>
+                        <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
+                        <p className="customersText">You have not answered some questions. Please, answer all questions and try again</p>
                     </Modal.Body>
 
-                    <Modal.Footer>
-                        <button className="btn customersText" onClick={this.closeModal}>Close</button>
-                    </Modal.Footer>
+                    
                     </Modal>
                 </div>
             );
