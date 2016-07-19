@@ -41,7 +41,9 @@ var NewQuestion = React.createClass({
             answerTitles:[],
             profilesArray:[],
             showModal:false,
-            maxWidthTitle:0
+            maxWidthTitle:0,
+            selectState:"false",
+            checkboxState:"false"
         };
     },
 
@@ -50,7 +52,7 @@ var NewQuestion = React.createClass({
     },
 
     componentDidMount() {
-        
+  
     },
 
     getAnswers() {
@@ -220,13 +222,13 @@ var NewQuestion = React.createClass({
             elem = <span key={index} className="question-text">
                     <span > {item.text}</span>         
                     <ReactSelect className="selectpicker selectAnswer" 
-                    hideDisabled="true"
-                    title={_this.getCharacters(index)}
-                     >
-                        <option    selected="selected" disabled="disabled" className="selectOption"  data-hidden="true"></option>
+                        hideDisabled="true"
+                        title={_this.getCharacters(index)}
+                        >
+                        <option selected="selected" key={_this.state.selectState} disabled="disabled" className="selectOption"  data-hidden="true"></option>
                         {item.get('answers').map(function(option, indexAnswer) {
                         
-                            return <option  className="optionName" key={indexAnswer}  data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option> 
+                            return <option  key={_this.state.selectOption} className="optionName" key={indexAnswer}  data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option> 
 
                         })}                                         
                     </ReactSelect> 
@@ -239,6 +241,7 @@ var NewQuestion = React.createClass({
     },
 
     getQCM () {
+
         var pageNumber = this.state.pageNumber;
         if (pageNumber === 10 || pageNumber === 7 || pageNumber === 9) {
             $('#app').addClass('QCM-long');
@@ -252,7 +255,7 @@ var NewQuestion = React.createClass({
         for (var i = 0; i < data.get('answers').length; i++) {
             element = <div key={i} className="question-text checkOption-wrapper col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <div className="checkOption" >
-                        <input type="radio"  className="radio" name= "radio" data-indexAnswer={i} id={data.get('answers')[i].get('title')} />
+                        <input type="radio"  key={this.state.checkboxState}className="radio" name= "radio" data-indexAnswer={i} id={data.get('answers')[i].get('title')} />
                         <label className="checkboxLabel"  htmlFor={data.get('answers')[i].get('title')}>
                            <div className="checkOptionBlock">{data.get('answers')[i].get('title')}</div>
                         </label>
@@ -270,12 +273,13 @@ var NewQuestion = React.createClass({
     //     var selectedOptions = [];
     //     $('.selected').each(function (option) {
     //         console.log($(this).hasClass('hidden'));
-    //         ($(this).hasClass('hidden') || $('li.selected')) ? _this.openModal() : _this.nextPage()
+    //         ($(this).hasClass('hidden') || $('.radio:checked ')) ? _this.openModal() : _this.nextPage()
     //     });
     //     this.nextPage()
     // },
 
     nextPage() {
+
         var pageObject = this.state.dataSource[this.state.pageNumber];
 
         if (this.isQCM() === false) {
@@ -284,9 +288,21 @@ var NewQuestion = React.createClass({
             this.getCheckedAnswers();
         }
 
+        $('.selected').each(function(i, el) {
+           $(this).removeClass('selected');
+        });
+
+        // $('.radio').removeAttr('checked');
+
+        this.setState({  
+            selectState:"true",
+            checkboxState:"true"
+        });
+
+
         var newPageNumber = this.state.pageNumber + 1;
         var totalPage = this.state.dataSource.length;
-
+     
         //if (newPageNumber === totalPage) {
         if (newPageNumber === 10) {
             this.goToLogin();
@@ -314,26 +330,29 @@ var NewQuestion = React.createClass({
     getCheckedAnswers(){  
 
         var checkedAnswer = $( "input:checked" )[0];
+        console.log(checkedAnswer);
+        // if (checkedAnswer === undefined){
+        //     this.openModal();
+        // } else {
+            var answerIndex = checkedAnswer.getAttribute('data-indexAnswer');
 
-        var answerIndex = checkedAnswer.getAttribute('data-indexAnswer');
+            var questionObject = this.state.dataSource[this.state.pageNumber];
+            var answerObject = this.state.dataSource[this.state.pageNumber].get('answers')[answerIndex];
 
-        var questionObject = this.state.dataSource[this.state.pageNumber];
-        var answerObject = this.state.dataSource[this.state.pageNumber].get('answers')[answerIndex];
-
-        this.state.questions.push(questionObject)
-        this.state.answers.push(answerObject)
-        this.state.questionTitles.push(questionObject.get('title'));
-        this.state.answerTitles.push(answerObject.get('title'));
+            this.state.questions.push(questionObject)
+            this.state.answers.push(answerObject)
+            this.state.questionTitles.push(questionObject.get('title'));
+            this.state.answerTitles.push(answerObject.get('title'));
+        // }
     },
 
     getSelectedAnswers(){
-        console.log($('li.selected'));
         var _this = this;
         var array = [];
         $('li.selected').each(function(i, el) {
             array.push(el);
 
-            var answerIndex = el.getAttribute('data-original-index');
+            var answerIndex = el.getAttribute('data-original-index') - 1;
             var questionObject = _this.state.dataSource[_this.state.pageNumber][i];
             var answerObject = _this.state.dataSource[_this.state.pageNumber][i].get('answers')[answerIndex];
              
@@ -341,6 +360,7 @@ var NewQuestion = React.createClass({
             _this.state.answers.push(answerObject)
             _this.state.questionTitles.push(questionObject.get('title'));
             _this.state.answerTitles.push(answerObject.get('title'));
+
         }); 
     },
 
