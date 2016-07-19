@@ -184,21 +184,26 @@ var NewQuestion = React.createClass({
     getCharacters(index){
         var _this = this;
         var maxWidthTitle = 0;
-                   var maxTitle = "";
+        var maxTitle = "";
+
+
         var data = this.state.dataSource[this.state.pageNumber];
         data[index].get('answers').forEach(function(option){
             if (option.get('title').length > maxWidthTitle) {
                 maxWidthTitle = option.get('title').length;  
             }
 
- 
-            for (var m = 0; m < maxWidthTitle; m++) {
-                 maxTitle = maxTitle + "&nbsp;";
-            }
-
         });
-    
-        maxTitle = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+
+
+
+        console.log("max width :",maxWidthTitle);
+
+        for (var m = 0; m < maxWidthTitle; m++) {
+            maxTitle = maxTitle + "&nbsp;";
+        }
+
+        console.log("max title :",maxWidthTitle);
         return maxTitle;
     
     },
@@ -218,7 +223,7 @@ var NewQuestion = React.createClass({
                     hideDisabled="true"
                     title={_this.getCharacters(index)}
                      >
-                        <option    selected="selected" disabled="disabled" className="selectOption" key={20} data-hidden="true"></option> 
+                        <option    selected="selected" disabled="disabled" className="selectOption"  data-hidden="true"></option>
                         {item.get('answers').map(function(option, indexAnswer) {
                         
                             return <option  className="optionName" key={indexAnswer}  data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option> 
