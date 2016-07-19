@@ -26,6 +26,8 @@ var ShareDiagnosis = React.createClass({
     },
 
     getInitialState() {
+
+
         return {
             pageNumber: 4,
             result: []
@@ -39,6 +41,8 @@ var ShareDiagnosis = React.createClass({
         this.state.profile = this.props.location.state.profile;
         this.state.products = this.props.location.state.products;
         console.log("PRODUCTS" , this.state.products);
+
+        this.shareEmail();
     },
 
     dynanamicPagination(){
@@ -49,6 +53,28 @@ var ShareDiagnosis = React.createClass({
         return pagination
 
     },
+
+
+    shareEmail(){
+
+       var ids = ["wPa2OeiE7h","KzVaAYDa4T","bW9JNDKImY"];
+
+
+        var params = {"profiles":this.state.profiles,  "userEmail" : "john@gmail.com"}
+
+
+
+        Parse.Cloud.run('sendEmailToUser', params, {
+            success: function(result) {
+
+                console.log("sendEmailToUser")
+            },
+            error: function(error) {
+            }
+        });
+
+    },
+
 
     render: function() {
         return (
