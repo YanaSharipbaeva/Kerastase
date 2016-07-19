@@ -204,7 +204,6 @@ var NewQuestion = React.createClass({
     },
 
     getSentences() {
-        console.log("getCharacters", this.getCharacters(0));
        $('#app').removeClass('QCM-long');
         var _this = this;
         var obj = [];
@@ -261,41 +260,45 @@ var NewQuestion = React.createClass({
     },
 
     startTest(){
+        this.context.router.push({
+            pathname: '/questions'
+        });
         this.setState({  
             pageNumber:this.state.pageNumber + 1
         });
     },
 
-    isAllSelected(){
-        var _this = this;
-        var isSelected = false;
-        var selectedOptions = [];
-        $('.selected').each(function (option) {
-            console.log($(this).hasClass('hidden'));
-            $(this).hasClass('hidden') ? _this.openModal() : _this.nextPage()
-        });
-    },
+    // isAllSelected(){
+    //     var _this = this;
+    //     var isSelected = false;
+    //     var selectedOptions = [];
+    //     $('.selected').each(function (option) {
+    //         console.log($(this).hasClass('hidden'));
+    //         ($(this).hasClass('hidden') || $('li.selected')) ? _this.openModal() : _this.nextPage()
+    //     });
+    //     this.nextPage()
+    // },
 
     nextPage() {
-            var pageObject = this.state.dataSource[this.state.pageNumber];
+        var pageObject = this.state.dataSource[this.state.pageNumber];
 
-            if (this.isQCM() === false) {
-                this.getSelectedAnswers();
-            } else {
-                this.getCheckedAnswers();
-            }
+        if (this.isQCM() === false) {
+            this.getSelectedAnswers();
+        } else {
+            this.getCheckedAnswers();
+        }
 
-            var newPageNumber = this.state.pageNumber + 1;
-            var totalPage = this.state.dataSource.length;
+        var newPageNumber = this.state.pageNumber + 1;
+        var totalPage = this.state.dataSource.length;
 
-            //if (newPageNumber === totalPage) {
-            if (newPageNumber === 10) {
-                this.goToLogin();
-            } else {
-                this.setState({  
-                    pageNumber:this.state.pageNumber + 1
-                });
-            }
+        //if (newPageNumber === totalPage) {
+        if (newPageNumber === 10) {
+            this.goToLogin();
+        } else {
+            this.setState({  
+                pageNumber:this.state.pageNumber + 1
+            });
+        }
   
     },
 
@@ -425,7 +428,7 @@ var NewQuestion = React.createClass({
                     { this.state.pageNumber === -1 ? null:
                         <div className="wrapperNext">
                             <div className="linkText">Next</div>
-                            <div className="linkArrow"  onClick={this.isAllSelected}>
+                            <div className="linkArrow"  onClick={this.nextPage}>
                             </div>
                         </div>
                     }

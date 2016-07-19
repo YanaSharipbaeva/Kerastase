@@ -36,6 +36,8 @@ var Main = React.createClass({
 render((
     <Router history={browserHistory}>
         <Route path="/" component={NewQuestion}></Route>
+        <Route path="/start" component={NewQuestion}></Route>
+        <Route path="/questions" component={NewQuestion}></Route>
         <Route path="/signUp" component={SignUp}></Route>
         <Route path="/profile" component={Profile}></Route>
         <Route path="/in-salon" component={InSalon}></Route>

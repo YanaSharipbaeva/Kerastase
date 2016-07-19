@@ -30,7 +30,7 @@
 }
 .radio:not(checked) + label {
     position: relative; /* будем позиционировать псевдочекбокс относительно label */
-    padding: 0 0 0 95px; /* оставляем слева от label место под псевдочекбокс */
+    padding: 0 0 0 110px; /* оставляем слева от label место под псевдочекбокс */
     line-height: 60px;
     float: left;
     margin-bottom: 20px;
