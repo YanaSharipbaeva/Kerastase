@@ -20,11 +20,22 @@ var Start = React.createClass({
         $('#app').removeClass('QCM-long');
     },
 
+    nextPage(){
+        this.context.router.push({
+            pathname: '/questions'
+        });
+    },
+
     render: function() {
         return (
             <div className="wrapper">
                 <Header />
-                
+                <div className="start-wrapper">
+                    <div className="wrapper-info">
+                        <h1  className="start-title">k-profile</h1>;
+                        <div  onClick={this.nextPage} className="buttonStyles" >start your hair diagnosis</div>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -30,6 +30,7 @@
     text-align: center;
     height: 100%;
     width: 100%;
+    display: table;
 }
 
 .start-title {
@@ -45,6 +46,7 @@
     height: -webkit-calc(100% - 75px);
     height: -moz-calc(100% - 75px);
     height: calc(100% - 75px);
+    width: 100%;
 }
 
 .main-container {
@@ -63,4 +65,9 @@
     font-size: 34px;
     color: #666;
     border-bottom: 1px solid #e3e3e3;
+}
+
+.wrapper-info {
+    display: table-cell;
+    vertical-align: middle;
 }

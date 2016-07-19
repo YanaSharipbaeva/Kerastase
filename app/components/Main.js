@@ -9,6 +9,7 @@ import { Router, Route, Redirect, IndexRoute, browserHistory,hashHistory } from 
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
 import Header from './Header';
+import Start from './Start';
 import NewQuestion from './NewQuestion';
 import TitleComponent from './TitleComponent';
 import ActiveCounterRound from './ActiveCounterRound';
@@ -35,8 +36,8 @@ var Main = React.createClass({
 
 render((
     <Router history={browserHistory}>
-        <Route path="/" component={NewQuestion}></Route>
-        <Route path="/start" component={NewQuestion}></Route>
+        <Route path="/" component={Start}></Route>
+        <Route path="/start" component={Start}></Route>
         <Route path="/questions" component={NewQuestion}></Route>
         <Route path="/signUp" component={SignUp}></Route>
         <Route path="/profile" component={Profile}></Route>

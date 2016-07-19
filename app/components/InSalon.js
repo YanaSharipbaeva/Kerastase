@@ -96,7 +96,7 @@ var InSalon = React.createClass({
                         <div className="info-block_wrapper">
                             <div className="info-image1"></div>
                             <div className="info-image2"></div>
-                            <a href="" className="salon_link">> Find your nearest salon</a>
+                            <a href="http://www.kerastase.co.uk/" target="_blank" className="salon_link">> Find your nearest salon</a>
                             
                         </div>
                     </div>

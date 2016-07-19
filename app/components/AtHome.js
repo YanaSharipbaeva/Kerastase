@@ -105,10 +105,10 @@ var AtHome = React.createClass({
 
             var image = product.get("image");
             console.log("image ",image);
-            if(image) {
+            if (image) {
 
                 imageUrl.push(<img data-image={y} onClick={this.openModal} key={y}
-                                   src={image.url()}></img>);
+                    src={image.url()}></img>);
             }
         }
 
@@ -117,20 +117,16 @@ var AtHome = React.createClass({
     },
 
     showProductInfo(e){
-
-
             console.log("showProductInfo",this.state.product);
             if(!this.state.product){
-
                 return null;
-
             }
 
            var modal = [<div><div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
                         <div className="product-wrapper">
                             <div className="product_title">{this.state.product.get("title")}</div>
                             <div className="product_text">{this.state.product.get("description")}</div>
-                            <a className="product_link">Find your product in salon ></a>
+                            <a href="http://www.kerastase.co.uk/" target="_blank" className="product_link">Find your product in salon ></a>
                             <a className="product_link">Shop now online ></a>
                         </div>
                         <div className="image-wrapper">
@@ -141,6 +137,7 @@ var AtHome = React.createClass({
 
 
     openModal (e) {
+        // console.log(this.state.products[imageIndex]);
        var imageIndex = e.target.getAttribute('data-image')    
         console.log(this.state.products);      
         this.setState({
