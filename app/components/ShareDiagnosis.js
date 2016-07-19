@@ -16,7 +16,7 @@ import Header from './Header';
 require('../styles/Main.css');
 require('../styles/Result.css');
 
-var ShareDiagnosys = React.createClass({
+var ShareDiagnosis = React.createClass({
     mixins: [
         LinkedStateMixin
     ],
@@ -76,7 +76,7 @@ var ShareDiagnosys = React.createClass({
                 <div>
                     <div className="wrapperNext">
                         <div  className="linkText">Restart Diagnosis</div>
-                        <Link to="/start" className="linkArrow restart_image" ></Link>
+                        <Link to="/" className="linkArrow restart_image" ></Link>
                     </div>
                 </div>
                 <div className="wrapper-counter">
@@ -87,6 +87,6 @@ var ShareDiagnosys = React.createClass({
     }
 });
 
-module.exports = ShareDiagnosys;
+module.exports = ShareDiagnosis;
 
 

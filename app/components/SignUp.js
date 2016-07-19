@@ -253,7 +253,6 @@ var SignUp = React.createClass({
                     profiles: this.state.profiles
                 }
             });
-
     },
 
 
@@ -349,7 +348,6 @@ var SignUp = React.createClass({
             </Validation.Form >
             <div className="modal-wrapper">
                 <Modal show={this.state.showModal} className="signUp" sign-up-modal onHide={this.closeModal}>
-
                     <Modal.Body >
                         <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
                         <p className="customersText">Please, enter correct email address</p>

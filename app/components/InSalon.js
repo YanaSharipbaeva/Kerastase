@@ -103,7 +103,10 @@ var InSalon = React.createClass({
                     <div className="info-block text_block">
                          <div className="text_wrapper">
                             <p className="result-title info-text_title">{this.state.profile.get("prescriptionServices")}</p>
-                            <p className="info-text">{this.state.profile.get("descriptionService")}</p>
+                            <div className="description-wrapper">
+                                <p className="info-text">{this.state.profile.get("descriptionService")}</p>
+                                <div className="timeInSalon">20 MN</div>
+                            </div>
                         </div>
                         <div className="text_wrapper">
                             <ul className="info-text">
@@ -114,6 +117,7 @@ var InSalon = React.createClass({
                             </ul>
                         </div>
                     </div>
+
                 </div>
                 <div>
                     <div className="wrapperNext">

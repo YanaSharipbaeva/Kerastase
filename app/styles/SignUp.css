@@ -245,3 +245,15 @@
     height: 200px;
     text-align: center;
 }
+
+.signUp .customersText {
+    font-size: 16px;
+    font-family: "InterstateLight";
+    width: auto;
+    box-sizing: border-box;
+    height: 100%;
+    position: static;
+    top: 40px;
+    font-size: 30px;
+    line-height: 100px;
+}

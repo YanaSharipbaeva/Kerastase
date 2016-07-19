@@ -7,7 +7,7 @@
         width: calc(100% - 225px)!important;
     }
      .question-text {
-      /*  margin-bottom: 30px;*/
+        margin-bottom: 20px;
     }
 
 }
@@ -43,7 +43,11 @@
     .signUp-main-wrapper .question-text_wrapper {
         width: 100%!important;
     }
-
+    .question-text_wrapper {
+        width: 100%;
+        margin: 0 auto;
+        padding: 60px;
+    }
 
 }
 
@@ -89,8 +93,8 @@
 @media (max-width: 640px) {
     .buttonStyles {
         font-family: 'InterstateLight';
-        font-size: 24px;
-        width: auto;
+        font-size: 24px!important;
+        width: auto!important;
         padding: 0 20px;
     }
 

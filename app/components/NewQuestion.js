@@ -33,7 +33,7 @@ var NewQuestion = React.createClass({
 
     getInitialState() {
         return {
-            pageNumber:0,
+            pageNumber: -1,
             dataSource:[],
             questions:[],
             answers:[],
@@ -182,6 +182,7 @@ var NewQuestion = React.createClass({
 
     getSentences() {
        $('#app').removeClass('QCM-long');
+
         var _this = this;
         var obj = [];
         var elem;
@@ -191,9 +192,16 @@ var NewQuestion = React.createClass({
 
             elem = <span key={index} className="question-text">
                     <span > {item.text}</span>         
-                    <ReactSelect className="selectAnswer" >
+                    <ReactSelect className="selectpicker selectAnswer" 
+                    hideDisabled="true"
+                    width="true"
+                    data-width='auto'
+                    title="" 
+                     >
+                        <option   selected="selected" disabled="disabled" className="selectOption" key={20} data-hidden="true"></option> 
                         {item.get('answers').map(function(option, indexAnswer) {
-                            return <option  className="selectOption" key={indexAnswer} value={indexAnswer} data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option> 
+
+                            return <option  key={indexAnswer}  data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option> 
 
                         })}                                         
                     </ReactSelect> 
@@ -231,25 +239,43 @@ var NewQuestion = React.createClass({
         return obj
     },
 
+    startTest(){
+        this.setState({  
+            pageNumber:this.state.pageNumber + 1
+        });
+    },
+
+    isAllSelected(){
+        console.log('Check if all selected');
+        var _this = this;
+        var isSelected = true;
+        var selectedOptions = [];
+        $('.selected').each(function (option) {
+            $(this).hasClass('hidden') ? _this.openModal() : _this.nextPage();
+        });
+    },
+
     nextPage() {
-        var pageObject = this.state.dataSource[this.state.pageNumber];
+        if (this.isAllSelected()) {
+            var pageObject = this.state.dataSource[this.state.pageNumber];
 
-        if (this.isQCM() === false) {
-            this.getSelectedAnswers();
-        } else {
-            this.getCheckedAnswers();
-        }
+            if (this.isQCM() === false) {
+                this.getSelectedAnswers();
+            } else {
+                this.getCheckedAnswers();
+            }
 
-        var newPageNumber = this.state.pageNumber + 1;
-        var totalPage = this.state.dataSource.length;
+            var newPageNumber = this.state.pageNumber + 1;
+            var totalPage = this.state.dataSource.length;
 
-        //if (newPageNumber === totalPage) {
-        if (newPageNumber === 3) {
-            this.goToLogin();
-        } else {
-            this.setState({  
-                pageNumber:this.state.pageNumber + 1
-            });
+            //if (newPageNumber === totalPage) {
+            if (newPageNumber === 10) {
+                this.goToLogin();
+            } else {
+                this.setState({  
+                    pageNumber:this.state.pageNumber + 1
+                });
+            }
         }
     },
 
@@ -281,20 +307,9 @@ var NewQuestion = React.createClass({
     },
 
     getSelectedAnswers(){
-        // var dropDownWidth = $('.dropdown-menu');
-        // var selectBox = $('.form-control');
-        // selectBox.forEach(function(element){
-        //     for (var l=0; l < selectBox.length; l++ ) {
-        //         element.width(dropDownWidth[l].width());
-        //     }
-        // });
-        // console.log('dropDownWidth', dropDownWidth);
-        // console.log('selectBox', selectBox);
-
-
 
         var _this = this;
-        var array =[];
+        var array = [];
         $('li.selected').each(function(i, el) {
             array.push(el);
 
@@ -311,8 +326,9 @@ var NewQuestion = React.createClass({
 
     getQCMOrSentences(){
         var item = this.state.dataSource[this.state.pageNumber];
-
-        if (this.isQCM() === false) {
+        if (this.state.pageNumber  === -1 ) {
+            return this.getStart();
+        } else if(this.isQCM() === false) {
             return this.getSentences();
         } else {
            return this.getQCM();
@@ -321,11 +337,24 @@ var NewQuestion = React.createClass({
 
     dynanamicPagination(){
         var pagination = [];
-        for (var k = 0; k < 10; k++) {
-            pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
+        for (var k = 0; k < 11; k++) {
+            if (k === 0) {
+                return null
+            } else {
+                pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
+            }
         }
         return pagination
 
+    },
+
+    getStart(){ 
+        $('#app').removeClass('QCM-long');
+        var start = [];
+        
+        start.push(<h1 key={1} className="start-title">k-profile</h1>);
+        start.push(<div  key={2} className="buttonStyles" onClick={this.startTest}>start your hair diagnosis</div>);
+        return start
     },
 
     getQCMtext() {
@@ -364,17 +393,21 @@ var NewQuestion = React.createClass({
             return (
                 <div className="wrapperPhrase">
                     <Header />
-                    <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
-                    <div  className="question-wrapper">
-                        <div className="question-text_wrapper row" >
+                    { this.state.pageNumber === -1 ? null:
+                        <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
+                    }
+                    <div  className={this.state.pageNumber === -1?  "start-wrapper":"question-wrapper"}>
+                        <div  className="question-text_wrapper row" >
                             {this.getQCMOrSentences()}     
                         </div>
                     </div>
-                    <div className="wrapperNext">
-                        <div className="linkText">Next</div>
-                        <div className="linkArrow"  onClick={this.nextPage}>
+                    { this.state.pageNumber === -1 ? null:
+                        <div className="wrapperNext">
+                            <div className="linkText">Next</div>
+                            <div className="linkArrow"  onClick={this.isAllSelected()}>
+                            </div>
                         </div>
-                    </div>
+                    }
                     <div className="wrapper-counter">
                     {this.dynanamicPagination()}
                     </div>

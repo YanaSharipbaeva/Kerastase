@@ -54,7 +54,7 @@ var StoreLocator = React.createClass({
     nextPage(){
         console.log('nextPage');
         this.context.router.push({
-            pathname: '/share-diagnosys',
+            pathname: '/share-diagnosis',
             state: { 
                     profile: this.state.profile,
                     products:this.state.products
@@ -87,7 +87,7 @@ var StoreLocator = React.createClass({
                             <a href="https://facebook.com" className="fa fa-facebook" aria-hidden="true"></a>
                         </div>
                     </div> 
-                    <Link to="/start" className="restart_profile">Restart K profile</Link> 
+                    <div className="restart_profile">Restart K profile</div> 
                 </div>
                 <div className="wrapper-counter">
                     {this.dynanamicPagination()}

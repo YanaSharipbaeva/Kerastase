@@ -214,6 +214,11 @@ body {
     width: 780px;
 }
 
+.start-wrapper {
+    height: calc(100% - 75px);
+    display: table;
+}
+
 .wrapperPhrase {
   height:100%;
 }
@@ -307,6 +312,27 @@ body {
 
 .bootstrap-select.form-control:not([class*=col-]){
   width:280px;
+}
+
+.timeInSalon:before {
+  width: 39px;
+  height: 52px;
+  background: url(../images/20Mn.png) no-repeat center;
+  content:"";
+  display: block;
+  margin:0 auto;
+  margin-bottom: 20px;
+}
+
+.timeInSalon{
+    display: inline-block;
+    width: 89px;
+    color:#fff;
+    font-size: 30px;
+    font-family: 'TradeGothicLTLight';
+    position: relative;
+    top: -25px;
+    margin-left:20px;
 }
 
 
