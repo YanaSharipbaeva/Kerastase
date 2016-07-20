@@ -359,6 +359,7 @@ var SignUp = React.createClass({
 
 
     skipAndDisplay(){
+        Parse.User.logOut();
         this.displayResult();
     },
 
