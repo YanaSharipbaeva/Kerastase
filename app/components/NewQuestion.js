@@ -19,7 +19,7 @@ import '../styles/Question.css';
 import '../styles/Checkbox.css';
 import '../styles/Main.css';
 import '../styles/Media.css';
-
+import ReactDOM from 'react-dom';
 
 var ParseQuestions = Parse.Object.extend('Questions');
     
@@ -41,6 +41,7 @@ var NewQuestion = React.createClass({
             questionTitles:[],
             answerTitles:[],
             profilesArray:[],
+            inputRefs:[],
             showModal:false,
             maxWidthTitle:0,
             selectState:0,
@@ -53,6 +54,7 @@ var NewQuestion = React.createClass({
     },
 
     componentDidMount() {
+
         var select = [];
         $('#app').find('.bootstrap-select').forEach(function(el){
             select.push(el);
@@ -60,6 +62,33 @@ var NewQuestion = React.createClass({
         console.log("SELECTS", select);  
 
         select.toggleClass('open', this.state.open);  
+
+        var  _this =this;
+        $('html').click(function () {
+            //console.log("inputRefs",_this.state);
+            _this.clearSelect();
+        });
+    },
+
+
+
+    clearSelect() {
+
+        return;
+
+     console.log("inputRefs",this.state.inputRefs);
+
+        this.state.inputRefs.forEach(function (ref, index) {
+
+            var select = $(ReactDOM.findDOMNode(ref)).find('div.bootstrap-select');
+
+            console.log("shoudl close",select);
+            select.toggleClass('open', false);
+
+        });
+
+
+>>>>>>> 6892d54f35d5c09dcf9a03b4b23e89f1593089dc
     },
 
     getAnswers() {
@@ -228,7 +257,7 @@ var NewQuestion = React.createClass({
 
             elem = <span key={index} className="question-text">
                     <span > {item.text}</span>         
-                    <ReactSelect className="selectpicker selectAnswer" 
+                    <ReactSelect ref={(c) => _this.state.inputRefs.push(c)} className="selectpicker selectAnswer"
                         hideDisabled="true"
                         title={_this.getCharacters(index)}
                         >
@@ -311,7 +340,7 @@ var NewQuestion = React.createClass({
         var totalPage = this.state.dataSource.length;
      
         //if (newPageNumber === totalPage) {
-        if (newPageNumber === 10) {
+        if (newPageNumber === 2) {
             this.goToLogin();
         } else {
             this.setState({  

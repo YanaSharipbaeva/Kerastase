@@ -30,9 +30,7 @@ var Header = React.createClass({
                     <div className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 logo-wrapper"> 
                         <a className="header-logo" target="_blank" href="http://www.kerastase.co.uk/"></a>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4 "> 
-                        <div className="user_icon pull-right"></div>
-                    </div>  
+                 
                 </div>
             </header>
         );
