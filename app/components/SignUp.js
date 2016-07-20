@@ -75,9 +75,13 @@ var SignUp = React.createClass({
 
         var questions = [];
 
+        console.log("questions are",this.state.questions);
+
+        console.log("answers are",this.state.answers);
+
         this.state.questions.forEach(function (question) {
 
-            questions.push(question.toPointer())
+            questions.push(question.toPointer());
 
         });
 
@@ -85,7 +89,7 @@ var SignUp = React.createClass({
 
         this.state.answers.forEach(function (answer) {
 
-            questions.push(answer.toPointer())
+            questions.push(answer.toPointer());
 
         });
 
@@ -109,7 +113,7 @@ var SignUp = React.createClass({
             (diagnostic) => {
                 console.log('Diagnostic Object was successfully saved');
             }, (error) => {
-                console.error('Error saving diagnostic');
+                console.error('Error saving diagnostic',error);
                 console.error(error);
             });
     },
