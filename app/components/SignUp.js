@@ -79,6 +79,8 @@ var SignUp = React.createClass({
 
         console.log("answers are",this.state.answers);
 
+
+
         this.state.questions.forEach(function (question) {
 
             questions.push(question.toPointer());
@@ -124,6 +126,8 @@ var SignUp = React.createClass({
         var query = new Parse.Query(Parse.User);
             
         query.equalTo('email', this.state.email);
+        console.log("check this user",user);
+
         query.first({
 
             success: function(user) {  
