@@ -28,10 +28,10 @@ var Start = React.createClass({
 
     render: function() {
         return (
-            <div className="wrapper">
+            <div className="wrapper row">
                 <Header />
-                <div className="start-wrapper">
-                    <div className="wrapper-info">
+                <div className="start-wrapper col-xs-12">
+                    <div className="wrapper-info ">
                         <h1  className="start-title">k-profile</h1>;
                         <div  onClick={this.nextPage} className="buttonStyles" >start your hair diagnosis</div>
                     </div>

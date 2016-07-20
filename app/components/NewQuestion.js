@@ -55,7 +55,16 @@ var NewQuestion = React.createClass({
     },
 
     componentDidMount() {
-
+       //  $(function(){
+       //      $(window).resize(function() {
+       //      alert( $(window).height() );
+       //      })
+       //  })
+       //  if ($('#app').height() < $(window).height()) {
+       //      $('#app').height('100%');
+       // } else {
+       //   $('#app').height('100%');
+       // }
         // var select = [];
         // $('#app').find('.bootstrap-select').forEach(function(el){
         //     select.push(el);
@@ -245,7 +254,8 @@ var NewQuestion = React.createClass({
     },
 
     getSentences() {
-       $('#app').removeClass('QCM-long');
+
+
         var _this = this;
         var obj = [];
         var elem;
@@ -365,7 +375,7 @@ var NewQuestion = React.createClass({
         var totalPage = this.state.dataSource.length;
      
         //if (newPageNumber === totalPage) {
-        if (newPageNumber === totalPage) {
+        if (newPageNumber === 10) {
             this.goToLogin();
         } else {
             this.setState({  

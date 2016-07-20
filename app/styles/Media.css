@@ -56,7 +56,17 @@
         margin: 0 auto;
         padding: 60px;
     }
+/*        #app{
+        height:auto;
+    }*/
 
+
+}
+
+@media (max-width: 768px) {
+/*        #app{
+        height:auto;
+    }*/
 }
 
 @media (max-width: 700px) {
@@ -126,6 +136,10 @@
 
     .top-wrapper {
         height: 23%!important;
+    }
+
+    .wrapper-info .buttonStyles {
+        width:360px!important;
     }
 }
 

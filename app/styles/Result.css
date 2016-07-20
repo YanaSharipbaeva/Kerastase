@@ -118,7 +118,7 @@
     text-align: center;
     font-family: 'TradeGothicLTLight';
     margin-bottom: 65px;
-    margin-top: 175px;
+    margin-top: 100px;
 }
 .wrapper-in-salon_ritual{
 /*    padding-top: 175px;
@@ -458,7 +458,6 @@ ul.info-text{
     width: 60%;
     height: 50px;
     margin-right: 20px;
-    border-radius: 4px;
     border: 1px solid #696969;
     box-sizing: border-box;
     padding-left: 10px;
@@ -478,10 +477,17 @@ ul.info-text{
     width: 20%;
     border: 0px;
     display: inline-block;
-    font-family: "InterstateLight";
-    color: #696969;
+    font-family: 'InterstateLight';
+    color: #000;
     font-size: 24px;
-    border-radius: 4px;
+    text-transform: uppercase;
+    background: #ccc; /* for non-css3 browsers */ 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dbdbdb', endColorstr='#dcdcdc'); /* для IE6-9 */
+    background: -webkit-linear-gradient(top, #dbdbdb, #dcdcdc); /* для webkit-браузеров */
+    background: -moz-linear-gradient(top,  #dbdbdb,  #dcdcdc); /* для firefox 3.6+ */ 
+    background: -o-linear-gradient(top,  #dbdbdb,  #dcdcdc); /* для Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #dbdbdb,  #dcdcdc); /* для IE10+, т.к. лично я пока не проверял нужен ли префикс */
+    background: linear-gradient(to bottom,  #dbdbdb,  #dcdcdc); /* W3C */
 }
 .product-wrapper-image{
     position: relative;
@@ -489,19 +495,15 @@ ul.info-text{
 
 .product-wrapper-image:after {
     display: block;
-    content:"+";
-    color:#e24b37;
-    font-size: 24px;
-    border-radius: 50%;
-    border: 2px solid #e24b37;
-    width: 30px;
-    height: 30px;
+    content:"";
+    background: url('../images/addProduct.png')no-repeat center;
+    width: 37px;
+    height: 37px;
     position: absolute;
     left:50%;
     margin-left: -15px;
     bottom: 0%;
     text-align: center;
     line-height: 29px;
-    background: #fff;
     pointer-events: none;
 }

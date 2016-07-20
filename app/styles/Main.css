@@ -126,6 +126,10 @@ body {
     display: inline-block;
     padding-left: 30px;
     box-sizing: border-box;
+    background: url('../images/restart_image_grey.png')no-repeat center;
+    width: 47px;
+    height: 43px;
+    margin-left: 15px;
 }
 
 .header-icon:hover {
@@ -220,7 +224,7 @@ body {
 }
 
 .wrapperPhrase {
-  height:100%;
+  height:auto;
 }
 
 .checkOption .checkbox:not(checked){

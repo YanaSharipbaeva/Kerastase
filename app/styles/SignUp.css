@@ -209,7 +209,7 @@
 
 .wrapperNext{
     padding-top: 45px;
-    margin-bottom: 40px;
+    padding-bottom: 40px!important;
 }
 
 .linkText {

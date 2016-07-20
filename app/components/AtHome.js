@@ -27,9 +27,6 @@ var AtHome = React.createClass({
     },
 
     getInitialState() {
-
-
-
         return {
             pageNumber: 2,
             result: [],
@@ -98,11 +95,7 @@ var AtHome = React.createClass({
 
     getProducts(){
 
-        if(this.state.products)
-        {
-
-
-
+        if(this.state.products){
 
         console.log("get products",this.state.products);
 
@@ -138,8 +131,8 @@ var AtHome = React.createClass({
                         <div className="product-wrapper">
                             <div className="product_title">{this.state.product.get("title")}</div>
                             <div className="product_text">{this.state.product.get("description")}</div>
-                            <a href="http://www.kerastase.co.uk/" target="_blank" className="product_link">Find your product in salon ></a>
-                            <a className="product_link">Shop now online ></a>
+                            <a href={this.state.product.get("url")} target="_blank" className="product_link">Find your product in salon ></a>
+                            <a  href="http://www.kerastase.co.uk/" target="_blank" className="product_link">Shop now online ></a>
                         </div>
                         <div className="image-wrapper">
                         <img  src={this.state.product.get("image").url()} className="product_image"></img></div></div>]
@@ -176,7 +169,7 @@ var AtHome = React.createClass({
                         <div className="info-block_wrapper">
                             <div className="info-image1"></div>
                             <div className="info-image2"></div>
-                            <a href="" className="salon_link"> > Shop Now</a>
+                            <a href="http://www.kerastase.co.uk/" target="_blank" className="salon_link"> > Shop Now</a>
                         </div>
                     </div>
    
