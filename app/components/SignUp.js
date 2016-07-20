@@ -29,11 +29,31 @@ var SignUp = React.createClass({
     },
 
      getInitialState: function () {
+         var mail="";
+         var name=";"
+         var surname="";
+         var country="UK";
+         var newsletter=true;
+
+         if(Parse.User.current())
+         {
+             var user=Parse.User.current();
+             var mail=user.getEmail();
+             var name = user.get("firstName");
+             var surname = user.get("lastName");
+             var country = user.get("country");
+             var newsletter = user.get("newsletter");
+
+         }
+
+
+
         return {
-            name: '',
-            country: '',
-            email:'',
-            newsletter: true,
+            name: name,
+            surname:surname,
+            country: country,
+            email:mail,
+            newsletter: newsletter,
             password: '<8mB3c,%^cu~72&3',
             questions:[],
             answers:[],
@@ -112,7 +132,7 @@ var SignUp = React.createClass({
 
 
         console.log("after saving to pointers");
-        var answers = this.state.answers;
+
         var questionTitles = this.state.questionTitles;
         var answerTitles = this.state.answerTitles;
         var profiles = this.state.profiles;
@@ -166,8 +186,8 @@ var SignUp = React.createClass({
                     newUser.signUp(null, {
                         success: function(newUser) {
                             console.log('Sign up is successful');
-                            _this.saveDiagnostic();
-                            _this.displayResult();
+
+
                         },
                         error: function(newUser, error) {
                             alert("Error: " + error.code + " " + error.message);
@@ -175,21 +195,24 @@ var SignUp = React.createClass({
                     });
                 } else {
                     // if user is exist, then log in
-                    Parse.User.logIn(user.get('username'), _this.state.password, {
-                        success: (user) => {
-                            user.set("name", _this.state.name);
-                            user.set("newsletter", _this.state.newsletter);
-                            user.save();
+                    //Parse.User.logIn(user.get('username'), _this.state.password, {
+                    //    success: (user) => {
+                    //        user.set("name", _this.state.name);
+                    //        user.set("newsletter", _this.state.newsletter);
+                    //        user.save();
+                    //
+                    //        this.saveDiagnostic();
+                    //
+                    //
+                    //    },
+                    //    error: (user, error) => {
+                    //        alert('Error ' + error.message);
+                    //        console.log(error);
+                    //    }
+                    //});
 
-                            this.saveDiagnostic();
+                    _this.saveDiagnostic();
 
-
-                        },
-                        error: (user, error) => {
-                            alert('Error ' + error.message);
-                            console.log(error);
-                        }
-                    });
                     console.log('success');
                 }
             },
@@ -395,6 +418,7 @@ var SignUp = React.createClass({
                     ]}
                             name='name'
                             ref='name'
+                            value={this.state.name}
                             type='text'/>
                   />
                     </div>
@@ -410,13 +434,14 @@ var SignUp = React.createClass({
                         }
                     ]}
                             name='surname'
+                            value={this.state.surname}
                             ref='surname'
                             type='text'/>
                     </div>
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">I live in</div>
 
-                        <Validation.Select value='UK' ref='country' validations={[{rule: 'isRequired'}]} name='country' className='signUp-input'>
+                        <Validation.Select value={this.state.country} ref='country' validations={[{rule: 'isRequired'}]} name='country' className='signUp-input'>
                             <option>UK</option>
                             <option>Germany</option>
                             <option>France</option>
@@ -433,6 +458,7 @@ var SignUp = React.createClass({
                             ]}
                             name='email'
                             type='text'
+                            value={this.state.email}
                             ref='email'
                       
                             />

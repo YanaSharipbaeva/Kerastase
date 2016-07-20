@@ -365,7 +365,7 @@ var NewQuestion = React.createClass({
         var totalPage = this.state.dataSource.length;
      
         //if (newPageNumber === totalPage) {
-        if (newPageNumber === 4) {
+        if (newPageNumber === totalPage) {
             this.goToLogin();
         } else {
             this.setState({  
