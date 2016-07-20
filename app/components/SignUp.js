@@ -73,7 +73,24 @@ var SignUp = React.createClass({
     saveDiagnostic() {
         var diagnostic = new ParseDiagnostic();
 
-        var questions = this.state.questions;
+        var questions = [];
+
+        this.state.questions.forEach(function (question) {
+
+            questions.push(question.toPointer())
+
+        });
+
+        var answers = [];
+
+        this.state.answers.forEach(function (answer) {
+
+            questions.push(answer.toPointer())
+
+        });
+
+
+
         var answers = this.state.answers;
         var questionTitles = this.state.questionTitles;
         var answerTitles = this.state.answerTitles;
@@ -141,7 +158,7 @@ var SignUp = React.createClass({
             },
             error: (error) => {
                 console.log(error);
-                consoel.log('error saving user');
+                console.log('error saving user');
             }
    
         });
