@@ -41,8 +41,7 @@ var InSalon = React.createClass({
         console.log("componentWillMount",this.props.location.state);
 
         var profile = this.props.location.state.profile;
-        var jsonProducts = this.props.location.state.products;
-        var products=[];
+
 
         if(profile instanceof Parse.Object==false){
 
@@ -50,20 +49,28 @@ var InSalon = React.createClass({
             profile =  Parse.Object.fromJSON(profile);
 
 
-
-            for (var k = 0; k < jsonProducts.length; k++) {
-
-                var product = jsonProducts[k];
-                product.className="Product";
-                products.push(Parse.Object.fromJSON(product))
-
-            }
-
         }
 
-
         this.state.profile = profile;
-        this.state.products = products;
+        var _this = this;
+        Parse.Object.fetchAllIfNeeded(profile.get("products"), {
+            success: function(list) {
+                console.log("success",list);
+
+                _this.setState({
+                    products: list
+                })
+
+
+            },
+            error: function(error) {
+                console.log("error",error);
+            },
+        });
+
+
+
+
     },
 
     dynanamicPagination(){

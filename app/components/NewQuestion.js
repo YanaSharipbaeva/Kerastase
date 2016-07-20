@@ -55,7 +55,7 @@ var NewQuestion = React.createClass({
     componentDidMount() {
         var  _this =this;
         $('html').click(function () {
-            console.log("inputRefs",_this.state);
+            //console.log("inputRefs",_this.state);
             _this.clearSelect();
         });
     },
@@ -63,6 +63,8 @@ var NewQuestion = React.createClass({
 
 
     clearSelect() {
+
+        return;
 
      console.log("inputRefs",this.state.inputRefs);
 
@@ -327,7 +329,7 @@ var NewQuestion = React.createClass({
         var totalPage = this.state.dataSource.length;
      
         //if (newPageNumber === totalPage) {
-        if (newPageNumber === 10) {
+        if (newPageNumber === 2) {
             this.goToLogin();
         } else {
             this.setState({  

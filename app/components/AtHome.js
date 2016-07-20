@@ -46,17 +46,6 @@ var AtHome = React.createClass({
         $('#app').addClass('QCM-long');
 
         var profile = this.props.location.state.profile;
-        var jsonProducts = this.props.location.state.products;
-        var products=[];
-
-
-
-        this.state.profile = profile;
-        //this.state.products = jsonProducts;
-
-        console.log("this profile",this.state.profile);
-        console.log("this product",this.state.products);
-
 
 
         if(profile instanceof Parse.Object==false){
@@ -65,29 +54,24 @@ var AtHome = React.createClass({
             profile =  Parse.Object.fromJSON(profile);
 
 
-
-            for (var k = 0; k < jsonProducts.length; k++) {
-
-                var product = jsonProducts[k];
-                product.className="Product"
-                products.push(Parse.Object.fromJSON(product))
-
-            }
-
-            console.log("created products",products);
         }
 
-        console.log("PRofile and Products",profile, products);
+        this.state.profile = profile;
+        var _this = this;
+        Parse.Object.fetchAllIfNeeded(profile.get("products"), {
+            success: function(list) {
+                console.log("success",list);
 
-        if(products.length==0)
-        products=jsonProducts;
+                _this.setState({
+                    products: list
+                })
 
-        this.setState({
-            products:products,
-            profile:profile,
+
+            },
+            error: function(error) {
+                console.log("error",error);
+            },
         });
-
-
 
     },
 
@@ -114,6 +98,12 @@ var AtHome = React.createClass({
 
     getProducts(){
 
+        if(this.state.products)
+        {
+
+
+
+
         console.log("get products",this.state.products);
 
         var imageUrl =  [];
@@ -134,6 +124,8 @@ var AtHome = React.createClass({
 
 
         return imageUrl;
+
+        }
     },
 
     showProductInfo(e){
