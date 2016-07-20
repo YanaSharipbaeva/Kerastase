@@ -375,7 +375,7 @@ var NewQuestion = React.createClass({
         var totalPage = this.state.dataSource.length;
      
         //if (newPageNumber === totalPage) {
-        if (newPageNumber === 10) {
+        if (newPageNumber === totalPage) {
             this.goToLogin();
         } else {
             this.setState({  
@@ -499,12 +499,19 @@ var NewQuestion = React.createClass({
                 <div className="wrapperPhrase">
                     <Header />
                         <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
                     <div  className="question-wrapper">
                         <div  className="question-text_wrapper row" >
                             {this.getQCMOrSentences()}     
                         </div>
                     </div>
-
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
                     <div className="wrapperNext">
                         <div className="linkText">Next</div>
                         <div className="linkArrow"  onClick={this.nextPage}>
