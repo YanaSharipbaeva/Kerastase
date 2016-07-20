@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
 import { Modal } from 'react-bootstrap';
+import ReactDOM from 'react-dom';
 
 import Header from './Header';
 import TitleComponent from './TitleComponent';
@@ -42,7 +43,7 @@ var NewQuestion = React.createClass({
             profilesArray:[],
             showModal:false,
             maxWidthTitle:0,
-            selectState:"false",
+            selectState:0,
             checkboxState:"false"
         };
     },
@@ -52,7 +53,13 @@ var NewQuestion = React.createClass({
     },
 
     componentDidMount() {
-  
+        var select = [];
+        $('#app').find('.bootstrap-select').forEach(function(el){
+            select.push(el);
+        });
+        console.log("SELECTS", select);  
+
+        select.toggleClass('open', this.state.open);  
     },
 
     getAnswers() {
@@ -295,7 +302,7 @@ var NewQuestion = React.createClass({
         // $('.radio').removeAttr('checked');
 
         this.setState({  
-            selectState:"true",
+            selectState: this.state.selectState + 1,
             checkboxState:"true"
         });
 
@@ -444,8 +451,6 @@ var NewQuestion = React.createClass({
                         <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
                         <p className="customersText">You have not answered some questions. Please, answer all questions and try again</p>
                     </Modal.Body>
-
-                    
                     </Modal>
                 </div>
             );
