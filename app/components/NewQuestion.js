@@ -313,7 +313,35 @@ var NewQuestion = React.createClass({
     nextPage() {
         var pageObject = this.state.dataSource[this.state.pageNumber];
 
+        var shouldValidate = true;
+
+
         if (this.isQCM() === false) {
+
+            var selected = $('li.selected').not(".hidden");
+            var numberOfQuestions = this.state.dataSource[this.state.pageNumber].length;
+            console.log("numberOfQuestions", numberOfQuestions, "li.selected", selected.length);
+            if(selected.length<numberOfQuestions)
+                shouldValidate=false;
+        }
+        else{
+            var checkedAnswer = $( "input:checked" );
+            console.log("checkedAnswer.length",checkedAnswer.length)
+            if(checkedAnswer.length==0){
+                shouldValidate=false;
+            }
+        }
+
+        console.log("validation result",shouldValidate);
+
+        if(shouldValidate==false){
+
+            this.openModal();
+            return;
+
+        }
+
+            if (this.isQCM() === false) {
             this.getSelectedAnswers();
         } else {
             this.getCheckedAnswers();
@@ -335,7 +363,7 @@ var NewQuestion = React.createClass({
         var totalPage = this.state.dataSource.length;
      
         //if (newPageNumber === totalPage) {
-        if (newPageNumber === 2) {
+        if (newPageNumber === 4) {
             this.goToLogin();
         } else {
             this.setState({  
@@ -358,9 +386,10 @@ var NewQuestion = React.createClass({
 
     },
 
-    getCheckedAnswers(){  
+
+    getCheckedAnswers(){
         var checkedAnswer = $( "input:checked" )[0];
-        console.log(checkedAnswer);
+        console.log("----111---",checkedAnswer);
         // if (checkedAnswer === undefined){
         //     this.openModal();
         // } else {

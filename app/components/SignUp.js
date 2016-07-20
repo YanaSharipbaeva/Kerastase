@@ -71,6 +71,8 @@ var SignUp = React.createClass({
     },
 
     saveDiagnostic() {
+
+        console.log("saving diagnostic");
         var diagnostic = new ParseDiagnostic();
 
         var questions = [];
@@ -79,22 +81,37 @@ var SignUp = React.createClass({
 
         console.log("answers are",this.state.answers);
 
-        this.state.questions.forEach(function (question) {
 
+
+        this.state.questions.forEach(function (question) {
+            if(question instanceof Parse.Object==false){
+                question.className = "Question";
+                question =  Parse.Object.fromJSON(question);
+            }
             questions.push(question.toPointer());
+
+
+
+
 
         });
 
         var answers = [];
 
         this.state.answers.forEach(function (answer) {
+            if(answer instanceof Parse.Object==false){
 
-            questions.push(answer.toPointer());
+                answer.className = "Answer";
+                answer =  Parse.Object.fromJSON(answer);
+
+
+            }
+            answers.push(answer.toPointer());
 
         });
 
 
-
+        console.log("after saving to pointers");
         var answers = this.state.answers;
         var questionTitles = this.state.questionTitles;
         var answerTitles = this.state.answerTitles;
@@ -109,9 +126,13 @@ var SignUp = React.createClass({
         diagnostic.set('type', 'consumer');
         diagnostic.set('user', Parse.User.current());
 
+        console.log("before saving remote diagnostic",diagnostic);
+
+        var _this = this;
         diagnostic.save(null).then(
             (diagnostic) => {
                 console.log('Diagnostic Object was successfully saved');
+                _this.displayResult();
             }, (error) => {
                 console.error('Error saving diagnostic',error);
                 console.error(error);
@@ -119,11 +140,15 @@ var SignUp = React.createClass({
     },
 
     signUp: function (e) {
+
+        console.log("signup");
         e.preventDefault();
         var _this = this;
         var query = new Parse.Query(Parse.User);
             
         query.equalTo('email', this.state.email);
+        console.log("check this mail",this.state.email);
+
         query.first({
 
             success: function(user) {  
@@ -131,14 +156,18 @@ var SignUp = React.createClass({
                 if (user === undefined) {
                     var newUser = new Parse.User();
                     newUser.set("username", _this.state.email);
-                    newUser.set("name", _this.state.name);
+                    newUser.set("firstName", _this.state.name);
+                    newUser.set("lastName", _this.state.surname);
                     newUser.set("newsletter", _this.state.newsletter);
                     newUser.set("email", _this.state.email);
+                    newUser.set("country", _this.state.country);
                     newUser.set("password", _this.state.password);
                     console.log("NEW USER", newUser);
                     newUser.signUp(null, {
                         success: function(newUser) {
                             console.log('Sign up is successful');
+                            _this.saveDiagnostic();
+                            _this.displayResult();
                         },
                         error: function(newUser, error) {
                             alert("Error: " + error.code + " " + error.message);
@@ -151,6 +180,10 @@ var SignUp = React.createClass({
                             user.set("name", _this.state.name);
                             user.set("newsletter", _this.state.newsletter);
                             user.save();
+
+                            this.saveDiagnostic();
+
+
                         },
                         error: (user, error) => {
                             alert('Error ' + error.message);
@@ -174,6 +207,23 @@ var SignUp = React.createClass({
         var nativeProfiles = {};
         data.answers.forEach(function (answer, index) {
             var question = data.questions[index];
+
+            console.log("question is ",question);
+
+
+            if(question instanceof Parse.Object==false){
+                question.className = "Question";
+                question =  Parse.Object.fromJSON(question);
+            }
+
+            if(answer instanceof Parse.Object==false){
+
+                answer.className = "Answer";
+                answer =  Parse.Object.fromJSON(answer);
+
+
+            }
+
 
             if (question.get('category') === "DIAG") {
                 var ponderation = question.get('ponderation');
@@ -247,9 +297,19 @@ var SignUp = React.createClass({
         });
 
 
-
             console.log('STATS', data.answers);
-            profiles.push(data.answers[0].get('profiles')[0]);
+
+            var _answer = data.answers[0];
+
+        if(_answer instanceof Parse.Object==false){
+
+            _answer.className = "Answer";
+            _answer =  Parse.Object.fromJSON(_answer);
+
+
+        }
+            profiles.push(_answer.get('profiles')[0]);
+
 
 
             console.log('PROFILES', profiles);
@@ -282,9 +342,14 @@ var SignUp = React.createClass({
     submitAndDisplay: function(event) {
         event.preventDefault();
    
-        if (this.refs.form._validations.email) {
-            this.saveDiagnostic();
-            this.displayResult();
+        if (this.refs.form._validations.email&&this.refs.form._validations.name&&this.refs.form._validations.surname) {
+            this.state.email=this.refs.email.getElement().value;
+            this.state.name=this.refs.name.getElement().value;
+            this.state.surname=this.refs.surname.getElement().value;
+            this.state.country=this.refs.country.getElement().value;
+            this.state.newsletter=this.refs.newsletter.checked;
+            console.log("inspecting state",this.state);
+            this.signUp(event);
             console.log(this.state);
         } else {
             this.openModal();
@@ -320,19 +385,42 @@ var SignUp = React.createClass({
                 <div className="question-text_wrapper question-wrapper signUp-wrapper">
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">My name is</div>
-                        <input type="text" className="signUp-input" />
+                        <Validation.Input
+
+                            className='signUp-input'
+                            validations={[
+                        {
+                            rule: 'isRequired'
+                        }
+                    ]}
+                            name='name'
+                            ref='name'
+                            type='text'/>
+                  />
                     </div>
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">My surname is</div>
-                        <input type="text" className="signUp-input" />
+
+                        <Validation.Input
+
+                            className='signUp-input'
+                            validations={[
+                        {
+                            rule: 'isRequired'
+                        }
+                    ]}
+                            name='surname'
+                            ref='surname'
+                            type='text'/>
                     </div>
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">I live in</div>
-                        <ReactSelect className="signUp-input" id="signUp-input" ref="select">
+
+                        <Validation.Select value='UK' ref='country' validations={[{rule: 'isRequired'}]} name='country' className='signUp-input'>
                             <option>UK</option>
                             <option>Germany</option>
                             <option>France</option>
-                        </ReactSelect>
+                        </Validation.Select>
                     </div>
                     <div className="signUp-input_wrapper last">
                         <div className="signUp-input_text email_title">My email is</div>
@@ -345,14 +433,17 @@ var SignUp = React.createClass({
                             ]}
                             name='email'
                             type='text'
+                            ref='email'
                       
                             />
                     </div>
                     <div className="checkbox-wrapper">
-                        <input  type="checkbox" 
-                                className="checkbox" 
+
+                        <input  type="checkbox"
+                                className="checkbox"
                                 id="userNewsletter"
-                                ref="complete"
+
+                                ref='newsletter'
                                 />
                         <label  className="checkboxSignUp" 
                                 onClick={this.OnNewsletter}
@@ -369,7 +460,7 @@ var SignUp = React.createClass({
                 <Modal show={this.state.showModal} className="signUp" sign-up-modal onHide={this.closeModal}>
                     <Modal.Body >
                         <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
-                        <p className="customersText">Please, enter correct email address</p>
+                        <p className="customersText">Please, enter correctly all information to continue</p>
                     </Modal.Body>
                 </Modal>
             </div>
