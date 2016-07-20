@@ -113,20 +113,24 @@ var Profile = React.createClass({
     render: function() {
         console.log(this.state);
         return (
-            <div className="wrapper-result">
-                <Header />
-                <div className="profile-text-wrapper">
-                    <div className="result-title">result</div>
-                    <div className="result-title result-title_value">k-profile</div>
-                    <div className="result-title result-text">you are in</div>
-                    <div className="result-title result-text_red">{this.state.profile.get("profileBenefit")}</div>
-                    <div className=" result-text_thin">{this.state.profile.get("profileDescription")}</div>
-                    <div className="wrapper-counter">
-                        {this.dynanamicPagination()}
-                    </div>
-                    <div className="wrapperNext">
-                        <div className="linkText">in-salon ritual</div>
-                        <div className="linkArrow"  onClick={this.nextPage}></div>
+            <div className="wrapper-result container">
+                <div className="row">
+                    <Header />
+                </div>
+                <div className="row">
+                    <div className="profile-text-wrapper col-xs-12 .col-sm-12 .col-md-12 .col-lg-12 .col-xl-12">
+                        <div className="result-title">result</div>
+                        <div className="result-title result-title_value">k-profile</div>
+                        <div className="result-title result-text">you are in</div>
+                        <div className="result-title result-text_red">{this.state.profile.get("profileBenefit")}</div>
+                        <div className=" result-text_thin">{this.state.profile.get("profileDescription")}</div>
+                        <div className="wrapper-counter">
+                            {this.dynanamicPagination()}
+                        </div>
+                        <div className="wrapperNext">
+                            <div className="linkText">in-salon ritual</div>
+                            <div className="linkArrow"  onClick={this.nextPage}></div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,8 @@ import { render } from 'react-dom';
 import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { Link } from 'react-router';
+import { Modal } from 'react-bootstrap';
+
 import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
@@ -54,15 +56,15 @@ var ShareDiagnosis = React.createClass({
 
     },
 
-
     shareEmail(){
+        console.log('share');
 
        var ids = ["wPa2OeiE7h","KzVaAYDa4T","bW9JNDKImY"];
 
 
         var params = {"profiles":this.state.profiles,  "userEmail" : "john@gmail.com"}
 
-
+        console.log('PARAMS', params)
 
         Parse.Cloud.run('sendEmailToUser', params, {
             success: function(result) {
@@ -70,11 +72,33 @@ var ShareDiagnosis = React.createClass({
                 console.log("sendEmailToUser")
             },
             error: function(error) {
+                console.log(error)
             }
         });
-
+        this.closeModal();
     },
 
+    openModal () {
+        this.setState({
+            showModal: true
+        });
+    },
+
+    closeModal () {
+        this.setState({
+            showModal: false
+        });
+    },
+
+    sendEmail () {
+        console.log();
+        var currentUser = Parse.User.current();
+        if (currentUser) {
+        console.log('do stuff with the user');
+        } else {
+            this.openModal();
+        }
+    },
 
     render: function() {
         return (
@@ -82,7 +106,7 @@ var ShareDiagnosis = React.createClass({
                 <Header /> 
                 <div className="info-block_title">Receive by email</div>
                 <div className="result4-text_info result5-text_info">Keep your personal routine recommendation handy by saving it in your inbox.</div>
-                <div className="result-send">Send </div>
+                <div onClick={this.sendEmail} className="result-send">Send </div>
                 <div className="connect-title">connect with us</div>
                 <div className="social-wrapper">
                     <a href="http://instagram.com/kerastaseuk" target="_blank" className="social-link_big fa fa-instagram" aria-hidden="true">
@@ -108,6 +132,17 @@ var ShareDiagnosis = React.createClass({
                 <div className="wrapper-counter">
                     {this.dynanamicPagination()}
                 </div>
+                <Modal show={this.state.showModal} onHide={this.closeModal} className="modalShareDiagnostics">
+
+                    <Modal.Body>
+                        <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
+                        <div className="confirm-modal">
+                            <div className="customersText"> Please, write down your email address, and press the confirm button</div>
+                            <input className="email-field" type="text" placeholder="Enter your email"></input>
+                            <button className="confirmButton" onClick={this.shareEmail}>Save</button>
+                        </div>
+                    </Modal.Body> 
+                </Modal>
             </div>
         );
     }

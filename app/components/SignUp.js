@@ -135,7 +135,7 @@ var SignUp = React.createClass({
                     newUser.set("newsletter", _this.state.newsletter);
                     newUser.set("email", _this.state.email);
                     newUser.set("password", _this.state.password);
-                    console.log(newUser);
+                    console.log("NEW USER", newUser);
                     newUser.signUp(null, {
                         success: function(newUser) {
                             console.log('Sign up is successful');
@@ -151,8 +151,6 @@ var SignUp = React.createClass({
                             user.set("name", _this.state.name);
                             user.set("newsletter", _this.state.newsletter);
                             user.save();
-
-
                         },
                         error: (user, error) => {
                             alert('Error ' + error.message);
