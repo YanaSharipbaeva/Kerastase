@@ -59,20 +59,20 @@ var ShareDiagnosis = React.createClass({
     shareEmail(){
         console.log('share');
 
-       var ids = ["wPa2OeiE7h","KzVaAYDa4T","bW9JNDKImY"];
+        //var ids = ["wPa2OeiE7h","KzVaAYDa4T","bW9JNDKImY"];
 
 
-        var params = {"profiles":this.state.profiles,  "userEmail" : "john@gmail.com"}
+        var params = {"profiles":[this.state.profile.objectId],  "userEmail" : "john@gmail.com"}
 
         console.log('PARAMS', params)
 
         Parse.Cloud.run('sendEmailToUser', params, {
             success: function(result) {
 
-                console.log("sendEmailToUser")
+                console.log("sendEmailToUser succes");
             },
             error: function(error) {
-                console.log(error)
+                console.log("sendEmailToUser",error)
             }
         });
         this.closeModal();
