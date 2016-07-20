@@ -187,7 +187,7 @@ var AtHome = React.createClass({
                         </div>
 
                     </div>
-                    <div className="products col-lg-5 col-md-12 col-xl-5">
+                    <div className="products col-lg-5 col-sm-12 col-md-12 col-xl-5">
                         <div className="wrapper-products-block row">
                             {this.getProducts()}   
                         </div>

@@ -340,6 +340,7 @@ ul.info-text{
     width: 100%;
     margin: 0 auto;
     display: block;
+    cursor: pointer;
 }
 
 
@@ -486,7 +487,7 @@ ul.info-text{
     position: relative;
 }
 
-.product-wrapper-image:before {
+.product-wrapper-image:after {
     display: block;
     content:"+";
     color:#e24b37;
@@ -498,7 +499,7 @@ ul.info-text{
     position: absolute;
     left:50%;
     margin-left: -15px;
-    top:0px;
+    bottom: 0%;
     text-align: center;
     line-height: 29px;
     background: #fff;

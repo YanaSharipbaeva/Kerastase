@@ -6,6 +6,7 @@ import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
 import { Modal } from 'react-bootstrap';
 import ReactDOM from 'react-dom';
+import Select from 'react-select';
 
 import Header from './Header';
 import TitleComponent from './TitleComponent';
@@ -55,19 +56,19 @@ var NewQuestion = React.createClass({
 
     componentDidMount() {
 
-        var select = [];
-        $('#app').find('.bootstrap-select').forEach(function(el){
-            select.push(el);
-        });
-        console.log("SELECTS", select);  
+        // var select = [];
+        // $('#app').find('.bootstrap-select').forEach(function(el){
+        //     select.push(el);
+        // });
+        // console.log("SELECTS", select);  
 
-        select.toggleClass('open', this.state.open);  
+        // select.toggleClass('open', this.state.open);  
 
-        var  _this =this;
-        $('html').click(function () {
-            //console.log("inputRefs",_this.state);
-            _this.clearSelect();
-        });
+        // var  _this =this;
+        // $('html').click(function () {
+        //     //console.log("inputRefs",_this.state);
+        //     _this.clearSelect();
+        // });
     },
 
 
@@ -253,7 +254,8 @@ var NewQuestion = React.createClass({
         data.forEach(function(item, index) { 
 
             elem = <span key={index} className="question-text">
-                    <span > {item.text}</span>         
+                    <span > {item.text}</span> 
+        
                     <ReactSelect ref={(c) => _this.state.inputRefs.push(c)} className="selectpicker selectAnswer"
                         hideDisabled="true"
                         title={_this.getCharacters(index)}
@@ -474,6 +476,11 @@ var NewQuestion = React.createClass({
 
     render: function() {
         var text = 'tell us about yourself';
+
+        var options = [
+         { value: 'one', label: 'One' },
+            { value: 'two', label: 'Two', clearableValue: false }
+        ];
 
         if (this.state.dataSource.length === 0) {
             return null

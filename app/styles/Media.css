@@ -9,12 +9,19 @@
     .products {
      position:static!important;
     }
+    .products img {
+        margin-top: 30px!important;
+        width: 60%!important;
+    }
+
+    .product-wrapper-image:before {
+        top: 30px!important;
+    }
 }
 
 @media (max-width: 980px) {
      .products {
-        width: 60%!important;
-        margin-top: 30px!important;
+       
         position:static!important;
     }
 }

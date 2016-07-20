@@ -87,7 +87,7 @@ var StoreLocator = React.createClass({
                             <a href="https://facebook.com" className="fa fa-facebook" aria-hidden="true"></a>
                         </div>
                     </div> 
-                    <div className="restart_profile">Restart K profile</div> 
+                    <Link to="/start" className="restart_profile">Restart K profile</Link> 
                 </div>
                 <div className="wrapper-counter">
                     {this.dynanamicPagination()}
