@@ -57,13 +57,14 @@ var ShareDiagnosis = React.createClass({
     },
 
     shareEmail(){
+        console.log('share');
 
        var ids = ["wPa2OeiE7h","KzVaAYDa4T","bW9JNDKImY"];
 
 
         var params = {"profiles":this.state.profiles,  "userEmail" : "john@gmail.com"}
 
-
+        console.log('PARAMS', params)
 
         Parse.Cloud.run('sendEmailToUser', params, {
             success: function(result) {
@@ -71,9 +72,10 @@ var ShareDiagnosis = React.createClass({
                 console.log("sendEmailToUser")
             },
             error: function(error) {
+                console.log(error)
             }
         });
-
+        this.closeModal();
     },
 
     openModal () {
@@ -137,7 +139,7 @@ var ShareDiagnosis = React.createClass({
                         <div className="confirm-modal">
                             <div className="customersText"> Please, write down your email address, and press the confirm button</div>
                             <input className="email-field" type="text" placeholder="Enter your email"></input>
-                            <button className="confirmButton">save</button>
+                            <button className="confirmButton" onClick={this.shareEmail}>Save</button>
                         </div>
                     </Modal.Body> 
                 </Modal>

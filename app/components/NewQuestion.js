@@ -19,7 +19,7 @@ import '../styles/Question.css';
 import '../styles/Checkbox.css';
 import '../styles/Main.css';
 import '../styles/Media.css';
-import ReactDOM from 'react-dom';
+
 
 var ParseQuestions = Parse.Object.extend('Questions');
     
@@ -88,7 +88,6 @@ var NewQuestion = React.createClass({
         });
 
 
->>>>>>> 6892d54f35d5c09dcf9a03b4b23e89f1593089dc
     },
 
     getAnswers() {
