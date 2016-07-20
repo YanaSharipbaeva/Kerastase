@@ -32,6 +32,7 @@ var InSalon = React.createClass({
         return {
             pageNumber: 1,
             result: []
+
         };
     },
 
@@ -43,12 +44,10 @@ var InSalon = React.createClass({
         var profile = this.props.location.state.profile;
 
 
-        if(profile instanceof Parse.Object==false){
+        if (profile instanceof Parse.Object==false){
 
             profile.className = "Profile";
             profile =  Parse.Object.fromJSON(profile);
-
-
         }
 
         this.state.profile = profile;
@@ -67,11 +66,11 @@ var InSalon = React.createClass({
                 console.log("error",error);
             },
         });
-
-
-
-
     },
+
+    componentDidMount() {
+
+    },  
 
     dynanamicPagination(){
         var pagination = [];
@@ -95,11 +94,11 @@ var InSalon = React.createClass({
 
     render: function() {
         return (
-            <div className="wrapper-in-salon_ritual result2">
+            <div className="wrapper-in-salon_ritual result2 container">
                 <Header />
                 <div className="info-block_title">in-salon ritual</div>
-                <div className="main-in-salon-wrapper">
-                    <div className="info-block image-block">
+                <div className="main-in-salon-wrapper row">
+                    <div className="info-block image-block col-xs-2 .col-sm-2 .col-md-2 .col-lg-2 .col-xl-2">
                         <div className="info-block_wrapper">
                             <div className="info-image1"></div>
                             <div className="info-image2"></div>
@@ -107,7 +106,7 @@ var InSalon = React.createClass({
                             
                         </div>
                     </div>
-                    <div className="info-block text_block">
+                    <div className="info-block text_block col-xs-10 .col-sm-10 .col-md-10 .col-lg-10 .col-xl-10">
                          <div className="text_wrapper">
                             <p className="result-title info-text_title">{this.state.profile.get("prescriptionServices")}</p>
                             <div className="description-wrapper">

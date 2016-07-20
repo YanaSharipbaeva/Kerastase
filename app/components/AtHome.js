@@ -117,8 +117,8 @@ var AtHome = React.createClass({
             console.log("image ",image);
             if (image) {
 
-                imageUrl.push(<img data-image={y} onClick={this.openModal} key={y}
-                    src={image.url()}></img>);
+                imageUrl.push(<div className="product-wrapper-image col-sm-4 col-md-4 col-lg-4 "><img className="image" data-image={y} onClick={this.openModal} key={y}
+                    src={image.url()}></img></div>);
             }
         }
 
@@ -168,11 +168,11 @@ var AtHome = React.createClass({
 
     render: function() {  
         return (
-            <div className="wrapper-in-salon_ritual result3">
+            <div className="wrapper-in-salon_ritual result3 container">
                 <Header />
                 <div className="info-block_title">AT-Home PROGRAM</div>
-                <div className="at-home-wrapper">
-                    <div className="info-block image-block  ">
+                <div className="at-home-wrapper row">
+                    <div className="info-block image-block col-sm-10 col-md-2 col-lg-2 col-xl-2 ">
                         <div className="info-block_wrapper">
                             <div className="info-image1"></div>
                             <div className="info-image2"></div>
@@ -180,15 +180,17 @@ var AtHome = React.createClass({
                         </div>
                     </div>
    
-                    <div className="info-block text_block">
+                    <div className="info-block text_block col-md-12 col-lg-5 col-xl-5">
                         <div className="text_wrapper  ">
                             <p className="result-title info-text_title">{this.state.profile.get("prescriptionAtHome")}</p>
                             <p className="info-text">{this.state.profile.get("descriptionAtHome")}</p>
                         </div>
 
                     </div>
-                    <div className="products">
-                        {this.getProducts()}   
+                    <div className="products col-lg-5 col-md-12 col-xl-5">
+                        <div className="wrapper-products-block row">
+                            {this.getProducts()}   
+                        </div>
                     </div>
                 </div>
                 <div>

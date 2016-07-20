@@ -232,8 +232,6 @@ var NewQuestion = React.createClass({
 
         });
 
-
-
         console.log("max width :",maxWidthTitle);
 
         for (var m = 0; m < maxWidthTitle; m++) {
@@ -276,7 +274,6 @@ var NewQuestion = React.createClass({
     },
 
     getQCM () {
-
         var pageNumber = this.state.pageNumber;
         if (pageNumber === 10 || pageNumber === 7 || pageNumber === 9) {
             $('#app').addClass('QCM-long');
@@ -314,7 +311,6 @@ var NewQuestion = React.createClass({
     // },
 
     nextPage() {
-
         var pageObject = this.state.dataSource[this.state.pageNumber];
 
         if (this.isQCM() === false) {
@@ -363,7 +359,6 @@ var NewQuestion = React.createClass({
     },
 
     getCheckedAnswers(){  
-
         var checkedAnswer = $( "input:checked" )[0];
         console.log(checkedAnswer);
         // if (checkedAnswer === undefined){

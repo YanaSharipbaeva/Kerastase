@@ -28,11 +28,10 @@ var ShareDiagnosis = React.createClass({
     },
 
     getInitialState() {
-
-
         return {
             pageNumber: 4,
-            result: []
+            result: [],
+            email:''
         };
     },
 
@@ -91,13 +90,18 @@ var ShareDiagnosis = React.createClass({
     },
 
     sendEmail () {
-        console.log();
-        var currentUser = Parse.User.current();
-        if (currentUser) {
-        console.log('do stuff with the user');
-        } else {
-            this.openModal();
-        }
+        console.log("USER", Parse.User.current());
+        // var currentUser = Parse.User.current();
+        // console.log(this.state.email)
+        // if (currentUser) {
+        // console.log('do stuff with the user');
+        // } else {
+        //     this.openModal();
+        // }
+    },
+
+    getEmail (e){
+        this.state.email = e.target.value;
     },
 
     render: function() {
@@ -138,7 +142,7 @@ var ShareDiagnosis = React.createClass({
                         <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
                         <div className="confirm-modal">
                             <div className="customersText"> Please, write down your email address, and press the confirm button</div>
-                            <input className="email-field" type="text" placeholder="Enter your email"></input>
+                            <input className="email-field" onChange={this.getEmail} type="text" placeholder="Enter your email"></input>
                             <button className="confirmButton" onClick={this.shareEmail}>Save</button>
                         </div>
                     </Modal.Body> 

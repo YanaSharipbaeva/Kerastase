@@ -350,4 +350,14 @@ body {
   padding:0px;
 }
 
+.small {
+  display: none;
+}
+
+.products{
+    vertical-align: bottom;
+    position: absolute;
+    bottom: -40px;
+  }
+
 
