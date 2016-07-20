@@ -28,7 +28,15 @@ var ShareDiagnosis = React.createClass({
     },
 
     getInitialState() {
+        var mail=null;
+        var user=Parse.User.current();
+
+        if(user) {
+            mail = user.getEmail();
+        }
+
         return {
+            mail:mail,
             pageNumber: 4,
             result: [],
             email:''
@@ -43,7 +51,7 @@ var ShareDiagnosis = React.createClass({
         this.state.products = this.props.location.state.products;
         console.log("PRODUCTS" , this.state.products);
 
-        this.shareEmail();
+        //this.shareEmail();
     },
 
     dynanamicPagination(){
@@ -61,7 +69,8 @@ var ShareDiagnosis = React.createClass({
         //var ids = ["wPa2OeiE7h","KzVaAYDa4T","bW9JNDKImY"];
 
 
-        var params = {"profiles":[this.state.profile.objectId],  "userEmail" : "john@gmail.com"}
+        var params = {"profiles":[this.state.profile.objectId],  "userEmail" :this.state.email};
+
 
         console.log('PARAMS', params)
 
@@ -91,13 +100,15 @@ var ShareDiagnosis = React.createClass({
 
     sendEmail () {
         console.log("USER", Parse.User.current());
-        // var currentUser = Parse.User.current();
-        // console.log(this.state.email)
-        // if (currentUser) {
-        // console.log('do stuff with the user');
-        // } else {
-        //     this.openModal();
-        // }
+         var currentUser = Parse.User.current();
+         console.log(this.state.email)
+         if (currentUser) {
+             this.state.email=currentUser.getEmail();
+         console.log('do stuff with the user',currentUser.getEmail());
+             this.shareEmail()
+         } else {
+             this.openModal();
+         }
     },
 
     getEmail (e){
