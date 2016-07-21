@@ -21,9 +21,10 @@
     border-bottom: 1px solid #e3e3e3;
     padding-left: 10px!important;
     padding-right: 10px!important;
-
+    white-space: nowrap;
     height: 46px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .Dropdown-control {

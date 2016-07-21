@@ -202,9 +202,10 @@ var NewQuestion = React.createClass({
 
     },
 
-    onSelect() {
-        console.log("on select");
-
+    onSelect(e) {
+        var el = e.target;
+        console.log('element', e);
+        // $(el).addClass('chosenOption');
     },
 
     getSentences() {
@@ -227,9 +228,6 @@ var NewQuestion = React.createClass({
             });
 
         });
-
-
-
 
         data.forEach(function(item, index) {
 
