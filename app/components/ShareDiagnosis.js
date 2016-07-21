@@ -146,7 +146,7 @@ var ShareDiagnosis = React.createClass({
                 <div className="wrapper-counter">
                     {this.dynanamicPagination()}
                 </div>
-                <Modal show={this.state.showModal} onHide={this.closeModal} className="modalShareDiagnostics">
+                <Modal show={this.state.showModal} className="modalShareDiagnostics">
 
                     <Modal.Body>
                         <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>

@@ -254,6 +254,13 @@ var NewQuestion = React.createClass({
     },
 
     getSentences() {
+        var scrollHeight = Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+);
+
+alert( 'Высота с учетом прокрутки: ' + scrollHeight );
 
 
         var _this = this;
@@ -282,7 +289,7 @@ var NewQuestion = React.createClass({
 
         data.forEach(function(item, index) { 
 
-            elem = <div key={index} className="row answers">
+            elem = <div key={index} className="row">
                     <div className="answer-text"> {item.text}</div>
                 <div> {item.text}</div>
 
@@ -303,9 +310,6 @@ var NewQuestion = React.createClass({
 
     getQCM () {
         var pageNumber = this.state.pageNumber;
-        // if (pageNumber === 10 || pageNumber === 7 || pageNumber === 9) {
-            // $('#app').addClass('QCM-long');
-        // }
 
         $(".radio").attr('checked', false);
         var element;
@@ -516,7 +520,7 @@ var NewQuestion = React.createClass({
                     <Header />
                     <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
 
-                    <div  className="question-wrapper container">
+                    <div  className="question-wrapper">
                         <div  className="question-text_wrapper row" >
                             {this.getQCMOrSentences()}     
                         </div>
@@ -530,7 +534,7 @@ var NewQuestion = React.createClass({
                     <div className="wrapper-counter">
                     {this.dynanamicPagination()}
                     </div>
-                    <Modal show={this.state.showModal} onHide={this.closeModal} className="modalQuestion">
+                    <Modal show={this.state.showModal} className="modalQuestion">
 
                     <Modal.Body>
                         <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
