@@ -16,7 +16,7 @@ import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import SignUp from './SignUp';
-
+import Footer from "./Footer"
 
 require('../styles/Main.css');
 require('../styles/Result.css');
@@ -82,14 +82,6 @@ var Profile = React.createClass({
         console.log('PROPS',  this.props.location.state);
     },
 
-    dynanamicPagination(){
-        var pagination = [];
-        for (var k = 0; k < 5; k++) {
-            pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
-        }
-        return pagination
-
-    },
 
     nextPage(){
         console.log('nextPage');
@@ -123,16 +115,12 @@ var Profile = React.createClass({
                         <div className="result-title result-text">you are in</div>
                         <div className="result-title result-text_red">{this.state.profile.get("profileBenefit")}</div>
                         <div className=" result-text_thin">{this.state.profile.get("profileDescription")}</div>
-                        <div className="wrapper-counter">
-                            {this.dynanamicPagination()}
-                        </div>
+                        <Pagination pageNumber={this.state.pageNumber}/>
                         
                     </div>
                 </div>
-                <div className="wrapperNext">
-                    <div className="linkText">in-salon ritual</div>
-                    <div className="linkArrow"  onClick={this.nextPage}></div>
-                </div>
+
+                <Footer onClick={this.nextPage} title="in-salon ritual"/>
             </div>
         );
     }

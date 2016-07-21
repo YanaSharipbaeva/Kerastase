@@ -13,7 +13,7 @@ import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import { Modal } from 'react-bootstrap';
 import Header from './Header';
-
+import Footer from "./Footer"
 require('../styles/Main.css');
 require('../styles/Result.css');
 
@@ -70,15 +70,6 @@ var AtHome = React.createClass({
 
     },
 
-
-    dynanamicPagination(){
-        var pagination = [];
-        for (var k = 0; k < 5; k++) {
-            pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
-        }
-        return pagination
-
-    },
 
     nextPage(){
         console.log('nextPage');
@@ -185,10 +176,9 @@ var AtHome = React.createClass({
                     </div>
                 </div>
                 <div>
-                    <div className="wrapperNext">
-                        <div className="linkText">Receive by</div>
-                        <div className="linkArrow"  onClick={this.nextPage}></div>
-                    </div>
+
+
+                    <Footer onClick={this.nextPage} title="Store Locator"/>
                     <div className="social-links">
                         <div className="social-links_title">share this ritual</div>
                         <div className="s_link">
@@ -200,9 +190,7 @@ var AtHome = React.createClass({
                     </div> 
                     <Link to="/start" className="restart_profile">Restart K profile</Link> 
                 </div>
-                <div className="wrapper-counter">
-                    {this.dynanamicPagination()}
-                </div>
+                <Pagination pageNumber={this.state.pageNumber}/>
                 <Modal show={this.state.showModal} onHide={this.closeModal}>
 
                     <Modal.Body>
