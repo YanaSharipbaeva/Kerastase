@@ -18,7 +18,7 @@ var ParseDiagnostic = Parse.Object.extend('Diagnostic');
 import  '../styles/Main.css';
 import  '../styles/SignUp.css';
 import '../styles/Media.css';
-
+import Footer from "./Footer"
 var SignUp = React.createClass({
     mixins: [
         LinkedStateMixin
@@ -480,6 +480,8 @@ var SignUp = React.createClass({
                 </div>
                 
             </Validation.Form >
+
+                <Footer onClick={this.submitAndDisplay} title="Next"/>
             <div className="modal-wrapper">
                 <Modal show={this.state.showModal} className="signUp" sign-up-modal >
                     <Modal.Body >
@@ -488,10 +490,7 @@ var SignUp = React.createClass({
                     </Modal.Body>
                 </Modal>
             </div>
-            <div className="wrapperNext" >
-                    <div  className="linkText" value="Next">Next</div>
-                    <input className="linkArrow"   onClick={this.submitAndDisplay}></input>
-                </div>
+
                 <div  className="skipButton" onClick={this.skipAndDisplay}>skip</div>
             </div>
         );

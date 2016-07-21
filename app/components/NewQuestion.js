@@ -21,7 +21,7 @@ import '../styles/Media.css';
 import '../styles/Dropdown.css';
 import Footer from "./Footer"
 import Dropdown from 'react-dropdown';
-
+import Pagination from "./Pagination"
 var ParseQuestions = Parse.Object.extend('Questions');
 
 var NewQuestion = React.createClass({
@@ -364,18 +364,7 @@ var NewQuestion = React.createClass({
         }
     },
 
-    dynanamicPagination(){
-        var pagination = [];
-        for (var k = 0; k < 11; k++) {
-            if (k === 0) {
-                return null
-            } else {
-                pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>);
-            }
-        }
-        return pagination
 
-    },
 
     getStart(){
         $('#app').removeClass('QCM-long');
@@ -420,6 +409,8 @@ var NewQuestion = React.createClass({
             return null
         } else {
             return (
+
+
                 <div className="wrapperPhrase">
                     <Header />
                     { this.state.pageNumber === -1 ? null:
@@ -432,13 +423,11 @@ var NewQuestion = React.createClass({
                     </div>
 
                     { this.state.pageNumber === -1 ? null:
-                        <Footer onClick={this.nextPage}/>
+                        <Footer onClick={this.nextPage} title="Next"/>
                     }
 
 
-                    <div className="wrapper-counter">
-                        {this.dynanamicPagination()}
-                    </div>
+                   <Pagination pageNumber={this.state.pageNumber}/>
 
 
                     <Modal show={this.state.showModal}>

@@ -23,9 +23,10 @@ var Footer = React.createClass({
     render: function() {
         return (
             <div id="footer">
-                <div className="">
-                    <div className="linkText">Next</div>
-                     <div className="linkArrow"  onClick={this.nextPage}></div>
+                <div class="" onClick={this.props.onClick}>
+                    <div className="linkText">{this.props.title}</div>
+                     <div className="linkArrow"></div>
+
                 </div>
             </div>
 

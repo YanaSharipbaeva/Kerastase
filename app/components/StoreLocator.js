@@ -12,7 +12,7 @@ import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import Header from './Header';
-
+import Footer from "./Footer"
 require('../styles/Main.css');
 require('../styles/Result.css');
 
@@ -41,14 +41,7 @@ var StoreLocator = React.createClass({
         console.log("PRODUCTS" , this.state.products);
     },
 
-    dynanamicPagination(){
-        var pagination = [];
-        for (var k = 0; k < 5; k++) {
-            pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
-        }
-        return pagination
 
-    },
 
     nextPage(){
         console.log('nextPage');
@@ -73,10 +66,8 @@ var StoreLocator = React.createClass({
                     <a target="_blank" href="http://salons.kerastase.co.uk/" className="salon_link"> > Find your nearest Salon</a>
                 </div>
                 <div>
-                    <div className="wrapperNext">
-                        <div className="linkText">Receive by email</div>
-                        <div className="linkArrow"  onClick={this.nextPage}></div>
-                    </div>
+
+                    <Footer onClick={this.nextPage} title="Receive by email"/>
                     <div className="social-links">
                         <div className="social-links_title"></div>
                         <div className="s_link">
@@ -88,9 +79,7 @@ var StoreLocator = React.createClass({
                     </div> 
                     <Link to="/start" className="restart_profile">Restart K profile</Link> 
                 </div>
-                <div className="wrapper-counter">
-                    {this.dynanamicPagination()}
-                </div>
+                <Pagination pageNumber={this.state.pageNumber}/>
             </div>
         );
     }
