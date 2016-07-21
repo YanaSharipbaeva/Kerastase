@@ -38,7 +38,6 @@ var Profile = React.createClass({
     },
 
     componentWillMount() {
-        $('#app').addClass('QCM-long')
         console.log("componentWillMount",this.props);
 
         this.state.selectedProfileIndex=0;
@@ -127,11 +126,12 @@ var Profile = React.createClass({
                         <div className="wrapper-counter">
                             {this.dynanamicPagination()}
                         </div>
-                        <div className="wrapperNext">
-                            <div className="linkText">in-salon ritual</div>
-                            <div className="linkArrow"  onClick={this.nextPage}></div>
-                        </div>
+                        
                     </div>
+                </div>
+                <div className="wrapperNext">
+                    <div className="linkText">in-salon ritual</div>
+                    <div className="linkArrow"  onClick={this.nextPage}></div>
                 </div>
             </div>
         );

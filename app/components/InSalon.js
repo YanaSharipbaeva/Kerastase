@@ -37,8 +37,6 @@ var InSalon = React.createClass({
     },
 
     componentWillMount() {
-        $('#app').addClass('QCM-long');
-
         console.log("componentWillMount",this.props.location.state);
 
         var profile = this.props.location.state.profile;

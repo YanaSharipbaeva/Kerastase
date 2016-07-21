@@ -287,9 +287,9 @@ var NewQuestion = React.createClass({
 
     getQCM () {
         var pageNumber = this.state.pageNumber;
-        if (pageNumber === 10 || pageNumber === 7 || pageNumber === 9) {
-            $('#app').addClass('QCM-long');
-        }
+        // if (pageNumber === 10 || pageNumber === 7 || pageNumber === 9) {
+            // $('#app').addClass('QCM-long');
+        // }
 
         $(".radio").attr('checked', false);
         var element;
@@ -499,19 +499,11 @@ var NewQuestion = React.createClass({
                 <div className="wrapperPhrase">
                     <Header />
                         <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
                     <div  className="question-wrapper">
                         <div  className="question-text_wrapper row" >
                             {this.getQCMOrSentences()}     
                         </div>
                     </div>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
                     <div className="wrapperNext">
                         <div className="linkText">Next</div>
                         <div className="linkArrow"  onClick={this.nextPage}>

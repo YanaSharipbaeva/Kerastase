@@ -65,7 +65,8 @@ var SignUp = React.createClass({
 
     componentDidMount(){
         console.log(this.props);
-        $('#app').addClass('QCM-long');
+  
+      // $('#app').addClass('QCM-long');
 
         this.state.questions = this.props.location.state.questions;
         this.state.answers = this.props.location.state.answers;
@@ -477,11 +478,7 @@ var SignUp = React.createClass({
                                 htmlFor="userNewsletter">I would like to receive my hair diagnosis and the latest Kérastase news by email</label>
                     </div>
                 </div>
-                <div className="wrapperNext" >
-                    <div  className="linkText" value="Next">Next</div>
-                    <input className="linkArrow"   onClick={this.submitAndDisplay}></input>
-                </div>
-                <div  className="skipButton" onClick={this.skipAndDisplay}>skip</div>
+                
             </Validation.Form >
             <div className="modal-wrapper">
                 <Modal show={this.state.showModal} className="signUp" sign-up-modal onHide={this.closeModal}>
@@ -491,6 +488,11 @@ var SignUp = React.createClass({
                     </Modal.Body>
                 </Modal>
             </div>
+            <div className="wrapperNext" >
+                    <div  className="linkText" value="Next">Next</div>
+                    <input className="linkArrow"   onClick={this.submitAndDisplay}></input>
+                </div>
+                <div  className="skipButton" onClick={this.skipAndDisplay}>skip</div>
             </div>
         );
     }

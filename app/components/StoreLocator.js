@@ -33,7 +33,6 @@ var StoreLocator = React.createClass({
     },
 
     componentWillMount() {
-        $('#app').addClass('QCM-long');
   
         console.log('PROPS',  this.props.location.state);
         this.state.profile = this.props.location.state.profile;
@@ -64,7 +63,7 @@ var StoreLocator = React.createClass({
 
     render: function() {
         return (
-            <div className="wrapper-in-salon_ritual">
+            <div className="wrapper-in-salon_ritual store-locator">
                 <Header />
                 <div className="info-block_title">SALON LOCATOR</div>
                 <div className="result4-text">Find a kérastase salon</div>

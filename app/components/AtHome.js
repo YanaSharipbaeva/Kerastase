@@ -40,8 +40,6 @@ var AtHome = React.createClass({
 
 
     componentWillMount() {
-        $('#app').addClass('QCM-long');
-
         var profile = this.props.location.state.profile;
 
 

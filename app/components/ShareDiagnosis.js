@@ -44,7 +44,6 @@ var ShareDiagnosis = React.createClass({
     },
 
     componentWillMount() {
-        $('#app').addClass('QCM-long');
   
         console.log('PROPS',  this.props.location.state);
         this.state.profile = this.props.location.state.profile;

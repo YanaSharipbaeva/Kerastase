@@ -2,6 +2,10 @@
     font-family: 'TradeGothicLTLight';
 }
 
+.wrapper-result .wrapperNext {
+    margin-left: -97px;
+}
+
 .result-title {
     color:#d7d7d7;
     font-size: 19px;
@@ -402,6 +406,12 @@ ul.info-text{
 .result2 .text_block{
     padding-left: 20px;
 }
+.result2 .wrapperNext {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    margin-left: -130px;
+}
 
 .checkOption:after{
     clear:both;
@@ -429,11 +439,15 @@ ul.info-text{
 }
 
 .restart_profile {
-    margin-right: 60px;
+    position: absolute;
+    right: 60px;
+    bottom: 186px;
 }
 
 .social-links {
-    margin-left: 60px;
+    position: absolute;
+    left: 60px;
+    bottom: 186px;
 }
 
 .description-wrapper .info-text , .timeInSalon {

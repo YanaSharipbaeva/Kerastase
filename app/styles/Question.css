@@ -46,9 +46,7 @@
 
 .question-text_wrapper {
     text-align: center;
-    display: table-cell;
-    margin: 0 auto;
-    vertical-align: middle;
+    margin: 30px auto;
 }
 
 .selectpicker {
@@ -195,18 +193,7 @@
     float:none!important;
 }
 
-.question4_wrapper .wrapperTitle, 
-.question10_wrapper .wrapperTitle{
-    height: auto;
 
-}
-
-.question4_wrapper .customersText,
-.question10_wrapper .question-wrapper {
-    margin-top: 20px;
-
-
-}
 
 .question4_wrapper {
     position: relative;
