@@ -1,0 +1,15 @@
+.Dropdown-root {
+    position: relative;
+    display: inline-block;
+}
+
+.Dropdown-menu {
+    background: #fff;
+    color:#000;
+    position: absolute;
+    top:0px;
+}
+
+.question-text_info {
+    display: inline-block;
+}

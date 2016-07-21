@@ -18,6 +18,7 @@ import '../styles/Question.css';
 import '../styles/Checkbox.css';
 import '../styles/Main.css';
 import '../styles/Media.css';
+import '../styles/Dropdown.css';
 import Footer from "./Footer"
 import Dropdown from 'react-dropdown';
 
@@ -191,10 +192,6 @@ var NewQuestion = React.createClass({
             if (option.get('title').length > maxWidthTitle) {
                 maxWidthTitle = option.get('title').length;
             }
-
-
-
-
         });
 
         for (var m = 0; m < maxWidthTitle-1; m++) {
@@ -206,15 +203,12 @@ var NewQuestion = React.createClass({
     },
 
     onSelect() {
-
-
         console.log("on select");
 
     },
 
     getSentences() {
         console.log("getCharacters", this.getCharacters(0));
-        $('#app').removeClass('QCM-long');
         var _this = this;
         var obj = [];
         var elem;
@@ -242,7 +236,7 @@ var NewQuestion = React.createClass({
             var __this=_this;
 
             elem = <span key={index} className="question-text" >
-                    <span > {item.text}</span>
+                    <span className="question-text_info"> {item.text}</span>
 
                     <Dropdown options={options[index]} onChange={__this.onSelect}  value={_this.getCharacters(index)}  />
 
@@ -254,11 +248,6 @@ var NewQuestion = React.createClass({
     },
 
     getQCM () {
-        var pageNumber = this.state.pageNumber;
-        if (pageNumber === 10 || pageNumber === 7 || pageNumber === 9) {
-            $('#app').addClass('QCM-long');
-        }
-
         $(".radio").attr('checked', false);
         var element;
         var obj = [];
@@ -452,7 +441,7 @@ var NewQuestion = React.createClass({
                     </div>
 
 
-                    <Modal show={this.state.showModal} onHide={this.closeModal}>
+                    <Modal show={this.state.showModal}>
 
                         <Modal.Body>
                             <p className="customersText">Please, choose one answer</p>
