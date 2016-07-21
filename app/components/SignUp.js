@@ -479,15 +479,7 @@ var SignUp = React.createClass({
             </Validation.Form >
 
                 <Footer onClick={this.submitAndDisplay} title="Next"/>
-            <div className="modal-wrapper">
 
-                <Modal show={this.state.showModal} className="signUp" sign-up-modal >
-                    <Modal.Body >
-                        <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
-                        <p className="customersText">Please, enter correctly all information to continue</p>
-                    </Modal.Body>
-                </Modal>
-            </div>
 
                 <div  className="skipButton" onClick={this.skipAndDisplay}>skip</div>
             </div>
