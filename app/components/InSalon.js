@@ -18,7 +18,7 @@ import Header from './Header';
 import Footer from "./Footer"
 require('../styles/Main.css');
 require('../styles/Result.css');
-
+import Pagination from "./Pagination"
 var InSalon = React.createClass({
     mixins: [
         LinkedStateMixin
