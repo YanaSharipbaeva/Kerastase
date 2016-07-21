@@ -48,7 +48,6 @@ var SignUp = React.createClass({
          }
 
 
-
         return {
             name: name,
             surname:surname,
@@ -76,21 +75,9 @@ var SignUp = React.createClass({
 
         this.getWinningProfiles(this.props.location.state);
 
-        Validation.extendErrors({
-            isEmail: {
-                className: 'ui-input_state_email-pattern-failed',
-                // validator already has strong email-pattern, so we don't have to extend it by custom 
-                message: ''
-            }
-        });
+
     },
 
-    OnNewsletter: function(){
-        this.setState({
-            newsletter: !this.state.newsletter
-        });
-        console.log(this.state);
-    },
 
     saveDiagnostic() {
 
@@ -148,6 +135,7 @@ var SignUp = React.createClass({
         diagnostic.set('type', 'consumer');
         diagnostic.set('user', Parse.User.current());
 
+        console.log("profiles saving remote diagnostic",profiles);
         console.log("before saving remote diagnostic",diagnostic);
 
         var _this = this;
@@ -190,7 +178,7 @@ var SignUp = React.createClass({
                         success: function(newUser) {
                             console.log('Sign up is successful');
 
-
+                            _this.saveDiagnostic();
                         },
                         error: function(newUser, error) {
                             alert("Error: " + error.code + " " + error.message);
@@ -362,13 +350,21 @@ var SignUp = React.createClass({
 
 
     skipAndDisplay(){
+
+        console.log("skipAndDisplay");
         Parse.User.logOut();
         this.displayResult();
     },
 
     submitAndDisplay: function(event) {
         event.preventDefault();
-   
+
+        this.state.email=this.refs.email.getElement().value;
+        this.state.name=this.refs.name.getElement().value;
+        this.state.surname=this.refs.surname.getElement().value;
+        this.state.country=this.refs.country.getElement().value;
+        this.state.newsletter=this.refs.newsletter.checked;
+
         if (this.refs.form._validations.email&&this.refs.form._validations.name&&this.refs.form._validations.surname) {
             this.state.email=this.refs.email.getElement().value;
             this.state.name=this.refs.name.getElement().value;
@@ -399,13 +395,16 @@ var SignUp = React.createClass({
         var text = 'Sign up';
         return (
             <div className="main-form-wrapper">
-            <Validation.Form  onSubmit={this.submitAndDisplay} ref='form' className="wrapperPhrase signUp-main-wrapper">
+
                 <Header />
                 <div className="wrapperTitle signUp">
                     <p className="questionTitle">k-profile</p>
                     <p className="questionTitle">SIGN UP</p>
                 </div>
+                <Validation.Form   ref='form' className="wrapperPhrase signUp-main-wrapper">
                 <div className="question-text_wrapper question-wrapper signUp-wrapper">
+
+
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">My name is</div>
                         <Validation.Input
@@ -420,7 +419,7 @@ var SignUp = React.createClass({
                             ref='name'
                             value={this.state.name}
                             type='text'/>
-                  />
+
                     </div>
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">My surname is</div>
@@ -471,7 +470,7 @@ var SignUp = React.createClass({
 
                                 ref='newsletter'
                                 />
-                        <label  className="checkboxSignUp" 
+                        <label  className="checkboxSignUp"
                                 onClick={this.OnNewsletter}
                                 htmlFor="userNewsletter">I would like to receive my hair diagnosis and the latest Kérastase news by email</label>
                     </div>
@@ -480,14 +479,7 @@ var SignUp = React.createClass({
             </Validation.Form >
 
                 <Footer onClick={this.submitAndDisplay} title="Next"/>
-            <div className="modal-wrapper">
-                <Modal show={this.state.showModal} className="signUp" sign-up-modal >
-                    <Modal.Body >
-                        <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
-                        <p className="customersText">Please, enter correctly all information to continue</p>
-                    </Modal.Body>
-                </Modal>
-            </div>
+
 
                 <div  className="skipButton" onClick={this.skipAndDisplay}>skip</div>
             </div>

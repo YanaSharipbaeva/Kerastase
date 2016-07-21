@@ -54,14 +54,38 @@ var ShareDiagnosis = React.createClass({
         //this.shareEmail();
     },
 
-    dynanamicPagination(){
-        var pagination = [];
-        for (var k = 0; k < 5; k++) {
-            pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
-        }
-        return pagination
 
-    },
+
+    shouldShareEmail(){
+
+        if(this.state.email==null)
+        return;
+        else{
+
+                var re = /\S+@\S+\.\S+/;
+                var answer = re.test(this.state.email);
+
+            console.log("email validation",answer);
+
+
+            if(answer==false)
+            this.setState({
+                emailWarning: "email format is not valid",
+
+            });
+            else{
+
+                this.shareEmail();
+
+            }
+
+
+        }
+    }
+
+
+    ,
+
 
     shareEmail(){
         console.log('share');
@@ -83,12 +107,20 @@ var ShareDiagnosis = React.createClass({
                 console.log("sendEmailToUser",error)
             }
         });
-        this.closeModal();
+
+        if(this.state.showModal) {
+            this.closeModal();
+            this.openModal(true);
+        }
+        else{
+            this.openModal(true);
+        }
     },
 
-    openModal () {
+    openModal (isCongratulation) {
         this.setState({
-            showModal: true
+            showModal: true,
+            congratulation:isCongratulation
         });
     },
 
@@ -107,7 +139,7 @@ var ShareDiagnosis = React.createClass({
          console.log('do stuff with the user',currentUser.getEmail());
              this.shareEmail()
          } else {
-             this.openModal();
+             this.openModal(false);
          }
     },
 
@@ -115,7 +147,43 @@ var ShareDiagnosis = React.createClass({
         this.state.email = e.target.value;
     },
 
+
+    nextPage(){
+        this.context.router.push({
+                pathname: '/start'});
+    },
+
+    getModalContent(){
+
+
+        console.log("getModalContent",this.state.congratulation);
+        var content;
+        if (this.state.congratulation==false)
+        {
+
+            content= <div> <div className="customersText"> Please, write down your email address, and press the confirm button</div>
+                 <input className="email-field" onChange={this.getEmail} type="text" placeholder="Enter your email"></input>
+                 <button className="confirmButton" onClick={this.shouldShareEmail}>Save</button>
+                <p></p>
+                <div className="customersText">{this.state.emailWarning}</div></div>
+
+        }
+        else{
+
+            content= <div className="customersText">Thank you, you will receive an email shortly</div>
+
+
+            }
+
+        return content;
+
+    },
+
     render: function() {
+
+
+
+
         return (
             <div className="wrapper-in-salon_ritual reseiveByEmail container">
                 <Header /> 
@@ -138,21 +206,15 @@ var ShareDiagnosis = React.createClass({
                 <div>
 
                 </div>
-                <div className="wrapper-counter">
-                    {this.dynanamicPagination()}
-                </div>
+
                 <Footer onClick={this.nextPage} title="Restart Diagnosis"/>
-                <div className="wrapper-counter">
-                    {this.dynanamicPagination()}
-                </div>
+                <Pagination pageNumber={this.state.pageNumber}/>
                 <Modal show={this.state.showModal} className="modalShareDiagnostics">
 
                     <Modal.Body>
                         <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
                         <div className="confirm-modal">
-                            <div className="customersText"> Please, write down your email address, and press the confirm button</div>
-                            <input className="email-field" onChange={this.getEmail} type="text" placeholder="Enter your email"></input>
-                            <button className="confirmButton" onClick={this.shareEmail}>Save</button>
+                            {this.getModalContent()}
                         </div>
                     </Modal.Body> 
                 </Modal>

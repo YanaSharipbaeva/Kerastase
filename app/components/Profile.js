@@ -18,6 +18,7 @@ import HorizontalLine from './HorizontalLine';
 import SignUp from './SignUp';
 import Footer from "./Footer"
 
+import { Modal } from 'react-bootstrap';
 require('../styles/Main.css');
 require('../styles/Result.css');
 
@@ -79,6 +80,12 @@ var Profile = React.createClass({
             },
         });
 
+
+      if(Parse.user){
+
+            this.openModal();
+        }
+
         console.log('PROPS',  this.props.location.state);
     },
 
@@ -109,6 +116,19 @@ var Profile = React.createClass({
         return textColor;
     },
 
+    openModal () {
+        this.setState({
+            showModal: true
+        });
+    },
+
+    closeModal () {
+        this.setState({
+            showModal: false
+        });
+    },
+
+
     render: function() {
         console.log(this.state);
         return (
@@ -129,6 +149,17 @@ var Profile = React.createClass({
                 </div>
 
                 <Footer onClick={this.nextPage} title="in-salon ritual"/>
+
+                <div className="modal-wrapper">
+
+                    <Modal show={this.state.showModal} className="signUp" sign-up-modal >
+                        <Modal.Body >
+                            <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
+                            <p className="customersText">Thank you, an email was sent to your mailbox</p>
+                        </Modal.Body>
+                    </Modal>
+                </div>
+
             </div>
         );
     }
