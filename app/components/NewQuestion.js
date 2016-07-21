@@ -261,24 +261,40 @@ var NewQuestion = React.createClass({
         var elem;
         var answers;
         var data = this.state.dataSource[this.state.pageNumber];
+        var options=[];
+
+        data.forEach(function(item, index) {
+
+            var dictionary={};
+            dictionary.value=item.text;
+            dictionary.label=item.text;
+            options.push(dictionary);
+
+        });
+
+
+        console.log("options are ",options);
+
+        options = [
+            { value: 'one', label: 'One' },
+            { value: 'two', label: 'Two', clearableValue: false }
+        ];
+
         data.forEach(function(item, index) { 
 
-            elem = <span key={index} className="question-text">
-                    <span > {item.text}</span> 
-        
-                    <ReactSelect ref={(c) => _this.state.inputRefs.push(c)} className="selectpicker selectAnswer"
-                        hideDisabled="true"
-                        title={_this.getCharacters(index)}
-                        >
-                        <option selected="selected" key={_this.state.selectState} disabled="disabled" className="selectOption"  data-hidden="true"></option>
-                        {item.get('answers').map(function(option, indexAnswer) {
-                        
-                            return <option  key={_this.state.selectOption} className="optionName" key={indexAnswer}  data-indexQuestion={index} data-indexAnswer={indexAnswer}>{option.get('title')}</option> 
+            elem = <div key={index} className="row">
+                    <div> {item.text}</div>
+                <div> {item.text}</div>
 
-                        })}                                         
-                    </ReactSelect> 
-              
-                    </span>
+
+                <Select
+                    name="item.text"
+                    value="one"
+                    options={options}
+
+                    />
+
+                    </div>
             obj.push(elem) 
         });
 
@@ -388,7 +404,7 @@ var NewQuestion = React.createClass({
     goToLogin() {
         this.context.router.push({
             pathname: '/signUp',
-            state: { 
+            state: {
                     questions: this.state.questions,
                     answers: this.state.answers,
                     questionTitles: this.state.questionTitles,
@@ -496,22 +512,16 @@ var NewQuestion = React.createClass({
             return null
         } else {
             return (
-                <div className="wrapperPhrase">
+                <div className="container wrapperPhrase">
                     <Header />
                         <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
+
                     <div  className="question-wrapper">
                         <div  className="question-text_wrapper row" >
                             {this.getQCMOrSentences()}     
                         </div>
                     </div>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
+
                     <div className="wrapperNext">
                         <div className="linkText">Next</div>
                         <div className="linkArrow"  onClick={this.nextPage}>
