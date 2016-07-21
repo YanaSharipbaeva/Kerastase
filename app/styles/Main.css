@@ -220,7 +220,7 @@ body {
 
 .question-wrapper {
     display: table;
-    width: 780px;
+/*    width: 780px;*/
 }
 
 .start-wrapper {
@@ -240,23 +240,8 @@ body {
     left: 20px;
 }
 
-.question10_wrapper .question-text_wrapper {
-  margin:0px;
-}
 
-.QCM-long{
-    height: auto!important;
 
-}
-
-.QCM-long .question-text_wrapper {
-    margin-top: 40px;
-    margin-bottom: 20px;
-}
-
-.QCM-long .wrapperTitle {
-  height: auto;
-}
 
 .modal-content {
   border-radius: 0px;
@@ -294,21 +279,13 @@ body {
 .email_title{
     width:auto!important;
 }
-/*.question-text .bootstrap-select.btn-group .dropdown-toggle .filter-option {
-    height: 45px;
-    color: grey;
-    border-bottom: 1px solid grey;
-}
-*/
 
 
 
-.QCM-long .question-wrapper {
-  margin-top: 40px;
-}
+
 
 .question-wrapper {
-    width: 80%;
+/*    width: 80%;*/
     margin: 60px auto;
 }
 
