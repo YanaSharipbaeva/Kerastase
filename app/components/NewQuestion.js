@@ -282,8 +282,8 @@ var NewQuestion = React.createClass({
 
         data.forEach(function(item, index) { 
 
-            elem = <div key={index} className="row">
-                    <div> {item.text}</div>
+            elem = <div key={index} className="row answers">
+                    <div className="answer-text"> {item.text}</div>
                 <div> {item.text}</div>
 
 
@@ -516,14 +516,14 @@ var NewQuestion = React.createClass({
                     <Header />
                     <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
 
-                    <div  className="question-wrapper">
+                    <div  className="question-wrapper container">
                         <div  className="question-text_wrapper row" >
                             {this.getQCMOrSentences()}     
                         </div>
                     </div>
-                    <div className="wrapperNext">
+                    <div className="wrapperNext" onClick={this.nextPage}>
                         <div className="linkText">Next</div>
-                        <div className="linkArrow"  onClick={this.nextPage}>
+                        <div className="linkArrow"  >
                         </div>
                     </div>
 

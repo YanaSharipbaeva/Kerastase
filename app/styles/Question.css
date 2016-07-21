@@ -248,8 +248,10 @@
     text-align: left;
 }
 
-.modalQuestion {
-    
+.answers div {
+    color:#fff;
+    display: inline-block;
+    float: left;
 }
 
 
