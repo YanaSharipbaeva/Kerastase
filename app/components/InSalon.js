@@ -9,13 +9,15 @@ import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-route
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { Link } from 'react-router';
 import NewQuestion from './NewQuestion';
+import Pagination from './Pagination';
 import TitleComponent from './TitleComponent';
 import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import { Modal } from 'react-bootstrap';
 import Header from './Header';
-import Footer from "./Footer"
+import Footer from "./Footer";
+import Social from "./Social"
 require('../styles/Main.css');
 require('../styles/Result.css');
 
@@ -89,7 +91,7 @@ var InSalon = React.createClass({
                 <Header />
                 <div className="info-block_title">in-salon ritual</div>
                 <div className="main-in-salon-wrapper row">
-                    <div className="info-block image-block col-xs-2 .col-sm-2 .col-md-2 .col-lg-2 .col-xl-2">
+                    <div className="info-block image-block col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                         <div className="info-block_wrapper">
                             <div className="info-image1"></div>
                             <div className="info-image2"></div>
@@ -97,7 +99,7 @@ var InSalon = React.createClass({
                             
                         </div>
                     </div>
-                    <div className="info-block text_block col-xs-10 .col-sm-10 .col-md-10 .col-lg-10 .col-xl-10">
+                    <div className="info-block text_block col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                          <div className="text_wrapper">
                             <p className="result-title info-text_title">{this.state.profile.get("prescriptionServices")}</p>
                             <div className="description-wrapper">

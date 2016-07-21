@@ -7,7 +7,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-
+import Pagination from './Pagination';
 import Header from './Header';
 import Start from './Start';
 import NewQuestion from './NewQuestion';
@@ -101,6 +101,14 @@ var Profile = React.createClass({
             });
     },
 
+    getTextColor(){
+        var textColor = {
+            color: '#' + this.state.profile.get('color')
+        } 
+
+        return textColor;
+    },
+
     render: function() {
         console.log(this.state);
         return (
@@ -113,7 +121,7 @@ var Profile = React.createClass({
                         <div className="result-title">result</div>
                         <div className="result-title result-title_value">k-profile</div>
                         <div className="result-title result-text">you are in</div>
-                        <div className="result-title result-text_red">{this.state.profile.get("profileBenefit")}</div>
+                        <div className="result-title result-text_red" style={this.getTextColor()}>{this.state.profile.get("profileBenefit")}</div>
                         <div className=" result-text_thin">{this.state.profile.get("profileDescription")}</div>
                         <Pagination pageNumber={this.state.pageNumber}/>
                         

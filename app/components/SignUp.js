@@ -8,6 +8,7 @@ import SelectBox from 'react-select-box';
 import { Modal } from 'react-bootstrap';
 import Header from './Header';
 import NextLink from './NextLink';
+import Pagination from './Pagination';
 import ReactSelect from 'react-bootstrap-select';
 import TitleComponent from './TitleComponent';
 var Validation = require('react-validation');
@@ -381,10 +382,6 @@ var SignUp = React.createClass({
         }
     },
 
-    changeHeight(){
-        $('#app').height('100%');
-    },
-
     openModal () {
         this.setState({
             showModal: true
@@ -400,7 +397,7 @@ var SignUp = React.createClass({
     render: function() {
         var text = 'Sign up';
         return (
-            <div>
+            <div className="main-form-wrapper">
             <Validation.Form  onSubmit={this.submitAndDisplay} ref='form' className="wrapperPhrase signUp-main-wrapper">
                 <Header />
                 <div className="wrapperTitle signUp">

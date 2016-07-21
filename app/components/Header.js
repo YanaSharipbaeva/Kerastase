@@ -22,7 +22,7 @@ var Header = React.createClass({
 
     render: function() {
         return (
-            <header className="header container">
+            <header className="header container col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div className="row header-wrapper">
                     <div className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4"> 
                         <Link to="/start" onClick={this.refresh} className="col-xl-4 col-lg-4 col-xs-4 col-sm-4 col-md-4  header-icon" aria-hidden="true"></Link> 

@@ -13,7 +13,9 @@ import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import { Modal } from 'react-bootstrap';
 import Header from './Header';
-import Footer from "./Footer"
+import Pagination from './Pagination';
+import Footer from "./Footer";
+import Social from "./Social"
 require('../styles/Main.css');
 require('../styles/Result.css');
 
@@ -99,7 +101,7 @@ var AtHome = React.createClass({
             console.log("image ",image);
             if (image) {
 
-                imageUrl.push(<div className="product-wrapper-image col-sm-4 col-md-4 col-lg-4 "><img className="image" data-image={y} onClick={this.openModal} key={y}
+                imageUrl.push(<div className="product-wrapper-image col-sm-4 col-md-4 col-lg-4 " key={y}><img className="image" data-image={y} onClick={this.openModal} key={y}
                     src={image.url()}></img></div>);
             }
         }
@@ -178,17 +180,9 @@ var AtHome = React.createClass({
                 <div>
 
 
-                    <Footer onClick={this.nextPage} title="Store Locator"/>
-                    <div className="social-links">
-                        <div className="social-links_title">share this ritual</div>
-                        <div className="s_link">
-                            <a href="https://twitter.com" className="fa fa-twitter" aria-hidden="true"></a>
-                        </div>
-                        <div className="s_link">
-                            <a href="https://facebook.com" className="fa fa-facebook" aria-hidden="true"></a>
-                        </div>
-                    </div> 
-                    <Link to="/start" className="restart_profile">Restart K profile</Link> 
+                <Footer onClick={this.nextPage} title="Store Locator"/>
+                <Social/>
+   
                 </div>
                 <Pagination pageNumber={this.state.pageNumber}/>
                 <Modal show={this.state.showModal} onHide={this.closeModal}>

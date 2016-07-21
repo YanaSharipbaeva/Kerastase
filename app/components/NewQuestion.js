@@ -396,17 +396,21 @@ var NewQuestion = React.createClass({
             return (
 
 
-                <div className="wrapperPhrase">
+                <div className="wrapperPhrase container">
+                <div className="row">
                     <Header />
                         <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
-                    <div  className="question-wrapper">
+                </div>
+                 <div className="row">
+                    <div  className="question-wrapper col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div  className="question-text_wrapper row" >
                             {this.getQCMOrSentences()}
                         </div>
                     </div>
-
+                </div>
+                <div className="row">
                     <Footer onClick={this.nextPage} title="Next"/>
-
+                </div>
 
                    <Pagination pageNumber={this.state.pageNumber}/>
 

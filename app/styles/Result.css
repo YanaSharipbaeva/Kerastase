@@ -26,7 +26,6 @@
 
 .result-text_red {
     font-size: 30px;
-    color:#e24b37;
     margin-bottom: 40px;
 }
 
@@ -36,6 +35,7 @@
 
 .wrapper-result {
     height: 100%;
+    padding-bottom: 60px;
 }
 
 .profile-solution {
@@ -45,9 +45,7 @@
     text-align: center;
 }
 
-.wrapper-result .wrapper-counter {
-    margin-top: -55px;
-}
+
 
 .result-text_thin {
     font-family: 'InterstateThin';;
@@ -77,6 +75,7 @@
 .wrapper-in-salon_ritual{
     padding-bottom: 20px;   
     box-sizing: border-box;
+    position: relative;
 }
 
 .info-image1 {
@@ -161,8 +160,9 @@ ul.info-text{
     font-family: 'TradeGothicLTLight'; 
     color:#fff;
     text-transform: uppercase;
-    float: right;
     display:inline-block;
+    text-align: right;
+/*    margin-top: 20px;*/
 }
 
 .restart_profile:hover{
@@ -265,6 +265,7 @@ ul.info-text{
 
 .map-wrapper {
     position: relative;
+    margin-bottom: 100px;
 }
 
 .restart_image {
@@ -438,17 +439,14 @@ ul.info-text{
     position: relative;
 }
 
-.restart_profile {
-    position: absolute;
-    right: 60px;
-    bottom: 186px;
+/*.restart_profile {
+    margin-right: 20px;
 }
-
-.social-links {
-    position: absolute;
-    left: 60px;
-    bottom: 186px;
-}
+*/
+/*.social-links {
+    margin-left: 20px;
+    margin-top: 20px;
+}*/
 
 .description-wrapper .info-text , .timeInSalon {
     display: inline-block;
@@ -520,4 +518,8 @@ ul.info-text{
     text-align: center;
     line-height: 29px;
     pointer-events: none;
+}
+
+.Wrapper-links {
+
 }

@@ -204,7 +204,6 @@ body {
 }
 
 .wrapperTitle {
-    height: 145px;
     padding-left: 40px;
     padding-right: 40px;
     box-sizing: border-box;
@@ -230,7 +229,8 @@ body {
 }
 
 .wrapperPhrase {
-  height:100%;
+    height:100%;
+    padding-bottom: 60px;
 }
 
 .checkOption .checkbox:not(checked){
@@ -377,6 +377,11 @@ body {
     margin-left: -80px;
 }
 
+.store-locator .row{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
 .wrapperNext{
   padding:40px!important;
 }
@@ -385,4 +390,7 @@ body {
   border-bottom:2px solid #fff;
 }
 
+#footer {
+  margin-bottom: 60px;
+}
 

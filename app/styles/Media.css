@@ -44,8 +44,8 @@
         width: auto;
     }
      .question-wrapper{
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-left: 40px!important;
+        padding-right: 40px!important;
     }
 
     .signUp-main-wrapper .question-text_wrapper {
@@ -112,7 +112,6 @@
     .buttonStyles {
         font-family: 'InterstateLight';
         font-size: 24px!important;
-        width: auto!important;
         padding: 0 20px;
     }
 
@@ -122,6 +121,10 @@
 
     .top-wrapper {
         height: 28%;
+    }
+    .main-in-salon-wrapper {
+        padding-right: 0px!important;
+        padding-left: 0px!important;
     }
 }
 
@@ -134,19 +137,12 @@
         font-size: 30px!important;
     }
 
-    .top-wrapper {
-        height: 23%!important;
-    }
-
-    .wrapper-info .buttonStyles {
-        width:360px!important;
-    }
 }
 
 @media (max-width: 400px) {
     .buttonStyles {
         font-family: 'InterstateLight';
-        font-size: 16px;
+        font-size: 16px!important;
     }
     .result-text_thin {
         font-family: 'InterstateThin';

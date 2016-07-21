@@ -13,13 +13,14 @@
     background: linear-gradient(to bottom,  #dbdbdb,  #dcdcdc); /* W3C */
     text-transform: uppercase;
     height: 90px;
-    width:585px;
+/*    width:585px;*/
     display: block;
     line-height: 90px;
     text-align: center;
     transition: all 2s ease;
     margin: 0 auto;
     cursor: pointer;
+    float: none;
 }
 
 .buttonStyles:hover {
@@ -30,7 +31,7 @@
     text-align: center;
     height: 100%;
     width: 100%;
-    display: table;
+    position: relative;
 }
 
 .start-title {
@@ -68,6 +69,6 @@
 }
 
 .wrapper-info {
-    display: table-cell;
-    vertical-align: middle;
-}
+    margin-top: 100px;
+} 
+

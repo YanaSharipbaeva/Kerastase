@@ -9,7 +9,8 @@ import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-route
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { Link } from 'react-router';
 import { Modal } from 'react-bootstrap';
-
+import Pagination from './Pagination';
+import Footer from "./Footer";
 import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
@@ -116,9 +117,12 @@ var ShareDiagnosis = React.createClass({
 
     render: function() {
         return (
-            <div className="wrapper-in-salon_ritual reseiveByEmail">
+            <div className="wrapper-in-salon_ritual reseiveByEmail container">
                 <Header /> 
-                <div className="info-block_title">Receive by email</div>
+                <div className="row">
+                    <div className="info-block_title">Receive by email</div>
+                </div>
+                
                 <div className="result4-text_info result5-text_info">Keep your personal routine recommendation handy by saving it in your inbox.</div>
                 <div onClick={this.sendEmail} className="result-send">Send </div>
                 <div className="connect-title">connect with us</div>
@@ -137,12 +141,7 @@ var ShareDiagnosis = React.createClass({
                 <div className="wrapper-counter">
                     {this.dynanamicPagination()}
                 </div>
-                <div>
-                    <div className="wrapperNext">
-                        <div  className="linkText">Restart Diagnosis</div>
-                        <Link to="/" className="linkArrow restart_image" ></Link>
-                    </div>
-                </div>
+                <Footer onClick={this.nextPage} title="Restart Diagnosis"/>
                 <div className="wrapper-counter">
                     {this.dynanamicPagination()}
                 </div>
