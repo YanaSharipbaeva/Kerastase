@@ -100,7 +100,7 @@ var NewQuestion = React.createClass({
         hardCodedQuestions.forEach(function (hardCodedQuestion, index) {
             switch (index) {
                 case 0:
-                    hardCodedQuestion.text="I am a ";
+                    hardCodedQuestion.text="I am ";
                     tempArray[0].push(hardCodedQuestion);
 
                     break
@@ -114,7 +114,7 @@ var NewQuestion = React.createClass({
                     tempArray[0].push(hardCodedQuestion);
                     break
                 case 3:
-                    hardCodedQuestion.text="and I visit a salon every ";
+                    hardCodedQuestion.text="and I visit a salon ";
                     tempArray[0].push(hardCodedQuestion);
                     break
                 case 4:
@@ -196,7 +196,7 @@ var NewQuestion = React.createClass({
 
         var maxTitle = "";
 
-        for (var m = 0; m < maxWidthTitle-1; m++) {
+        for (var m = 0; m < 12-1; m++) {
             maxTitle = maxTitle + "_";
         };
 
