@@ -18,7 +18,7 @@ import '../styles/Question.css';
 import '../styles/Checkbox.css';
 import '../styles/Main.css';
 import '../styles/Media.css';
-
+import Footer from "./Footer"
 import Dropdown from 'react-dropdown';
 
 var ParseQuestions = Parse.Object.extend('Questions');
@@ -441,16 +441,17 @@ var NewQuestion = React.createClass({
                             {this.getQCMOrSentences()}
                         </div>
                     </div>
+
                     { this.state.pageNumber === -1 ? null:
-                        <div className="wrapperNext">
-                            <div className="linkText">Next</div>
-                            <div className="linkArrow"  onClick={this.nextPage}>
-                            </div>
-                        </div>
+                        <Footer onClick={this.nextPage}/>
                     }
+
+
                     <div className="wrapper-counter">
                         {this.dynanamicPagination()}
                     </div>
+
+
                     <Modal show={this.state.showModal} onHide={this.closeModal}>
 
                         <Modal.Body>
