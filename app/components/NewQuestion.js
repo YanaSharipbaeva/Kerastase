@@ -287,7 +287,7 @@ var NewQuestion = React.createClass({
             var style = {color:"red",width:"500px",backgroundColor:"red"}
 
             elem = <span key={index} className="question-text" >
-                    <span className="question-text_info"> {this.(item.text)}</span>
+                    <span className="question-text_info"> {item.text}</span>
 
                     <Dropdown  options={options[index]} onChange={__this.onSelect}  value={__this.getCharacters(index)}  />
 
@@ -298,11 +298,11 @@ var NewQuestion = React.createClass({
         return obj;
     },
 
-    getText(text){
-        if (text.indexOf('/') === 0) {
-                item.text = item.text.splice('1') 
-            }
-    },
+    // getText(text){
+    //     if (text.indexOf('/') === 0) {
+    //             item.text = item.text.splice('1') 
+    //         }
+    // },
 
     getQCM () {
         $(".radio").attr('checked', false);
