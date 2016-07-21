@@ -142,7 +142,8 @@ body {
     background: url(../images/background_image-min.jpg) no-repeat center;
     background-size: cover;
     width: 100%;
-    height:100%;
+    height:auto;
+    min-height: 100%;
 }
 
 .header-logo {

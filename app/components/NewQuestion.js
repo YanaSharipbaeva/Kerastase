@@ -35,7 +35,7 @@ var NewQuestion = React.createClass({
 
     getInitialState() {
         return {
-            pageNumber: -1,
+            pageNumber: 0,
             dataSource:[],
             questions:[],
             answers:[],
@@ -355,24 +355,11 @@ var NewQuestion = React.createClass({
 
     getQCMOrSentences(){
         var item = this.state.dataSource[this.state.pageNumber];
-        if (this.state.pageNumber  === -1 ) {
-            return this.getStart();
-        } else if(this.isQCM() === false) {
+        if(this.isQCM() === false) {
             return this.getSentences();
         } else {
             return this.getQCM();
         }
-    },
-
-
-
-    getStart(){
-        $('#app').removeClass('QCM-long');
-        var start = [];
-
-        start.push(<h1 key={1} className="start-title">k-profile</h1>);
-        start.push(<div  key={2} className="buttonStyles" onClick={this.startTest}>start your hair diagnosis</div>);
-        return start
     },
 
     getQCMtext() {
@@ -413,18 +400,14 @@ var NewQuestion = React.createClass({
 
                 <div className="wrapperPhrase">
                     <Header />
-                    { this.state.pageNumber === -1 ? null:
                         <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
-                    }
-                    <div  className={this.state.pageNumber === -1?  "start-wrapper":"question-wrapper"}>
+                    <div  className="question-wrapper">
                         <div  className="question-text_wrapper row" >
                             {this.getQCMOrSentences()}
                         </div>
                     </div>
 
-                    { this.state.pageNumber === -1 ? null:
-                        <Footer onClick={this.nextPage} title="Next"/>
-                    }
+                    <Footer onClick={this.nextPage} title="Next"/>
 
 
                    <Pagination pageNumber={this.state.pageNumber}/>

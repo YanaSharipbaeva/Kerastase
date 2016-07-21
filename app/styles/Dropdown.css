@@ -1,15 +1,43 @@
 .Dropdown-root {
     position: relative;
     display: inline-block;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .Dropdown-menu {
     background: #fff;
-    color:#000;
+    color:#666;
     position: absolute;
     top:0px;
+    z-index: 20;
 }
 
 .question-text_info {
+    display: inline-block;
+}
+
+.Dropdown-option {
+    border-bottom: 1px solid #e3e3e3;
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+
+    height: 46px;
+    box-sizing: border-box;
+}
+
+.Dropdown-control {
+    cursor: pointer;
+    z-index: 10;
+}
+.Dropdown-arrow{
+    background: url(../images/caret.png)no-repeat center;
+    display: inline-block;
+    width: 14px;
+    height: 9px;
+    vertical-align: middle;
+}
+
+.Dropdown-placeholder{
     display: inline-block;
 }
