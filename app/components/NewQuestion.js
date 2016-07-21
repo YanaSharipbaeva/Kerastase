@@ -285,18 +285,18 @@ var NewQuestion = React.createClass({
         });
 
         data.forEach(function(item, index) {
-           
+           var arr = [];
 
             var __this=_this;
 
             var style = {color:"red",width:"500px",backgroundColor:"red"}
 
-            elem = <span key={index} className={(item.shouldReturn === true) ?"row question-text": "question-text"} >
-                    <span className="question-text_info"> {item.text}</span>
+            elem = <span key={index} className="question-text">
+                    <span className="question-text_info">{item.text}</span>
                     <Dropdown  options={options[index]} onChange={__this.onSelect}  value={__this.getCharacters(index)}  />
 
                     </span>
-            obj.push(elem)
+            obj.push(elem);
         });
 
         return obj;
@@ -465,7 +465,7 @@ var NewQuestion = React.createClass({
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row footer-container">
                     <Footer onClick={this.nextPage} title="Next"/>
                 </div>
 

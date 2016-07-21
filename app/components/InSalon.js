@@ -99,7 +99,7 @@ var InSalon = React.createClass({
                             
                         </div>
                     </div>
-                    <div className="info-block text_block col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                    <div className="info-block text_block col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
                          <div className="text_wrapper">
                             <p className="result-title info-text_title">{this.state.profile.get("prescriptionServices")}</p>
                             <div className="description-wrapper">

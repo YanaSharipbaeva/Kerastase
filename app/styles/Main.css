@@ -144,6 +144,7 @@ body {
     width: 100%;
     height:auto;
     min-height: 100%;
+    position: relative;
 }
 
 .header-logo {
@@ -368,6 +369,16 @@ body {
 }
 
 #footer {
-  margin-bottom: 60px;
+  margin-bottom: 30px;
+  margin-top: 50px;
 }
 
+.footer-container {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    margin-left: -33px;
+}
+.checkOption {
+    padding-left: 20%!important;
+  }
