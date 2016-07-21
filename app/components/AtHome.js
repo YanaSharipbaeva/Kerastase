@@ -18,7 +18,7 @@ import Footer from "./Footer";
 import Social from "./Social"
 require('../styles/Main.css');
 require('../styles/Result.css');
-import Pagination from "./Pagination"
+
 var AtHome = React.createClass({
     mixins: [
         LinkedStateMixin

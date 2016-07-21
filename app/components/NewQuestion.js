@@ -109,7 +109,7 @@ var NewQuestion = React.createClass({
                     tempArray[0].push(hardCodedQuestion);
                     break
                 case 2:
-                    hardCodedQuestion.text="I live in ";
+                    hardCodedQuestion.text="/I live in ";
                     tempArray[0].push(hardCodedQuestion);
                     break
                 case 3:
@@ -117,7 +117,7 @@ var NewQuestion = React.createClass({
                     tempArray[0].push(hardCodedQuestion);
                     break
                 case 4:
-                    hardCodedQuestion.text="the world, your hair lives in ";
+                    hardCodedQuestion.text="/the world, your hair lives in ";
                     tempArray[0].push(hardCodedQuestion);
                     break
                 case 5:
@@ -133,7 +133,7 @@ var NewQuestion = React.createClass({
                     tempArray[1].push(hardCodedQuestion);
                     break
                 case 8:
-                    hardCodedQuestion.text="My hair is ";
+                    hardCodedQuestion.text="/My hair is ";
                     tempArray[1].push(hardCodedQuestion);
                     break
                 case 9:
@@ -141,7 +141,7 @@ var NewQuestion = React.createClass({
                     tempArray[1].push(hardCodedQuestion);
                     break
                 case 10:
-                    hardCodedQuestion.text="I wash my hair ";
+                    hardCodedQuestion.text="/I wash my hair ";
                     tempArray[2].push(hardCodedQuestion);
                     break
                 case 11:
@@ -157,7 +157,7 @@ var NewQuestion = React.createClass({
                     tempArray[3].push(hardCodedQuestion);
                     break
                 case 14:
-                    hardCodedQuestion.text="another desire: ";
+                    hardCodedQuestion.text="/another desire: ";
                     tempArray[3].push(hardCodedQuestion);
                     break
             }
@@ -280,13 +280,14 @@ var NewQuestion = React.createClass({
         });
 
         data.forEach(function(item, index) {
+           
 
             var __this=_this;
 
             var style = {color:"red",width:"500px",backgroundColor:"red"}
 
             elem = <span key={index} className="question-text" >
-                    <span className="question-text_info"> {item.text}</span>
+                    <span className="question-text_info"> {this.(item.text)}</span>
 
                     <Dropdown  options={options[index]} onChange={__this.onSelect}  value={__this.getCharacters(index)}  />
 
@@ -295,6 +296,12 @@ var NewQuestion = React.createClass({
         });
 
         return obj;
+    },
+
+    getText(text){
+        if (text.indexOf('/') === 0) {
+                item.text = item.text.splice('1') 
+            }
     },
 
     getQCM () {

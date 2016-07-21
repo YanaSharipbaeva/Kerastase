@@ -11,7 +11,6 @@ import { Link } from 'react-router';
 import ActiveCounterRound from './ActiveCounterRound';
 import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
-import Pagination from './Pagination';
 import Header from './Header';
 import Footer from "./Footer";
 import Social from "./Social";

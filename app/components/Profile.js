@@ -17,7 +17,7 @@ import CounterRound from './CounterRound';
 import HorizontalLine from './HorizontalLine';
 import SignUp from './SignUp';
 import Footer from "./Footer"
-import Pagination from "./Pagination"
+
 require('../styles/Main.css');
 require('../styles/Result.css');
 
