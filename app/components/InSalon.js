@@ -89,7 +89,7 @@ var InSalon = React.createClass({
         return (
             <div className="wrapper-in-salon_ritual result2 container">
                 <Header />
-                <div className="info-block_title">in-salon ritual</div>
+                <div className="info-block_title">In-salon ritual</div>
                 <div className="main-in-salon-wrapper row">
                     <div className="info-block image-block col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                         <div className="info-block_wrapper">
@@ -108,12 +108,7 @@ var InSalon = React.createClass({
                             </div>
                         </div>
                         <div className="text_wrapper">
-                            <ul className="info-text">
-                                <li>3 benefits of in-salon treatment:</li>
-                                <li>1. Prescription: Your hairdresser applies the correct dosage tailored to your specific level of dryness.</li>
-                                <li>2. Transformation: Hair is instantly suppler, shinier. You experience the Nutritive touch.</li>
-                                <li>3. Extension: The treatment anchors nutrients inside the hair, even after several shampoos.</li>
-                            </ul>
+
                         </div>
                     </div>
 

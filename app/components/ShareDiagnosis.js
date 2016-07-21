@@ -161,7 +161,7 @@ var ShareDiagnosis = React.createClass({
         if (this.state.congratulation==false)
         {
 
-            content= <div> <div className="customersText"> Please, write down your email address, and press the confirm button</div>
+            content= <div> <div className="customersText"> Please, write down your email address to keep reference of your results by mail</div>
                  <input className="email-field" onChange={this.getEmail} type="text" placeholder="Enter your email"></input>
                  <button className="confirmButton" onClick={this.shouldShareEmail}>Save</button>
                 <p></p>
