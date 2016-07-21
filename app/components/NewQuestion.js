@@ -5,8 +5,6 @@ import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
 import { Modal } from 'react-bootstrap';
-import ReactDOM from 'react-dom';
-import Select from 'react-select';
 
 import Header from './Header';
 import TitleComponent from './TitleComponent';
@@ -21,9 +19,10 @@ import '../styles/Checkbox.css';
 import '../styles/Main.css';
 import '../styles/Media.css';
 
+import Dropdown from 'react-dropdown';
 
 var ParseQuestions = Parse.Object.extend('Questions');
-    
+
 var NewQuestion = React.createClass({
     mixins: [
         LinkedStateMixin
@@ -35,18 +34,15 @@ var NewQuestion = React.createClass({
 
     getInitialState() {
         return {
-            pageNumber: 0,
+            pageNumber: -1,
             dataSource:[],
             questions:[],
             answers:[],
             questionTitles:[],
             answerTitles:[],
             profilesArray:[],
-            inputRefs:[],
             showModal:false,
-            maxWidthTitle:0,
-            selectState:0,
-            checkboxState:"false"
+            maxWidthTitle:0
         };
     },
 
@@ -55,48 +51,6 @@ var NewQuestion = React.createClass({
     },
 
     componentDidMount() {
-       //  $(function(){
-       //      $(window).resize(function() {
-       //      alert( $(window).height() );
-       //      })
-       //  })
-       //  if ($('#app').height() < $(window).height()) {
-       //      $('#app').height('100%');
-       // } else {
-       //   $('#app').height('100%');
-       // }
-        // var select = [];
-        // $('#app').find('.bootstrap-select').forEach(function(el){
-        //     select.push(el);
-        // });
-        // console.log("SELECTS", select);  
-
-        // select.toggleClass('open', this.state.open);  
-
-        // var  _this =this;
-        // $('html').click(function () {
-        //     //console.log("inputRefs",_this.state);
-        //     _this.clearSelect();
-        // });
-    },
-
-
-
-    clearSelect() {
-
-        return;
-
-     console.log("inputRefs",this.state.inputRefs);
-
-        this.state.inputRefs.forEach(function (ref, index) {
-
-            var select = $(ReactDOM.findDOMNode(ref)).find('div.bootstrap-select');
-
-            console.log("shoudl close",select);
-            select.toggleClass('open', false);
-
-        });
-
 
     },
 
@@ -105,12 +59,12 @@ var NewQuestion = React.createClass({
         var hardCodedDataQuery,
             dynamicDataQuery;
 
-        var objectIdsArray = ["VGF1UCoZU5", "oWlblkHGpC", "6TTHPSneQU", 
-                       "cJBGsiHH1Y", "DNigZ6egMc", "r0IbnW3wp0", "asqvsXw4be", "ozSM3igXSx", "2QfVi8YVhM",
-                  "7RhOrbGGni", "ausAe1ZaIK", "WS2RGxVAKk", "aBeKdLM3E1", "VaP4llxFOs", "kGTNTx95ds"];
+        var objectIdsArray = ["VGF1UCoZU5", "oWlblkHGpC", "6TTHPSneQU",
+            "cJBGsiHH1Y", "DNigZ6egMc", "r0IbnW3wp0", "asqvsXw4be", "ozSM3igXSx", "2QfVi8YVhM",
+            "7RhOrbGGni", "ausAe1ZaIK", "WS2RGxVAKk", "aBeKdLM3E1", "VaP4llxFOs", "kGTNTx95ds"];
 
         hardCodedDataQuery = new Parse.Query(ParseQuestions),
-        hardCodedDataQuery.containedIn("objectId", objectIdsArray);
+            hardCodedDataQuery.containedIn("objectId", objectIdsArray);
         hardCodedDataQuery.ascending('positionConsumer');
         hardCodedDataQuery.include('answers');
 
@@ -120,16 +74,16 @@ var NewQuestion = React.createClass({
         dynamicDataQuery.ascending('positionConsumer');
         dynamicDataQuery.include('answers.profiles');
         // dynamicDataQuery.include('answers.profiles.products');
-        
+
         hardCodedDataQuery.find().then(
             (hardCodedQuestions) => {
                 dynamicDataQuery.find().then(
                     (dynamicQuestions) => {
-                    console.log('dynamicQuestions');
-                     var arr = _this.buildDataSource(hardCodedQuestions,dynamicQuestions);
-                     _this.setState({
-                        dataSource: arr
-                     })
+                        console.log('dynamicQuestions');
+                        var arr = _this.buildDataSource(hardCodedQuestions,dynamicQuestions);
+                        _this.setState({
+                            dataSource: arr
+                        })
 
                     }, (error) => {
                         console.log('Error getting products');
@@ -141,77 +95,77 @@ var NewQuestion = React.createClass({
     },
 
     buildDataSource: function (hardCodedQuestions, dynamicQuestions) {
-        var tempArray = [[], [], [], []];    
+        var tempArray = [[], [], [], []];
         hardCodedQuestions.forEach(function (hardCodedQuestion, index) {
             switch (index) {
                 case 0:
                     hardCodedQuestion.text="I am a ";
                     tempArray[0].push(hardCodedQuestion);
-                
-                break
+
+                    break
                 case 1:
                     hardCodedQuestion.text="between ";
                     tempArray[0].push(hardCodedQuestion);
-                break
+                    break
                 case 2:
                     hardCodedQuestion.text="I live in ";
                     tempArray[0].push(hardCodedQuestion);
-                break
+                    break
                 case 3:
                     hardCodedQuestion.text="and I visit a salon every ";
                     tempArray[0].push(hardCodedQuestion);
-                break
+                    break
                 case 4:
                     hardCodedQuestion.text="the world, your hair lives in ";
                     tempArray[0].push(hardCodedQuestion);
-                break
+                    break
                 case 5:
                     hardCodedQuestion.text="My hair is ";
                     tempArray[1].push(hardCodedQuestion);
-                break
+                    break
                 case 6:
                     hardCodedQuestion.text=", ";
                     tempArray[1].push(hardCodedQuestion);
-                break
+                    break
                 case 7:
                     hardCodedQuestion.text="and ";
                     tempArray[1].push(hardCodedQuestion);
-                break
+                    break
                 case 8:
                     hardCodedQuestion.text="My hair is ";
                     tempArray[1].push(hardCodedQuestion);
-                break
+                    break
                 case 9:
                     hardCodedQuestion.text="and it's shape is";
                     tempArray[1].push(hardCodedQuestion);
-                break
+                    break
                 case 10:
                     hardCodedQuestion.text="I wash my hair ";
                     tempArray[2].push(hardCodedQuestion);
-                break
+                    break
                 case 11:
                     hardCodedQuestion.text=", ";
                     tempArray[2].push(hardCodedQuestion);
-                break
+                    break
                 case 12:
                     hardCodedQuestion.text="and I";
                     tempArray[2].push(hardCodedQuestion);
-                break
+                    break
                 case 13:
                     hardCodedQuestion.text="I wish ";
                     tempArray[3].push(hardCodedQuestion);
-                break
+                    break
                 case 14:
                     hardCodedQuestion.text="another desire: ";
                     tempArray[3].push(hardCodedQuestion);
-                break
+                    break
             }
 
         });
 
         console.log(hardCodedQuestions);
 
-        dynamicQuestions.splice(0, 0, tempArray[0]); 
+        dynamicQuestions.splice(0, 0, tempArray[0]);
         dynamicQuestions.splice(1, 0, tempArray[1]);
         dynamicQuestions.splice(2, 0, tempArray[2]);
         dynamicQuestions.splice(8, 0, tempArray[3]);
@@ -232,70 +186,68 @@ var NewQuestion = React.createClass({
         var _this = this;
         var maxWidthTitle = 0;
         var maxTitle = "";
-
-
         var data = this.state.dataSource[this.state.pageNumber];
         data[index].get('answers').forEach(function(option){
             if (option.get('title').length > maxWidthTitle) {
-                maxWidthTitle = option.get('title').length;  
+                maxWidthTitle = option.get('title').length;
             }
+
+
+
 
         });
 
-        console.log("max width :",maxWidthTitle);
+        for (var m = 0; m < maxWidthTitle-1; m++) {
+            maxTitle = maxTitle + "_";
+        };
 
-        for (var m = 0; m < maxWidthTitle; m++) {
-            maxTitle = maxTitle + "&nbsp;";
-        }
-
-        console.log("max title :",maxWidthTitle);
         return maxTitle;
-    
+
+    },
+
+    onSelect() {
+
+
+        console.log("on select");
+
     },
 
     getSentences() {
-
-
+        console.log("getCharacters", this.getCharacters(0));
+        $('#app').removeClass('QCM-long');
         var _this = this;
         var obj = [];
         var elem;
         var answers;
         var data = this.state.dataSource[this.state.pageNumber];
+
         var options=[];
 
-        data.forEach(function(item, index) {
 
-            var dictionary={};
-            dictionary.value=item.text;
-            dictionary.label=item.text;
-            options.push(dictionary);
+        data.forEach(function(question, topIndex) {
+            options[topIndex]=[];
+            question.get('answers').forEach(function(answer, index) {
+
+                options[topIndex].push(answer.get('title'))
+
+            });
 
         });
 
 
-        console.log("options are ",options);
-
-        options = [
-            { value: 'one', label: 'One' },
-            { value: 'two', label: 'Two', clearableValue: false }
-        ];
-
-        data.forEach(function(item, index) { 
-
-            elem = <div key={index} className="row answers">
-                    <div className="answer-text"> {item.text}</div>
-                <div> {item.text}</div>
 
 
-                <Select
-                    name="item.text"
-                    value="one"
-                    options={options}
+        data.forEach(function(item, index) {
 
-                    />
+            var __this=_this;
 
-                    </div>
-            obj.push(elem) 
+            elem = <span key={index} className="question-text" >
+                    <span > {item.text}</span>
+
+                    <Dropdown options={options[index]} onChange={__this.onSelect}  value={_this.getCharacters(index)}  />
+
+                    </span>
+            obj.push(elem)
         });
 
         return obj;
@@ -303,189 +255,161 @@ var NewQuestion = React.createClass({
 
     getQCM () {
         var pageNumber = this.state.pageNumber;
-        // if (pageNumber === 10 || pageNumber === 7 || pageNumber === 9) {
-            // $('#app').addClass('QCM-long');
-        // }
+        if (pageNumber === 10 || pageNumber === 7 || pageNumber === 9) {
+            $('#app').addClass('QCM-long');
+        }
 
         $(".radio").attr('checked', false);
         var element;
         var obj = [];
         var data = this.state.dataSource[this.state.pageNumber];
- 
+
         for (var i = 0; i < data.get('answers').length; i++) {
             element = <div key={i} className="question-text checkOption-wrapper col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                    <div className="checkOption" >
-                        <input type="radio"  key={this.state.checkboxState}className="radio" name= "radio" data-indexAnswer={i} id={data.get('answers')[i].get('title')} />
-                        <label className="checkboxLabel"  htmlFor={data.get('answers')[i].get('title')}>
-                           <div className="checkOptionBlock">{data.get('answers')[i].get('title')}</div>
-                        </label>
-                    </div> 
+                <div className="checkOption" >
+                    <input type="radio"  className="radio" name= "radio" data-indexAnswer={i} id={data.get('answers')[i].get('title')} />
+                    <label className="checkboxLabel"  htmlFor={data.get('answers')[i].get('title')}>
+                        <div className="checkOptionBlock">{data.get('answers')[i].get('title')}</div>
+                    </label>
                 </div>
-            obj.push(element);                
-        }; 
+            </div>
+            obj.push(element);
+        };
 
         return obj
     },
 
-    // isAllSelected(){
-    //     var _this = this;
-    //     var isSelected = false;
-    //     var selectedOptions = [];
-    //     $('.selected').each(function (option) {
-    //         console.log($(this).hasClass('hidden'));
-    //         ($(this).hasClass('hidden') || $('.radio:checked ')) ? _this.openModal() : _this.nextPage()
-    //     });
-    //     this.nextPage()
-    // },
+    startTest(){
+        this.setState({
+            pageNumber:this.state.pageNumber + 1
+        });
+    },
+
+    isAllSelected(){
+        var _this = this;
+        var isSelected = false;
+        var selectedOptions = [];
+        $('.selected').each(function (option) {
+            $(this).hasClass('hidden') ? _this.openModal() : _this.nextPage()
+        });
+        return isSelected
+    },
 
     nextPage() {
+
         var pageObject = this.state.dataSource[this.state.pageNumber];
 
-        var shouldValidate = true;
-
-
         if (this.isQCM() === false) {
-
-            var selected = $('li.selected').not(".hidden");
-            var numberOfQuestions = this.state.dataSource[this.state.pageNumber].length;
-            console.log("numberOfQuestions", numberOfQuestions, "li.selected", selected.length);
-            if(selected.length<numberOfQuestions)
-                shouldValidate=false;
-        }
-        else{
-            var checkedAnswer = $( "input:checked" );
-            console.log("checkedAnswer.length",checkedAnswer.length)
-            if(checkedAnswer.length==0){
-                shouldValidate=false;
-            }
-        }
-
-        console.log("validation result",shouldValidate);
-
-        if(shouldValidate==false){
-
-            this.openModal();
-            return;
-
-        }
-
-            if (this.isQCM() === false) {
             this.getSelectedAnswers();
         } else {
             this.getCheckedAnswers();
         }
 
-        $('.selected').each(function(i, el) {
-           $(this).removeClass('selected');
-        });
-
-        // $('.radio').removeAttr('checked');
-
-        this.setState({  
-            selectState: this.state.selectState + 1,
-            checkboxState:"true"
-        });
-
-
         var newPageNumber = this.state.pageNumber + 1;
         var totalPage = this.state.dataSource.length;
-     
+
         //if (newPageNumber === totalPage) {
-        if (newPageNumber === totalPage) {
+        if (newPageNumber === 10) {
             this.goToLogin();
         } else {
-            this.setState({  
+            this.setState({
                 pageNumber:this.state.pageNumber + 1
             });
         }
-  
+
     },
 
     goToLogin() {
         this.context.router.push({
             pathname: '/signUp',
             state: {
-                    questions: this.state.questions,
-                    answers: this.state.answers,
-                    questionTitles: this.state.questionTitles,
-                    answerTitles:  this.state.answerTitles
-                }
-            });
+                questions: this.state.questions,
+                answers: this.state.answers,
+                questionTitles: this.state.questionTitles,
+                answerTitles:  this.state.answerTitles
+            }
+        });
 
     },
-
 
     getCheckedAnswers(){
         var checkedAnswer = $( "input:checked" )[0];
-        console.log("----111---",checkedAnswer);
-        // if (checkedAnswer === undefined){
-        //     this.openModal();
-        // } else {
-            var answerIndex = checkedAnswer.getAttribute('data-indexAnswer');
 
-            var questionObject = this.state.dataSource[this.state.pageNumber];
-            var answerObject = this.state.dataSource[this.state.pageNumber].get('answers')[answerIndex];
+        var answerIndex = checkedAnswer.getAttribute('data-indexAnswer');
 
-            this.state.questions.push(questionObject)
-            this.state.answers.push(answerObject)
-            this.state.questionTitles.push(questionObject.get('title'));
-            this.state.answerTitles.push(answerObject.get('title'));
-        // }
+        var questionObject = this.state.dataSource[this.state.pageNumber];
+        var answerObject = this.state.dataSource[this.state.pageNumber].get('answers')[answerIndex];
+
+        this.state.questions.push(questionObject)
+        this.state.answers.push(answerObject)
+        this.state.questionTitles.push(questionObject.get('title'));
+        this.state.answerTitles.push(answerObject.get('title'));
     },
 
     getSelectedAnswers(){
+
         var _this = this;
         var array = [];
         $('li.selected').each(function(i, el) {
             array.push(el);
 
-            var answerIndex = el.getAttribute('data-original-index') - 1;
+            var answerIndex = el.getAttribute('data-original-index');
             var questionObject = _this.state.dataSource[_this.state.pageNumber][i];
             var answerObject = _this.state.dataSource[_this.state.pageNumber][i].get('answers')[answerIndex];
-             
+
             _this.state.questions.push(questionObject)
             _this.state.answers.push(answerObject)
             _this.state.questionTitles.push(questionObject.get('title'));
             _this.state.answerTitles.push(answerObject.get('title'));
-
-        }); 
+        });
     },
 
     getQCMOrSentences(){
         var item = this.state.dataSource[this.state.pageNumber];
-        if (this.isQCM() === false) {
+        if (this.state.pageNumber  === -1 ) {
+            return this.getStart();
+        } else if(this.isQCM() === false) {
             return this.getSentences();
         } else {
-           return this.getQCM();
+            return this.getQCM();
         }
     },
 
     dynanamicPagination(){
         var pagination = [];
-        for (var k = 0; k < 10; k++) {
+        for (var k = 0; k < 11; k++) {
             if (k === 0) {
                 return null
             } else {
-                pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>); 
+                pagination.push(<span key={k}><div className="round" className={this.state.pageNumber === k? "activeRound" : "round"}></div><HorizontalLine  /></span>);
             }
         }
         return pagination
 
     },
 
-    getQCMtext() {
-       var text = this.state.dataSource[this.state.pageNumber].get('title');
-       return text;
+    getStart(){
+        $('#app').removeClass('QCM-long');
+        var start = [];
+
+        start.push(<h1 key={1} className="start-title">k-profile</h1>);
+        start.push(<div  key={2} className="buttonStyles" onClick={this.startTest}>start your hair diagnosis</div>);
+        return start
     },
 
-   isQCM() {
+    getQCMtext() {
+        var text = this.state.dataSource[this.state.pageNumber].get('title');
+        return text;
+    },
+
+    isQCM() {
         var item = this.state.dataSource[this.state.pageNumber];
         if ($.isArray(item)) {
             return false;
         } else {
-           return true;
+            return true;
         }
-  
+
     },
 
     openModal () {
@@ -503,39 +427,39 @@ var NewQuestion = React.createClass({
     render: function() {
         var text = 'tell us about yourself';
 
-        var options = [
-         { value: 'one', label: 'One' },
-            { value: 'two', label: 'Two', clearableValue: false }
-        ];
-
         if (this.state.dataSource.length === 0) {
             return null
         } else {
             return (
-                <div className="container wrapperPhrase">
+                <div className="wrapperPhrase">
                     <Header />
-                    <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
-
-                    <div  className="question-wrapper container">
+                    { this.state.pageNumber === -1 ? null:
+                        <TitleComponent pageNumber={this.state.pageNumber} text={this.isQCM() ? this.getQCMtext() : text}/>
+                    }
+                    <div  className={this.state.pageNumber === -1?  "start-wrapper":"question-wrapper"}>
                         <div  className="question-text_wrapper row" >
-                            {this.getQCMOrSentences()}     
+                            {this.getQCMOrSentences()}
                         </div>
                     </div>
-                    <div className="wrapperNext" onClick={this.nextPage}>
-                        <div className="linkText">Next</div>
-                        <div className="linkArrow"  >
+                    { this.state.pageNumber === -1 ? null:
+                        <div className="wrapperNext">
+                            <div className="linkText">Next</div>
+                            <div className="linkArrow"  onClick={this.nextPage}>
+                            </div>
                         </div>
-                    </div>
-
+                    }
                     <div className="wrapper-counter">
-                    {this.dynanamicPagination()}
+                        {this.dynanamicPagination()}
                     </div>
-                    <Modal show={this.state.showModal} onHide={this.closeModal} className="modalQuestion">
+                    <Modal show={this.state.showModal} onHide={this.closeModal}>
 
-                    <Modal.Body>
-                        <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
-                        <p className="customersText">You have not answered some questions. Please, answer all questions and try again</p>
-                    </Modal.Body>
+                        <Modal.Body>
+                            <p className="customersText">Please, choose one answer</p>
+                        </Modal.Body>
+
+                        <Modal.Footer>
+                            <button className="btn customersText" onClick={this.closeModal}>Close</button>
+                        </Modal.Footer>
                     </Modal>
                 </div>
             );
