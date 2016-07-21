@@ -481,7 +481,7 @@ var SignUp = React.createClass({
                 
             </Validation.Form >
             <div className="modal-wrapper">
-                <Modal show={this.state.showModal} className="signUp" sign-up-modal onHide={this.closeModal}>
+                <Modal show={this.state.showModal} className="signUp" sign-up-modal >
                     <Modal.Body >
                         <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
                         <p className="customersText">Please, enter correctly all information to continue</p>
