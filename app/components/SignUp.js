@@ -183,6 +183,7 @@ var SignUp = React.createClass({
                     newUser.set("newsletter", _this.state.newsletter);
                     newUser.set("email", _this.state.email);
                     newUser.set("country", _this.state.country);
+                    newUser.set("platform", "WEB");
                     newUser.set("password", _this.state.password);
                     console.log("NEW USER", newUser);
                     newUser.signUp(null, {

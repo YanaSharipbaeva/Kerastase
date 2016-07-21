@@ -184,15 +184,12 @@ var NewQuestion = React.createClass({
     },
 
     getCharacters(index){
-        var _this = this;
-        var maxWidthTitle = 0;
+
+        console.log("getCharacters","index is ",index);
+        var maxWidthTitle =  this.getMaxWidth(index);
+        console.log("getMaxWidth",maxWidthTitle);
+
         var maxTitle = "";
-        var data = this.state.dataSource[this.state.pageNumber];
-        data[index].get('answers').forEach(function(option){
-            if (option.get('title').length > maxWidthTitle) {
-                maxWidthTitle = option.get('title').length;
-            }
-        });
 
         for (var m = 0; m < maxWidthTitle-1; m++) {
             maxTitle = maxTitle + "_";
@@ -200,7 +197,49 @@ var NewQuestion = React.createClass({
 
         return maxTitle;
 
+
     },
+
+    addSpaceToAnswers(title,maxWidth){
+
+   console.log("addSpaceToAnswers",title,":",maxWidth);
+
+        return title;
+        var diff = maxWidth-title.length;
+        var middle= diff/2;
+
+        console.log("shoudl add char on each side ",middle)
+
+        var newTitle=title;
+
+        for (var m = 0; m < middle+1; m++) {
+            newTitle = "&#32;"+newTitle +"&#32;";
+        };
+
+        console.log("addSpaceToAnswers wit diff",diff);
+
+
+    return newTitle;
+    },
+
+    getMaxWidth(index){
+
+        var maxWidthTitle = 0;
+
+        var data = this.state.dataSource[this.state.pageNumber];
+
+        console.log("data is ",data,"index is ",index);
+
+        data[index].get('answers').forEach(function(option){
+            if (option.get('title').length > maxWidthTitle) {
+                maxWidthTitle = option.get('title').length;
+            }
+        });
+
+        return maxWidthTitle;
+
+    },
+
 
     onSelect(e) {
         var el = e.target;
@@ -221,9 +260,20 @@ var NewQuestion = React.createClass({
 
         data.forEach(function(question, topIndex) {
             options[topIndex]=[];
+
+            var __this=_this;
+            var maxWitdth = _this.getMaxWidth(topIndex);
+            console.log("this maxwidth",maxWitdth);
+
+
             question.get('answers').forEach(function(answer, index) {
 
-                options[topIndex].push(answer.get('title'))
+                var title = answer.get("title");
+                var newTitle = __this.addSpaceToAnswers(title,maxWitdth);
+
+                var label = topIndex+"-"+index;
+                var dic = {value:label,label:newTitle};
+                options[topIndex].push(dic)
 
             });
 
@@ -233,10 +283,12 @@ var NewQuestion = React.createClass({
 
             var __this=_this;
 
+            var style = {color:"red",width:"500px",backgroundColor:"red"}
+
             elem = <span key={index} className="question-text" >
                     <span className="question-text_info"> {item.text}</span>
 
-                    <Dropdown options={options[index]} onChange={__this.onSelect}  value={_this.getCharacters(index)}  />
+                    <Dropdown  options={options[index]} onChange={__this.onSelect}  value={__this.getCharacters(index)}  />
 
                     </span>
             obj.push(elem)

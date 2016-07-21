@@ -18,7 +18,7 @@ import Social from "./Social";
 
 require('../styles/Main.css');
 require('../styles/Result.css');
-
+import Pagination from "./Pagination";
 var StoreLocator = React.createClass({
     mixins: [
         LinkedStateMixin
