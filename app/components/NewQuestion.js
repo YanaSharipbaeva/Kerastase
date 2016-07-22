@@ -299,31 +299,31 @@ var NewQuestion = React.createClass({
 
         console.log(this.state.dataSource);
 
-        var startIndex = 0;
-        var allHardCodedAnswersArrays = [];
-        var temporaryArray = [];
-        var resultArray = [];
-        this.state.dataSource.forEach(function(item, index) {
-            if (index===0||index===1||index===2||index===8) {
-                allHardCodedAnswersArrays.push(item);
-            }
-        });
+        // var startIndex = 0;
+        // var allHardCodedAnswersArrays = [];
+        // var temporaryArray = [];
+        // var resultArray = [];
+        // this.state.dataSource.forEach(function(item, index) {
+        //     if (index===0||index===1||index===2||index===8) {
+        //         allHardCodedAnswersArrays.push(item);
+        //     }
+        // });
 
-        allHardCodedAnswersArrays.forEach(function(item){
-            item.forEach(function(el){
-                temporaryArray.push(el);
-            })
-        })
-        console.log('temporaryArray',temporaryArray );
+        // allHardCodedAnswersArrays.forEach(function(item){
+        //     item.forEach(function(el){
+        //         temporaryArray.push(el);
+        //     })
+        // })
+        // console.log('temporaryArray',temporaryArray );
 
-        for (i in temporaryArray) {
-            if (temporaryArray[i].shouldReturn || i == temporaryArray.length - 1) {
-                resultArray.concat(temporaryArray.slice(startIndex, i))
-                startIndex = i + 1
-            }
-        }
+        // for (i in temporaryArray) {
+        //     if (temporaryArray[i].shouldReturn || i == temporaryArray.length - 1) {
+        //         resultArray.concat(temporaryArray.slice(startIndex, i))
+        //         startIndex = i + 1
+        //     }
+        // }
 
-        console.log('resultArray', resultArray);
+        // console.log('resultArray', resultArray);
 
         data.forEach(function(item, index) {
            var arr = [];
