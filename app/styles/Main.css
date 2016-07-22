@@ -119,6 +119,7 @@ body {
     height: 75px;
     background-color: #fff;
     padding: 0px;
+    margin-bottom: 60px;
 }
 
 .header-icon {
@@ -268,6 +269,7 @@ body {
 
 .social-links {
   display:inline-block;
+  left: 20px;
 }
 
 .restart_profile:before{
@@ -371,6 +373,7 @@ body {
 #footer {
   margin-bottom: 30px;
   margin-top: 50px;
+  cursor: pointer;
 }
 
 .footer-container {
@@ -382,3 +385,27 @@ body {
 .checkOption {
     padding-left: 20%!important;
   }
+
+.result4-text_info {
+    padding: 0 20px;
+}
+
+.confirm-modal .customersText:last-child{
+  margin-top: 10px;
+  color: #e24b37;
+}
+
+.wrapper-in-salon_ritual  #footer, .wrapper-result #footer{
+    position: absolute;
+    bottom: 10px;
+}
+
+.Dropdown-arrow {
+    margin-left: 10px;
+}
+
+.Wrapper-links {
+    bottom: 10px;
+    position: absolute;
+}
+

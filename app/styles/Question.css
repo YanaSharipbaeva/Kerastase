@@ -14,7 +14,6 @@
     color: #fff;
     float: right;
     margin-right: 50px;
-    margin-top: 45px;
     width: 100%;
     text-align: right;
 }
@@ -185,20 +184,6 @@
 
 .question-text {
     margin-bottom: 30px;
-}
-
-.wrapper-select .form-group {
-
-}
-
-.itchy-options:not(checked) + label {
-    float:none!important;
-}
-
-
-
-.question4_wrapper {
-    position: relative;
 }
 
 .customersText {

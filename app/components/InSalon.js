@@ -72,8 +72,6 @@ var InSalon = React.createClass({
 
     },  
 
-
-
     nextPage(){
         console.log('nextPage');
         this.context.router.push({
@@ -101,11 +99,11 @@ var InSalon = React.createClass({
                     </div>
                     <div className="info-block text_block col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
                          <div className="text_wrapper">
-                            <p className="result-title info-text_title">{this.state.profile.get("prescriptionServices")}</p>
-                            <div className="description-wrapper">
-                                <p className="info-text">{this.state.profile.get("descriptionService")}</p>
-                                <div className="timeInSalon">20 MN</div>
+                          <div className="description-wrapper">
+                                <p className="result-title info-text_title">{this.state.profile.get("prescriptionServices")}</p>
+                                <p className="info-text col-xs-12 col-sm-12">{this.state.profile.get("descriptionService")}</p>
                             </div>
+                             <div className="timeInSalon col-xs-12 col-sm-12">{this.state.profile.get("salonTimer")} MN</div>
                         </div>
                         <div className="text_wrapper">
 
@@ -113,19 +111,9 @@ var InSalon = React.createClass({
                     </div>
 
                 </div>
-                <div>
-
+                <div className="row wrapper-footer-social">
                     <Footer onClick={this.nextPage} title="At-Home program"/>
-                    <div className="social-links">
-                        <div className="social-links_title">share this ritual</div>
-                        <div className="s_link">
-                            <a href="https://twitter.com" className="fa fa-twitter" aria-hidden="true"></a>
-                        </div>
-                        <div className="s_link">
-                            <a href="https://facebook.com" className="fa fa-facebook" aria-hidden="true"></a>
-                        </div>
-                    </div> 
-                    <Link to="/start" className="restart_profile">Restart K profile</Link> 
+                    <Social/>
                 </div>
                 <Pagination pageNumber={this.state.pageNumber}/>
             </div>

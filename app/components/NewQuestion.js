@@ -335,7 +335,7 @@ var NewQuestion = React.createClass({
 
 
         console.log("before new data with option",options);
-        console.log('new data',newData );
+        console.log('new data', newData );
 
 
         console.log('resultArray', resultArray);

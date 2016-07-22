@@ -74,7 +74,6 @@
 .wrapper-in-salon_ritual{
     padding-bottom: 20px;   
     box-sizing: border-box;
-    position: relative;
 }
 
 .info-image1 {
@@ -331,9 +330,6 @@ ul.info-text{
 .reseiveByEmail .linkText{
     margin-bottom: 20px!important;
 }
-.reseiveByEmail{
-    padding-bottom: 50px;
-}
 
 .products {
     display:inline-block;
@@ -405,6 +401,7 @@ ul.info-text{
 }
 .result2 .text_block{
     padding-left: 20px;
+    padding-right: 20px;
 }
 .result2 .wrapperNext {
     position: absolute;
@@ -423,7 +420,8 @@ ul.info-text{
 .profile-text-wrapper {
     padding-left: 30px!important;
     padding-right: 30px!important;
-    padding-top: 110px!important;
+    padding-bottom: 150px!important;
+
 }
 
 .main-in-salon-wrapper {
@@ -519,6 +517,10 @@ ul.info-text{
     pointer-events: none;
 }
 
-.Wrapper-links {
-
+.reseiveByEmail .linkArrow {
+    width: 47px;
+    height: 43px;
+    display: block;
+    background: url(../images/restart_image.png) no-repeat center;
+    cursor:pointer;
 }

@@ -14,7 +14,7 @@ var Social = React.createClass({
     render: function() {
         return (
             <div className="Wrapper-links col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <div className="social-links col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <div className="social-links col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div className="social-links_title">share this ritual</div>
                     <div className="s_link">
                         <a href="https://twitter.com" className="fa fa-twitter" aria-hidden="true"></a>
@@ -23,7 +23,7 @@ var Social = React.createClass({
                         <a href="https://facebook.com" className="fa fa-facebook" aria-hidden="true"></a>
                     </div>
                 </div> 
-                <Link to="/start" className="restart_profile col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">Restart K profile</Link>
+                <Link to="/start" className="restart_profile col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">Restart K profile</Link>
             </div>
         );
     }

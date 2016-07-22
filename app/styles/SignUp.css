@@ -129,6 +129,7 @@
     text-align: center;
     text-transform: uppercase;
     transition: all 1s ease;
+    cursor: pointer;
 }
 
 .signUp-main-wrapper {

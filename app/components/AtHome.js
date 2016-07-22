@@ -179,9 +179,10 @@ var AtHome = React.createClass({
                 </div>
                 <div>
 
-
-                <Footer onClick={this.nextPage} title="Store Locator"/>
-                <Social/>
+                <div className="row">
+                    <Footer onClick={this.nextPage} title="Store Locator"/>
+                    <Social />
+                </div>    
    
                 </div>
                 <Pagination pageNumber={this.state.pageNumber}/>

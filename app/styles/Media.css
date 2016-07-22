@@ -44,8 +44,8 @@
         width: auto;
     }
      .question-wrapper{
-        padding-left: 40px!important;
-        padding-right: 40px!important;
+        padding-left: 20px!important;
+        padding-right: 20px!important;
     }
 
     .signUp-main-wrapper .question-text_wrapper {
@@ -64,9 +64,60 @@
 }
 
 @media (max-width: 768px) {
-/*        #app{
-        height:auto;
-    }*/
+    .social-links{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .questionTitle{
+        padding: 0px 20px;
+    }
+
+    .restart_profile {
+        text-align: center!important;
+    }
+    .checkOption{
+        padding-left: 0px!important;
+    }
+    .questionNumber{
+        margin-bottom: 20px;
+    }
+
+    .description-wrapper .info-text {
+        width: auto!important;
+    }
+    .timeInSalon{
+        width: 100%;
+        text-align: center;
+        top:0px;
+        margin-left: 0px;
+    }
+    .info-text {
+        padding-left: 0px;
+    }
+    .radio:not(checked) + label {
+        padding: 0px 0 0 85px;
+    }
+    .result2 .text_wrapper {
+        display: inline-flex!important;
+        flex-direction: column-reverse!important;
+    }
+
+    .timeInSalon {
+        margin-bottom: 20px;
+    }
+
+    .info-text {
+        padding-right: 0px;
+    }
+   .result2 .text_block {
+        padding-left: 0px!important; 
+        padding-right: 0px!important; 
+    }
+    .main-in-salon-wrapper {
+        padding-right: 30px!important;
+        padding-left: 30px!important;
+    }
+
 }
 
 @media (max-width: 700px) {
@@ -95,9 +146,7 @@
         width: 100%!important;
     }
 
-    .signUp-input_wrapper .bootstrap-select {
-        /*width: 100%; */
-    }
+
     #signUp-input  {
         width:280px!important;
     }
@@ -138,15 +187,29 @@
     }
 
 }
+@media (max-width: 420px) {
+    .modalShareDiagnostics .email-field {
+        font-size: 18px!important;
+    }
+
+    .confirmButton {
+        font-size: 18px!important;
+    }
+}
 
 @media (max-width: 400px) {
     .buttonStyles {
         font-family: 'InterstateLight';
         font-size: 16px!important;
     }
+
     .result-text_thin {
         font-family: 'InterstateThin';
         font-size: 29px!important;
     }
-
+}
+@media (max-width: 320px){
+    .question-text_wrapper {
+        padding-left: 20px!important;
+    }
 }
