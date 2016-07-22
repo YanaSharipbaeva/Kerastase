@@ -66,7 +66,7 @@ var NewQuestion = React.createClass({
 
         hardCodedDataQuery = new Parse.Query(ParseQuestions),
             hardCodedDataQuery.containedIn("objectId", objectIdsArray);
-        hardCodedDataQuery.ascending('positionConsumer');
+        hardCodedDataQuery.ascending('positionSentence');
         hardCodedDataQuery.include('answers');
 
         dynamicDataQuery = new Parse.Query(ParseQuestions);
@@ -82,8 +82,10 @@ var NewQuestion = React.createClass({
                     (dynamicQuestions) => {
                         console.log('dynamicQuestions');
                         var arr = _this.buildDataSource(hardCodedQuestions,dynamicQuestions);
+
                         _this.setState({
                             dataSource: arr
+
                         })
 
                     }, (error) => {
@@ -97,6 +99,8 @@ var NewQuestion = React.createClass({
 
     buildDataSource: function (hardCodedQuestions, dynamicQuestions) {
         var tempArray = [[], [], [], []];
+
+        console.log("hardCodedQuestions",hardCodedQuestions);
         hardCodedQuestions.forEach(function (hardCodedQuestion, index) {
             switch (index) {
                 case 0:
@@ -122,7 +126,6 @@ var NewQuestion = React.createClass({
                     break
                 case 4:
                     hardCodedQuestion.text="the world, your hair lives in ";
-                    hardCodedQuestion.shouldReturn = true;
                     tempArray[0].push(hardCodedQuestion);
                     break
                 case 5:
@@ -265,7 +268,7 @@ var NewQuestion = React.createClass({
         console.log("getCharacters", this.getCharacters(0));
         var _this = this;
         var obj = [];
-        var elem;
+
         var answers;
    
         var firstArray = [];
@@ -275,13 +278,15 @@ var NewQuestion = React.createClass({
 
         var options=[];
 
+        console.log("this dataSource",data);
 
+        var newIndex=0;
         data.forEach(function(question, topIndex) {
-            options[topIndex]=[];
+            options[newIndex]=[];
 
             var __this=_this;
             var maxWitdth = _this.getMaxWidth(topIndex);
-            console.log("this maxwidth",maxWitdth);
+
 
 
             question.get('answers').forEach(function(answer, index) {
@@ -291,9 +296,11 @@ var NewQuestion = React.createClass({
 
                 var label = topIndex+"-"+index;
                 var dic = {value:label,label:newTitle};
-                options[topIndex].push(dic)
+                options[newIndex].push(dic)
+
 
             });
+            newIndex=newIndex+1;
 
         });
 
@@ -303,41 +310,63 @@ var NewQuestion = React.createClass({
         var allHardCodedAnswersArrays = [];
         var temporaryArray = [];
         var resultArray = [];
-        this.state.dataSource.forEach(function(item, index) {
-            if (index===0||index===1||index===2||index===8) {
-                allHardCodedAnswersArrays.push(item);
+
+        var newData=[];
+       var subArr=[];
+
+        data.forEach(function(item,index){
+            subArr.push(item);
+
+             if(item.shouldReturn){
+
+                 newData.push(subArr);
+                 subArr=[];
+
+             }
+
+
+            else if(index==data.length-1){
+
+                newData.push(subArr);
             }
+
         });
 
-        allHardCodedAnswersArrays.forEach(function(item){
-            item.forEach(function(el){
-                temporaryArray.push(el);
-            })
-        })
-        console.log('temporaryArray',temporaryArray );
 
-        for (i in temporaryArray) {
-            if (temporaryArray[i].shouldReturn || i == temporaryArray.length - 1) {
-                resultArray.concat(temporaryArray.slice(startIndex, i))
-                startIndex = i + 1
-            }
-        }
+
+        console.log("before new data with option",options);
+        console.log('new data',newData );
+
 
         console.log('resultArray', resultArray);
+        var newIndex=0;
+        newData.forEach(function(subArray, topIndex) {
 
-        data.forEach(function(item, index) {
-           var arr = [];
 
-            var __this=_this;
+            console.log('subArray',subArray );
+                var __this = _this;
 
-            var style = {color:"red",width:"500px",backgroundColor:"red"}
+                var elem;
 
-            elem = <span key={index} className="question-text">
+                elem=   <div></div>
+                obj.push(elem);
+
+                subArray.forEach(function(item, index) {
+
+                    var that = __this;
+
+                    console.log("new index is ",newIndex);
+
+                    elem = <span key={newIndex} className="question-text">
                     <span className="question-text_info">{item.text}</span>
-                    <Dropdown  options={options[index]} onChange={__this.onSelect}  value={__this.getCharacters(index)}  />
-
+                    <Dropdown options={options[newIndex]} onChange={that.onSelect} value={that.getCharacters(newIndex)}/>
                     </span>
-            obj.push(elem);
+
+                    obj.push(elem);
+                    newIndex++;
+                });
+
+
         });
 
         return obj;
