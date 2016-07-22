@@ -101,20 +101,23 @@ var NewQuestion = React.createClass({
             switch (index) {
                 case 0:
                     hardCodedQuestion.text="I am ";
+                    hardCodedQuestion.shouldReturn = false;
                     tempArray[0].push(hardCodedQuestion);
 
                     break
                 case 1:
                     hardCodedQuestion.text="between ";
+                    hardCodedQuestion.shouldReturn = true;
                     tempArray[0].push(hardCodedQuestion);
                     break
                 case 2:
                     hardCodedQuestion.text="I live in ";
-                    hardCodedQuestion.shouldReturn = true;
+                    hardCodedQuestion.shouldReturn = false;
                     tempArray[0].push(hardCodedQuestion);
                     break
                 case 3:
                     hardCodedQuestion.text="and I visit a salon ";
+                    hardCodedQuestion.shouldReturn = false;
                     tempArray[0].push(hardCodedQuestion);
                     break
                 case 4:
@@ -124,14 +127,17 @@ var NewQuestion = React.createClass({
                     break
                 case 5:
                     hardCodedQuestion.text="My hair is ";
+                    hardCodedQuestion.shouldReturn = false;
                     tempArray[1].push(hardCodedQuestion);
                     break
                 case 6:
                     hardCodedQuestion.text=", ";
+                    hardCodedQuestion.shouldReturn = false;
                     tempArray[1].push(hardCodedQuestion);
                     break
                 case 7:
                     hardCodedQuestion.text="and ";
+                    hardCodedQuestion.shouldReturn = false;
                     tempArray[1].push(hardCodedQuestion);
                     break
                 case 8:
@@ -141,23 +147,27 @@ var NewQuestion = React.createClass({
                     break
                 case 9:
                     hardCodedQuestion.text="and it's shape is";
+                    hardCodedQuestion.shouldReturn = false;
                     tempArray[1].push(hardCodedQuestion);
                     break
                 case 10:
                     hardCodedQuestion.text="I wash my hair ";
-                    hardCodedQuestion.shouldReturn = true;
+                    hardCodedQuestion.shouldReturn = false;
                     tempArray[2].push(hardCodedQuestion);
                     break
                 case 11:
                     hardCodedQuestion.text=", ";
+                    hardCodedQuestion.shouldReturn = false;
                     tempArray[2].push(hardCodedQuestion);
                     break
                 case 12:
                     hardCodedQuestion.text="and I";
+                    hardCodedQuestion.shouldReturn = true;
                     tempArray[2].push(hardCodedQuestion);
                     break
                 case 13:
                     hardCodedQuestion.text="I wish ";
+                    hardCodedQuestion.shouldReturn = false;
                     tempArray[3].push(hardCodedQuestion);
                     break
                 case 14:
@@ -189,7 +199,6 @@ var NewQuestion = React.createClass({
     },
 
     getCharacters(index){
-
         console.log("getCharacters","index is ",index);
         var maxWidthTitle =  this.getMaxWidth(index);
         console.log("getMaxWidth",maxWidthTitle);
@@ -207,7 +216,7 @@ var NewQuestion = React.createClass({
 
     addSpaceToAnswers(title,maxWidth){
 
-   console.log("addSpaceToAnswers",title,":",maxWidth);
+        console.log("addSpaceToAnswers",title,":",maxWidth);
 
         return title;
         var diff = maxWidth-title.length;
@@ -224,7 +233,7 @@ var NewQuestion = React.createClass({
         console.log("addSpaceToAnswers wit diff",diff);
 
 
-    return newTitle;
+        return newTitle;
     },
 
     getMaxWidth(index){
@@ -258,6 +267,10 @@ var NewQuestion = React.createClass({
         var obj = [];
         var elem;
         var answers;
+   
+        var firstArray = [];
+        var secondArray = [];
+        var temporaryArrays = [];
         var data = this.state.dataSource[this.state.pageNumber];
 
         var options=[];
@@ -283,6 +296,34 @@ var NewQuestion = React.createClass({
             });
 
         });
+
+        console.log(this.state.dataSource);
+
+        var startIndex = 0;
+        var allHardCodedAnswersArrays = [];
+        var temporaryArray = [];
+        var resultArray = [];
+        this.state.dataSource.forEach(function(item, index) {
+            if (index===0||index===1||index===2||index===8) {
+                allHardCodedAnswersArrays.push(item);
+            }
+        });
+
+        allHardCodedAnswersArrays.forEach(function(item){
+            item.forEach(function(el){
+                temporaryArray.push(el);
+            })
+        })
+        console.log('temporaryArray',temporaryArray );
+
+        for (i in temporaryArray) {
+            if (temporaryArray[i].shouldReturn || i == temporaryArray.length - 1) {
+                resultArray.concat(temporaryArray.slice(startIndex, i))
+                startIndex = i + 1
+            }
+        }
+
+        console.log('resultArray', resultArray);
 
         data.forEach(function(item, index) {
            var arr = [];
@@ -321,12 +362,6 @@ var NewQuestion = React.createClass({
         };
 
         return obj
-    },
-
-    startTest(){
-        this.setState({
-            pageNumber:this.state.pageNumber + 1
-        });
     },
 
     isAllSelected(){
@@ -451,8 +486,6 @@ var NewQuestion = React.createClass({
             return null
         } else {
             return (
-
-
                 <div className="wrapperPhrase container">
                 <div className="row">
                     <Header />
