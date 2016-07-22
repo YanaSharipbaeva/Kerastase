@@ -31,7 +31,7 @@ var SignUp = React.createClass({
 
      getInitialState: function () {
          var mail="";
-         var name=";"
+         var name=""
          var surname="";
          var country="UK";
          var newsletter=true;
@@ -100,9 +100,6 @@ var SignUp = React.createClass({
             questions.push(question.toPointer());
 
 
-
-
-
         });
 
         var answers = [];
@@ -125,7 +122,6 @@ var SignUp = React.createClass({
         var questionTitles = this.state.questionTitles;
         var answerTitles = this.state.answerTitles;
         var profiles = this.state.profiles;
-
 
         diagnostic.set('questions', questions);
         diagnostic.set('questionTitles', questionTitles);
@@ -375,7 +371,9 @@ var SignUp = React.createClass({
             this.signUp(event);
             console.log(this.state);
         } else {
-            this.openModal();
+
+            console.log("should open modal");
+            this.openModal(false);
         }
     },
 
@@ -419,7 +417,6 @@ var SignUp = React.createClass({
                             ref='name'
                             value={this.state.name}
                             type='text'/>
-
                     </div>
                     <div className="signUp-input_wrapper">
                         <div className="signUp-input_text">My surname is</div>
@@ -480,6 +477,14 @@ var SignUp = React.createClass({
 
                 <Footer onClick={this.submitAndDisplay} title="Next"/>
 
+                <div className="modal-wrapper">
+                    <Modal show={this.state.showModal} className="signUp" sign-up-modal onHide={this.closeModal}>
+                        <Modal.Body >
+                            <div className=" customersText-icon" aria-hidden="true" onClick={this.closeModal}>&#10006;</div>
+                            <p className="customersText">Please, enter correctly all information to continue</p>
+                        </Modal.Body>
+                    </Modal>
+                </div>
 
                 <div  className="skipButton" onClick={this.skipAndDisplay}>skip</div>
             </div>
